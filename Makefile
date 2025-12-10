@@ -10,6 +10,12 @@ MAIN_OBJ = $(MAIN_SRC:.c=.o)
 LIBNAME = libespresso.a
 TARGET = main
 
+ifeq ($(OS),Windows_NT)
+    LDFLAGS = -lws2_32
+else
+    LDFLAGS = -lpthread
+endif
+
 .PHONY: all clean
 
 all: $(LIBNAME) $(TARGET)
@@ -18,7 +24,7 @@ $(LIBNAME): $(BACKEND_OBJ)
 	ar rcs $@ $^
 
 $(TARGET): $(MAIN_OBJ) $(LIBNAME)
-	$(CC) $(CFLAGS) -o $@ $^
+	$(CC) $(CFLAGS) -o $@ $(MAIN_OBJ) $(LIBNAME) $(LDFLAGS)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@

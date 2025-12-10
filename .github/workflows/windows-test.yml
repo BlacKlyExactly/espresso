@@ -21,12 +21,12 @@ jobs:
 
       - name: Compile Espresso server
         run: |
-          gcc main.c -I. -lws2_32 -o server.exe
+          make
           dir
 
       - name: Run server in background
         run: |
-          start /B server.exe
+          start /B main.exe
           timeout /t 3
 
       - name: Test endpoints
