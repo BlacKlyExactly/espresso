@@ -27,8 +27,22 @@ jobs:
 
       - name: Run server in background
         run: |
-          Start-Process -FilePath ".\main.exe" -NoNewWindow
-          Start-Sleep -Seconds 8
+          $job = Start-Job -ScriptBlock { .\main.exe }
+
+          $max_attempts = 15
+          $attempt = 0
+          do {
+              Start-Sleep -Seconds 1
+              $tcp = Test-NetConnection -ComputerName localhost -Port 8080
+              $attempt++
+          } while (-not $tcp.TcpTestSucceeded -and $attempt -lt $max_attempts)
+
+          curl "http://localhost:8080/"
+          curl "http://localhost:8080/api/"
+          curl "http://localhost:8080/api/echo?msg=HelloWorld"
+
+          Stop-Job $job
+          Remove-Job $job
 
       - name: Test endpoints
         run: |
