@@ -29,6 +29,10 @@ typedef int socklen_t;
 #include <unistd.h>
 #endif
 
+#ifdef DELETE
+#undef DELETE
+#endif
+
 #define MAX_HEADERS 32
 #define KEY_SIZE 64
 #define VALUE_SIZE 256
