@@ -26,7 +26,7 @@ jobs:
 
       - name: Run server in background
         run: |
-          cmd /c start "" /B ".\main.exe"
+          cmd /c start "" /B ".\main.exe" < NUL
           timeout /t 3
 
       - name: Test endpoints
