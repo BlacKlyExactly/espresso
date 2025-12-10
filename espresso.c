@@ -508,6 +508,9 @@ App *create_app(int port) {
 
   if (app->groups == NULL) {
     printf("Failed to malloc groups");
+    free(app->endpoints);
+    free(app->middlewares);
+    free(app);
     return NULL;
   }
 
@@ -516,6 +519,10 @@ App *create_app(int port) {
 
   if (app->server_fd < 0) {
     perror("socket error");
+    free(app->endpoints);
+    free(app->middlewares);
+    free(app->groups);
+    free(app);
     return NULL;
   }
 
@@ -523,18 +530,40 @@ App *create_app(int port) {
   app->server_addr.sin_addr.s_addr = INADDR_ANY;
   app->server_addr.sin_port = htons(port);
 
+#ifdef _WIN32
   int opt = 1;
-  if (setsockopt(app->server_fd, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(opt)) <
-      0) {
-    perror("set socket option error");
+  if (setsockopt(app->server_fd, SOL_SOCKET, SO_REUSEADDR, (const char *)&opt,
+                 sizeof(opt)) == SOCKET_ERROR) {
+    fprintf(stderr, "setsockopt failed: %d\n", WSAGetLastError());
+    CLOSE_SOCKET(app->server_fd);
+    WSACleanup();
+    free(app->endpoints);
+    free(app->middlewares);
+    free(app->groups);
     free(app);
     return NULL;
   }
+#else
+  int opt = 1;
+  if (setsockopt(app->server_fd, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(opt)) <
+      0) {
+    perror("setsockopt failed");
+    CLOSE_SOCKET(app->server_fd);
+    free(app->endpoints);
+    free(app->middlewares);
+    free(app->groups);
+    free(app);
+    return NULL;
+  }
+#endif
 
   if (bind(app->server_fd, (struct sockaddr *)&app->server_addr,
            sizeof(app->server_addr)) < 0) {
     perror("bind error");
     CLOSE_SOCKET(app->server_fd);
+    free(app->endpoints);
+    free(app->middlewares);
+    free(app->groups);
     free(app);
     return NULL;
   }
