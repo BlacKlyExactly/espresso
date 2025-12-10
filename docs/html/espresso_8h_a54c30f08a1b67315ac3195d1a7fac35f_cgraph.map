@@ -1,0 +1,7 @@
+<map id="create_app" name="create_app">
+<area shape="rect" id="Node000001" title="Creates a new Espresso app on the specified port." alt="" coords="5,5,91,31"/>
+<area shape="rect" id="Node000002" href="$espresso_8c.html#a1f2696ccccf441f76c9f5161fb903db5" title=" " alt="" coords="139,5,256,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="91,16,126,18,121,18,91,21"/>
+<area shape="rect" id="Node000003" href="$espresso_8c.html#a3489a7e521f0aceb3e050ca4b9f165d7" title="Closes the app and frees resources." alt="" coords="304,5,384,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="256,16,291,18,286,18,257,21"/>
+</map>

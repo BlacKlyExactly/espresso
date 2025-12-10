@@ -1,0 +1,15 @@
+var searchData=
+[
+  ['send_5ferror_0',['send_error',['../espresso_8h.html#afb4623b096ac903aa1c53a5f0c730328',1,'send_error(ResponseContext *res, int status, const char *message):&#160;espresso.c'],['../espresso_8c.html#afb4623b096ac903aa1c53a5f0c730328',1,'send_error(ResponseContext *res, int status, const char *message):&#160;espresso.c']]],
+  ['send_5fjson_5fresponse_1',['send_json_response',['../espresso_8h.html#a1851b4d23bfd00e217b09add89e1aec4',1,'send_json_response(ResponseContext *res, cJSON *json):&#160;espresso.c'],['../espresso_8c.html#a1851b4d23bfd00e217b09add89e1aec4',1,'send_json_response(ResponseContext *res, cJSON *json):&#160;espresso.c']]],
+  ['send_5ftext_5fresponse_2',['send_text_response',['../espresso_8h.html#af64bb6b2b26aeba238178ab708f13136',1,'send_text_response(ResponseContext *res, const char *text):&#160;espresso.c'],['../espresso_8c.html#a74fa803b07b95b5f1446ae4bb85f4f0b',1,'send_text_response(ResponseContext *res, const char *message):&#160;espresso.c']]],
+  ['set_5fdata_3',['set_data',['../espresso_8h.html#accb7e84d4d05bf7501d52de24e8b9c9b',1,'set_data(ResponseContext *res, const char *key, void *value):&#160;espresso.c'],['../espresso_8c.html#accb7e84d4d05bf7501d52de24e8b9c9b',1,'set_data(ResponseContext *res, const char *key, void *value):&#160;espresso.c']]],
+  ['set_5fdata_5fdouble_4',['set_data_double',['../espresso_8h.html#ab5eb7bedd3e620582768d9367c437569',1,'set_data_double(ResponseContext *res, const char *key, double value):&#160;espresso.c'],['../espresso_8c.html#ab5eb7bedd3e620582768d9367c437569',1,'set_data_double(ResponseContext *res, const char *key, double value):&#160;espresso.c']]],
+  ['set_5fdata_5fint_5',['set_data_int',['../espresso_8h.html#a21ae333e3e8b2f17bcce3e2baad48190',1,'set_data_int(ResponseContext *res, const char *key, int value):&#160;espresso.c'],['../espresso_8c.html#a21ae333e3e8b2f17bcce3e2baad48190',1,'set_data_int(ResponseContext *res, const char *key, int value):&#160;espresso.c']]],
+  ['set_5fdata_5fstring_6',['set_data_string',['../espresso_8h.html#a7a51ad27c37b1b8371f9e14db3c58dec',1,'set_data_string(ResponseContext *res, const char *key, const char *value):&#160;espresso.c'],['../espresso_8c.html#a7a51ad27c37b1b8371f9e14db3c58dec',1,'set_data_string(ResponseContext *res, const char *key, const char *value):&#160;espresso.c']]],
+  ['set_5fheader_7',['set_header',['../espresso_8h.html#a66bdae95780114adb4284a4709cfd583',1,'set_header(ResponseContext *res, const char *key, const char *value):&#160;espresso.c'],['../espresso_8c.html#a66bdae95780114adb4284a4709cfd583',1,'set_header(ResponseContext *res, const char *key, const char *value):&#160;espresso.c']]],
+  ['skip_5fmultiline_5fcomment_8',['skip_multiline_comment',['../cJSON_8c.html#a4b9e22afcb0d33932c691b5af9f2560a',1,'cJSON.c']]],
+  ['skip_5foneline_5fcomment_9',['skip_oneline_comment',['../cJSON_8c.html#a98eaeafefb811c738494a26265309a07',1,'cJSON.c']]],
+  ['skip_5futf8_5fbom_10',['skip_utf8_bom',['../cJSON_8c.html#a3bb0de8275d39e5a31ea006a7dae65b7',1,'cJSON.c']]],
+  ['suffix_5fobject_11',['suffix_object',['../cJSON_8c.html#a5d61bcc0045ace88c2ae04f0928eeace',1,'cJSON.c']]]
+];

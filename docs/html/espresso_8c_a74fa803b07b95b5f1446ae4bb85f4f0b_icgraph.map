@@ -1,0 +1,10 @@
+<map id="send_text_response" name="send_text_response">
+<area shape="rect" id="Node000001" title="Sends text response." alt="" coords="251,31,388,56"/>
+<area shape="rect" id="Node000002" href="$main_8c.html#a3567783714153d35ee83fd6de55968d1" title=" " alt="" coords="104,5,202,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="233,31,202,28,202,23,238,30"/>
+<area shape="rect" id="Node000004" href="$main_8c.html#a036dbf8db2f30bf4fb436fcc8ea138c7" title=" " alt="" coords="103,55,203,80"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="238,55,204,63,203,58,233,56"/>
+<area shape="rect" id="Node000003" href="$main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,31,55,56"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="87,33,56,41,54,36,91,30"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="85,56,55,51,55,46,90,54"/>
+</map>

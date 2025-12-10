@@ -1,0 +1,10 @@
+<map id="Request" name="Request">
+<area shape="rect" id="Node000001" title="HTTP request structure." alt="" coords="52,257,121,283"/>
+<area shape="rect" id="Node000002" href="$structKeyValue.html" title="Fixed&#45;size key/value pair." alt="" coords="5,140,82,166"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="40,179,43,207,49,232,58,244,70,256,65,257,54,248,44,234,37,207,39,184"/>
+<area shape="rect" id="Node000003" href="$structBody.html" title="HTTP request or response body." alt="" coords="106,140,157,166"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="124,179,103,234,93,258,89,255,98,232,119,182"/>
+<area shape="rect" id="Node000004" href="$structcJSON.html" title=" " alt="" coords="99,24,164,50"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="133,63,134,140,129,139,130,68"/>
+<area shape="poly" id="edge4_Node000004_Node000004" title=" " alt="" coords="178,24,187,29,190,38,182,49,165,52,162,47,179,45,185,37,183,32,179,29"/>
+</map>

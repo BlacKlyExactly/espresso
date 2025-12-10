@@ -1,0 +1,13 @@
+<map id="get_query" name="get_query">
+<area shape="rect" id="Node000001" title="Retrieve a query parameter as a void pointer." alt="" coords="419,55,497,80"/>
+<area shape="rect" id="Node000002" href="$espresso_8c.html#a3e2f6f8d829c119c8ff0ec86a52489c6" title="Retrieve a query parameter as a double." alt="" coords="249,5,371,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="402,50,351,34,351,29,407,50"/>
+<area shape="rect" id="Node000003" href="$espresso_8c.html#a1f688efce5fc202c8a84d80ada7e7d89" title="Retrieve a query parameter as an integer." alt="" coords="261,55,359,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="401,68,360,70,359,65,406,67"/>
+<area shape="rect" id="Node000004" href="$espresso_8c.html#a5afa98a10b7b10f4021fa67400d39f31" title="Retrieve a query parameter as string from the URL." alt="" coords="252,104,368,130"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="407,85,352,106,350,101,402,86"/>
+<area shape="rect" id="Node000005" href="$main_8c.html#a3567783714153d35ee83fd6de55968d1" title=" " alt="" coords="103,104,201,130"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="234,117,202,119,201,114,239,117"/>
+<area shape="rect" id="Node000006" href="$main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,104,55,130"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="84,118,55,119,55,114,90,116"/>
+</map>

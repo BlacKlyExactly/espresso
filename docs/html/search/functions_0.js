@@ -1,0 +1,6 @@
+var searchData=
+[
+  ['_5fapp_5fappend_5fendpoint_0',['_app_append_endpoint',['../espresso_8h.html#a60f89d5029f2a26d41bb861d538d2bf6',1,'_app_append_endpoint(App *app, Method method, const char *path, EndpointHandler handler, Middleware *middlewares):&#160;espresso.c'],['../espresso_8c.html#a60f89d5029f2a26d41bb861d538d2bf6',1,'_app_append_endpoint(App *app, Method method, const char *path, EndpointHandler handler, Middleware *middlewares):&#160;espresso.c']]],
+  ['_5fapp_5fappend_5fendpoint_5fto_5fgroup_1',['_app_append_endpoint_to_group',['../espresso_8h.html#a55c2ea3f4301ad993abc2d9c948d1426',1,'_app_append_endpoint_to_group(App *app, AppGroup *group, Method method, const char *path, EndpointHandler handler, Middleware *middlewares):&#160;espresso.c'],['../espresso_8c.html#a55c2ea3f4301ad993abc2d9c948d1426',1,'_app_append_endpoint_to_group(App *app, AppGroup *group, Method method, const char *path, EndpointHandler handler, Middleware *middlewares):&#160;espresso.c']]],
+  ['_5fapp_5fcreate_5fgroup_2',['_app_create_group',['../espresso_8h.html#aad9cef5e92c59e40491ee2a261a95617',1,'_app_create_group(App *app, const char *root_path, Middleware *middlewares):&#160;espresso.c'],['../espresso_8c.html#aad9cef5e92c59e40491ee2a261a95617',1,'_app_create_group(App *app, const char *root_path, Middleware *middlewares):&#160;espresso.c']]]
+];

@@ -1,0 +1,15 @@
+<map id="buffer_skip_whitespace" name="buffer_skip_whitespace">
+<area shape="rect" id="Node000001" title=" " alt="" coords="451,55,609,80"/>
+<area shape="rect" id="Node000002" href="$cJSON_8h.html#abd55c37a5af547c3c1ada176e38afbc6" title=" " alt="" coords="5,5,128,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="453,51,403,45,255,30,128,23,128,17,255,25,404,40,458,51"/>
+<area shape="rect" id="Node000003" href="$cJSON_8c.html#a367cc7ac5a592211d9f18dc02dd23069" title=" " alt="" coords="315,55,403,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="433,68,404,70,404,65,438,67"/>
+<area shape="rect" id="Node000005" href="$cJSON_8c.html#a1472ac5d1becd7d9a5e558b4c053b06a" title=" " alt="" coords="19,55,114,80"/>
+<area shape="poly" id="edge8_Node000001_Node000005" title=" " alt="" coords="462,84,404,95,289,104,175,95,114,84,115,78,176,90,289,98,403,90,457,84"/>
+<area shape="rect" id="Node000004" href="$cJSON_8c.html#afd5c0b7089e4de2fc9b2af599d4b596f" title=" " alt="" coords="176,55,267,80"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="297,77,267,79,267,73,302,76"/>
+<area shape="poly" id="edge4_Node000004_Node000002" title=" " alt="" coords="162,50,109,34,110,29,167,48"/>
+<area shape="poly" id="edge5_Node000004_Node000003" title=" " alt="" coords="282,56,317,59,312,59,282,61"/>
+<area shape="poly" id="edge6_Node000004_Node000005" title=" " alt="" coords="157,77,115,79,114,73,162,76"/>
+<area shape="poly" id="edge7_Node000005_Node000004" title=" " alt="" coords="129,56,178,59,173,60,130,61"/>
+</map>

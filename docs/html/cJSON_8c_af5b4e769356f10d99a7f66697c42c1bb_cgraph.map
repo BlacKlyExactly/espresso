@@ -1,0 +1,11 @@
+<map id="print_string_ptr" name="print_string_ptr">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,67,113,92"/>
+<area shape="rect" id="Node000002" href="$cJSON_8c.html#ad9f9a9b2ad3154fc8033756f23c023a6" title=" " alt="" coords="161,67,221,92"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="113,77,147,79,142,80,114,82"/>
+<area shape="rect" id="Node000003" href="$structinternal__hooks.html#a8b8f7ff45faa5da18dd3ccd2a2c8e416" title=" " alt="" coords="274,29,431,55"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="221,70,282,58,277,60,222,75"/>
+<area shape="rect" id="Node000004" href="$structinternal__hooks.html#a7c3921493fab83f33cd509145d8a5393" title=" " alt="" coords="269,103,436,128"/>
+<area shape="poly" id="edge4_Node000002_Node000004" title=" " alt="" coords="222,83,280,99,274,99,221,89"/>
+<area shape="poly" id="edge3_Node000003_Node000003" title=" " alt="" coords="325,28,320,21,323,11,334,5,353,3,372,5,384,14,379,14,371,10,353,8,336,10,327,15,325,20,330,30"/>
+<area shape="poly" id="edge5_Node000004_Node000004" title=" " alt="" coords="325,101,320,94,323,84,334,78,353,76,372,79,384,88,379,87,371,84,353,81,336,83,327,88,325,93,330,103"/>
+</map>

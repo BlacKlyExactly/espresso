@@ -1,0 +1,6 @@
+<map id="Body" name="Body">
+<area shape="rect" id="Node000001" title="HTTP request or response body." alt="" coords="12,140,63,166"/>
+<area shape="rect" id="Node000002" href="$structcJSON.html" title=" " alt="" coords="5,24,70,50"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="40,65,40,140,35,139,35,66"/>
+<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="84,24,93,29,96,38,88,49,71,52,68,47,85,45,91,37,89,32,85,29"/>
+</map>

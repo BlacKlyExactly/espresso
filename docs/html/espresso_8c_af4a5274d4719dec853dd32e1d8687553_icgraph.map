@@ -1,0 +1,15 @@
+<map id="hex_to_int" name="hex_to_int">
+<area shape="rect" id="Node000001" title=" " alt="" coords="862,5,943,31"/>
+<area shape="rect" id="Node000002" href="$espresso_8c.html#a755a65a488e1158eee3fdab0ecada8fe" title=" " alt="" coords="713,5,814,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="844,18,815,21,815,16,849,18"/>
+<area shape="rect" id="Node000003" href="$espresso_8c.html#a2d9a0717a9389e6d178d0f4a8c2ef185" title=" " alt="" coords="564,5,665,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="695,18,665,21,665,16,700,18"/>
+<area shape="rect" id="Node000004" href="$espresso_8c.html#a260a9eca1b37d7151fd585fde9e355b8" title=" " alt="" coords="374,5,516,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="546,18,516,21,516,16,551,18"/>
+<area shape="rect" id="Node000005" href="$espresso_8c.html#abf603e2df288bddb710c847ace1f772d" title=" " alt="" coords="231,5,326,31"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="356,18,327,21,327,16,361,18"/>
+<area shape="rect" id="Node000006" href="$espresso_8c.html#a0ba22157d15a70c4c22441b040bb0f74" title="Starts the HTTP server loop." alt="" coords="103,5,183,31"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="213,18,184,21,184,16,218,18"/>
+<area shape="rect" id="Node000007" href="$main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,5,55,31"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="85,19,55,21,55,16,90,17"/>
+</map>

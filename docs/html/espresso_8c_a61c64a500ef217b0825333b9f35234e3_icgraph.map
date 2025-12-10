@@ -1,0 +1,16 @@
+<map id="build_response_headers" name="build_response_headers">
+<area shape="rect" id="Node000001" title=" " alt="" coords="439,31,601,56"/>
+<area shape="rect" id="Node000002" href="$espresso_8c.html#a1851b4d23bfd00e217b09add89e1aec4" title="Sends JSON response." alt="" coords="251,5,391,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="421,31,392,30,391,24,427,31"/>
+<area shape="rect" id="Node000004" href="$espresso_8c.html#a74fa803b07b95b5f1446ae4bb85f4f0b" title="Sends text response." alt="" coords="252,55,390,80"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="421,55,391,62,390,57,427,55"/>
+<area shape="rect" id="Node000003" href="$espresso_8c.html#afb4623b096ac903aa1c53a5f0c730328" title="Sends error response with status code and message." alt="" coords="112,5,194,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="233,19,195,21,194,16,238,17"/>
+<area shape="rect" id="Node000005" href="$main_8c.html#a3567783714153d35ee83fd6de55968d1" title=" " alt="" coords="104,55,202,80"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="234,68,203,70,202,65,239,67"/>
+<area shape="rect" id="Node000007" href="$main_8c.html#a036dbf8db2f30bf4fb436fcc8ea138c7" title=" " alt="" coords="103,104,203,130"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="263,85,200,106,199,101,258,86"/>
+<area shape="rect" id="Node000006" href="$main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,80,55,106"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="87,82,56,90,54,85,91,79"/>
+<area shape="poly" id="edge7_Node000007_Node000006" title=" " alt="" coords="85,105,55,100,55,95,90,103"/>
+</map>

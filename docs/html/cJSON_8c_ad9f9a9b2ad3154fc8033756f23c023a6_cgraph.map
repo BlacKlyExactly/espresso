@@ -1,0 +1,9 @@
+<map id="ensure" name="ensure">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,67,66,92"/>
+<area shape="rect" id="Node000002" href="$structinternal__hooks.html#a8b8f7ff45faa5da18dd3ccd2a2c8e416" title=" " alt="" coords="119,29,276,55"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="65,70,126,57,122,61,67,75"/>
+<area shape="rect" id="Node000003" href="$structinternal__hooks.html#a7c3921493fab83f33cd509145d8a5393" title=" " alt="" coords="114,103,281,128"/>
+<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="66,83,124,97,120,100,66,89"/>
+<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="169,28,164,21,168,11,179,5,197,3,217,5,229,14,223,14,215,10,197,8,181,10,172,15,170,20,175,29"/>
+<area shape="poly" id="edge4_Node000003_Node000003" title=" " alt="" coords="170,101,164,94,168,84,179,78,197,76,217,79,229,88,223,87,215,84,197,81,181,83,172,88,170,93,174,103"/>
+</map>

@@ -1,0 +1,17 @@
+<map id="client_thread" name="client_thread">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,80,101,106"/>
+<area shape="rect" id="Node000002" href="$espresso_8c.html#a04c27c6493696fb67ab9b8f5296c14f1" title=" " alt="" coords="171,5,281,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="75,77,148,40,166,35,161,38,150,45,78,82"/>
+<area shape="rect" id="Node000003" href="$espresso_8c.html#aca61aa31ed57abce18d1d3cffd0d47e3" title=" " alt="" coords="149,55,303,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="100,83,136,80,131,82,102,88"/>
+<area shape="rect" id="Node000004" href="$espresso_8c.html#a1ab07f0a47159856d7446c79d306cd6b" title="Parses an HTTP request string into a Request struct." alt="" coords="160,104,292,130"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="101,97,147,104,142,107,102,102"/>
+<area shape="rect" id="Node000005" href="$espresso_8c.html#a260a9eca1b37d7151fd585fde9e355b8" title=" " alt="" coords="155,153,296,179"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="78,104,150,140,166,148,161,148,148,145,76,109"/>
+<area shape="rect" id="Node000006" href="$espresso_8c.html#a2d9a0717a9389e6d178d0f4a8c2ef185" title=" " alt="" coords="351,153,452,179"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="297,164,338,166,332,166,297,169"/>
+<area shape="rect" id="Node000007" href="$espresso_8c.html#a755a65a488e1158eee3fdab0ecada8fe" title=" " alt="" coords="500,153,602,179"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="453,164,488,166,482,166,453,169"/>
+<area shape="rect" id="Node000008" href="$espresso_8c.html#af4a5274d4719dec853dd32e1d8687553" title=" " alt="" coords="650,153,730,179"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="602,164,637,166,632,166,602,169"/>
+</map>

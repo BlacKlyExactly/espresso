@@ -1,0 +1,9 @@
+<map id="generate_allow_header" name="generate_allow_header">
+<area shape="rect" id="Node000001" title=" " alt="" coords="374,5,529,31"/>
+<area shape="rect" id="Node000002" href="$espresso_8c.html#abf603e2df288bddb710c847ace1f772d" title=" " alt="" coords="231,5,326,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="356,18,327,21,327,16,362,18"/>
+<area shape="rect" id="Node000003" href="$espresso_8c.html#a0ba22157d15a70c4c22441b040bb0f74" title="Starts the HTTP server loop." alt="" coords="103,5,183,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="213,18,184,21,184,16,218,18"/>
+<area shape="rect" id="Node000004" href="$main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,5,55,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="85,19,55,21,55,16,90,17"/>
+</map>
