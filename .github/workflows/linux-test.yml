@@ -1,0 +1,41 @@
+name: Linux Build & Test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: sudo apt-get update && sudo apt-get install -y libcurl4-openssl-dev
+
+      - name: Compile Espresso server
+        run: |
+          make
+          ls -l main
+
+      - name: Run server in background
+        run: |
+          ./main & 
+          sleep 3
+
+      - name: Test endpoints
+        run: |
+          echo "Testing /"
+          curl "http://localhost:8080/"
+
+          echo "Testing /api/"
+          curl "http://localhost:8080/api/"
+
+          echo "Testing /api/echo?msg=HelloWorld"
+          curl "http://localhost:8080/api/echo?msg=HelloWorld"
+
+      - name: Kill server
+        run: pkill -f main || echo "Server already stopped"
