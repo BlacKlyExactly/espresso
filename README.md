@@ -548,8 +548,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📫 Contact
 
-- **Issues:** [GitHub Issues](https://github.com/yourusername/espresso/issues)
-- **Discussions:** [GitHub Discussions](https://github.com/yourusername/espresso/discussions)
+- **Issues:** [GitHub Issues](https://github.com/blacklyexactly/espresso/issues)
+- **Discussions:** [GitHub Discussions](https://github.com/blacklyexactly/espresso/discussions)
 
 ---
 
