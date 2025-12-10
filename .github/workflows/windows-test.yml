@@ -1,0 +1,45 @@
+name: Windows Build & Test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build-and-test:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up MSYS2 / MinGW
+        uses: msys2/setup-msys2@v2
+        with:
+          update: true
+          install: mingw-w64-x86_64-gcc
+
+      - name: Compile Espresso server
+        run: |
+          gcc main.c -I. -lws2_32 -o server.exe
+          dir
+
+      - name: Run server in background
+        run: |
+          start /B server.exe
+          timeout /t 3
+
+      - name: Test endpoints
+        run: |
+          echo "Testing /"
+          curl "http://localhost:8080/"
+
+          echo "Testing /api/"
+          curl "http://localhost:8080/api/"
+
+          echo "Testing /api/echo?msg=HelloWorld"
+          curl "http://localhost:8080/api/echo?msg=HelloWorld"
+
+      - name: Kill server
+        run: |
+          taskkill /IM server.exe /F || echo "Server already stopped"
