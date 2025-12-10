@@ -1,9 +1,10 @@
+// clang-format off
 #ifdef _WIN32
 #include <process.h>
 #include <signal.h>
-#include <windows.h>
 #include <winsock2.h>
 #include <ws2tcpip.h>
+#include <windows.h>
 #pragma comment(lib, "ws2_32.lib")
 #else
 #include <arpa/inet.h>
