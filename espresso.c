@@ -476,7 +476,7 @@ App *create_app(int port) {
   WSADATA wsaData;
   if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0) {
     fprintf(stderr, "WSAStartup failed\n");
-    return;
+    return NULL;
   }
 #endif
 
