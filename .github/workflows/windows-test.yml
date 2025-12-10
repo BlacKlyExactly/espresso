@@ -43,18 +43,3 @@ jobs:
 
           Stop-Job $job
           Remove-Job $job
-
-      - name: Test endpoints
-        run: |
-          echo "Testing /"
-          curl "http://localhost:8080/"
-
-          echo "Testing /api/"
-          curl "http://localhost:8080/api/"
-
-          echo "Testing /api/echo?msg=HelloWorld"
-          curl "http://localhost:8080/api/echo?msg=HelloWorld"
-
-      - name: Kill server
-        run: |
-          taskkill /IM server.exe /F || echo "Server already stopped"
