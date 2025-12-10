@@ -1,5 +1,6 @@
 #ifdef _WIN32
 #include <process.h>
+#include <signal.h>
 #include <windows.h>
 #include <winsock2.h>
 #include <ws2tcpip.h>
@@ -57,6 +58,23 @@ char *strcasestr(const char *haystack, const char *needle) {
   }
 
   return NULL;
+}
+
+char *strsep(char **stringp, const char *delim) {
+  char *start = *stringp;
+  char *p;
+
+  if (!start)
+    return NULL;
+
+  p = strpbrk(start, delim);
+  if (p) {
+    *p = '\0';
+    *stringp = p + 1;
+  } else {
+    *stringp = NULL;
+  }
+  return start;
 }
 #endif
 
@@ -558,7 +576,11 @@ void *client_thread(void *arg)
   if (!buffer) {
     perror("Failed to malloc a client_thread buffer");
     CLOSE_SOCKET(client_fd);
+#ifdef _WIN32
+    return 0;
+#else
     return NULL;
+#endif
   }
 
   size_t buffer_size = 2048;
@@ -570,7 +592,11 @@ void *client_thread(void *arg)
             strlen(payload_too_large_response));
       CLOSE_SOCKET(client_fd);
       free(buffer);
+#ifdef _WIN32
+      return 0;
+#else
       return NULL;
+#endif
     }
 
     if (total_read == buffer_size - 1) {
@@ -585,7 +611,11 @@ void *client_thread(void *arg)
       if (!new_buffer) {
         free(buffer);
         CLOSE_SOCKET(client_fd);
+#ifdef _WIN32
+        return 0;
+#else
         return NULL;
+#endif
       }
 
       buffer = new_buffer;
@@ -611,7 +641,11 @@ void *client_thread(void *arg)
 #endif
       free(buffer);
       free(ctx);
+#ifdef _WIN32
       return 0;
+#else
+      return NULL;
+#endif
     }
 
     total_read += bytes;
@@ -631,7 +665,11 @@ void *client_thread(void *arg)
           CLOSE_SOCKET(client_fd);
           free(buffer);
           free(ctx);
+#ifdef _WIN32
+          return 0;
+#else
           return NULL;
+#endif
         }
       } else {
         content_length = 0;
@@ -642,7 +680,11 @@ void *client_thread(void *arg)
         CLOSE_SOCKET(client_fd);
         free(buffer);
         free(ctx);
+#ifdef _WIN32
+        return 0;
+#else
         return NULL;
+#endif
       }
 
       if (total_read >= content_length + headers_len)
@@ -658,12 +700,16 @@ void *client_thread(void *arg)
 
   if (strcmp(req.version, "HTTP/1.0") != 0 &&
       strcmp(req.version, "HTTP/1.1") != 0) {
-    write(client_fd, http_version_not_supported_response,
+    WRITE(client_fd, http_version_not_supported_response,
           strlen(http_version_not_supported_response));
 
     CLOSE_SOCKET(client_fd);
     free(req.body);
+#ifdef _WIN32
+    return 0;
+#else
     return NULL;
+#endif
   }
 
   int is_valid = 0;
@@ -691,7 +737,11 @@ void *client_thread(void *arg)
     WRITE(client_fd, response, len);
     CLOSE_SOCKET(client_fd);
     free(req.body);
+#ifdef _WIN32
+    return 0;
+#else
     return NULL;
+#endif
   }
 
   ResponseContext res;
@@ -707,7 +757,11 @@ void *client_thread(void *arg)
     perror("Failed to malloc res->data.entries");
     CLOSE_SOCKET(client_fd);
     free(req.body);
+#ifdef _WIN32
+    return 0;
+#else
     return NULL;
+#endif
   }
 
   res.query.capacity = 10;
@@ -720,7 +774,11 @@ void *client_thread(void *arg)
     free(req.body);
     free(res.data.entries);
 
+#ifdef _WIN32
+    return 0;
+#else
     return NULL;
+#endif
   }
 
   int exists = 0;

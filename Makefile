@@ -12,8 +12,10 @@ TARGET = main
 
 ifeq ($(OS),Windows_NT)
     LDFLAGS = -lws2_32
+    RM = del /Q
 else
     LDFLAGS = -lpthread
+    RM = rm -f
 endif
 
 .PHONY: all clean
@@ -30,4 +32,4 @@ $(TARGET): $(MAIN_OBJ) $(LIBNAME)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(BACKEND_OBJ) $(MAIN_OBJ) $(LIBNAME) $(TARGET)
+	$(RM) $(BACKEND_OBJ) $(MAIN_OBJ) $(LIBNAME) $(TARGET)
