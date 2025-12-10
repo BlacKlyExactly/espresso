@@ -28,7 +28,7 @@ jobs:
       - name: Run server in background
         run: |
           Start-Process -FilePath ".\main.exe" -NoNewWindow
-          Start-Sleep -Seconds 3
+          Start-Sleep -Seconds 8
 
       - name: Test endpoints
         run: |
