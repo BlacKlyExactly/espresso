@@ -19,6 +19,9 @@ jobs:
           make
           test -f ./main || { echo "Error: main executable not found."; exit 1; }
 
+      - name: Wait for port to clear
+        run: sleep 10
+
       - name: Run server in background
         run: |
           ./main &
