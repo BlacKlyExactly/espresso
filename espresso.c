@@ -1359,15 +1359,19 @@ void *get_query(ResponseContext *res, const char *key) {
 }
 
 int get_query_int(ResponseContext *res, const char *key) {
-  int *ptr = (int *)get_query(res, key);
-  return ptr ? *ptr : 0;
+  char *val = (char *)get_query(res, key);
+  if (!val)
+    return 0;
+  return atoi(val);
+}
+
+double get_query_double(ResponseContext *res, const char *key) {
+  char *val = (char *)get_query(res, key);
+  if (!val)
+    return 0.0;
+  return atof(val);
 }
 
 char *get_query_string(ResponseContext *res, const char *key) {
   return (char *)get_query(res, key);
-}
-
-double get_query_double(ResponseContext *res, const char *key) {
-  double *ptr = (double *)get_query(res, key);
-  return ptr ? *ptr : 0.0;
 }
