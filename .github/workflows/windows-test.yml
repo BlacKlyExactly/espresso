@@ -21,14 +21,14 @@ jobs:
 
       - name: Compile Espresso server
         run: |
+          export IS_CI_BUILD=true
           make
           dir
 
       - name: Run server in background
-        shell: cmd
         run: |
-          start "" /B ".\main.exe" < NUL
-          timeout /t 3
+          Start-Process -FilePath ".\main.exe" -NoNewWindow
+          Start-Sleep -Seconds 3
 
       - name: Test endpoints
         run: |

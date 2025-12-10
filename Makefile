@@ -10,12 +10,19 @@ MAIN_OBJ = $(MAIN_SRC:.c=.o)
 LIBNAME = libespresso.a
 TARGET = main
 
-ifeq ($(OS),Windows_NT)
-    LDFLAGS = -lws2_32
-    RM = del /Q
+ifdef IS_CI_BUILD
+  CI_LDFLAGS = -mwindows
 else
-    LDFLAGS = -lpthread
-    RM = rm -f
+  CI_LDFLAGS =
+endif
+
+
+ifeq ($(OS),Windows_NT)
+  LDFLAGS = -lws2_32 $(CI_LDFLAGS)
+  RM = del /Q
+else
+  LDFLAGS = -lpthread
+  RM = rm -f
 endif
 
 .PHONY: all clean
