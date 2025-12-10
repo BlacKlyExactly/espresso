@@ -1,26 +1,40 @@
-build-and-test-macos:
-  name: macOS Build & Test
-  runs-on: macos-latest
+name: macOS Build & Test
 
-  steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+on:
+  push:
+    branches: [main]
+  pull_request:
 
-    - name: Compile Espresso server
-      run: |
-        make
-        ls -l main
+jobs:
+  build-and-test-macos:
+    name: Build & Test on macOS
+    runs-on: macos-latest
 
-    - name: Run server in background
-      run: |
-        ./main & 
-        sleep 3
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-    - name: Test endpoints
-      run: |
-        curl "http://localhost:8080/"
-        curl "http://localhost:8080/api/"
-        curl "http://localhost:8080/api/echo?msg=HelloWorld"
+      - name: Compile Espresso server
+        run: |
+          make
+          test -f ./main || { echo "Error: main executable not found."; exit 1; }
 
-    - name: Kill server
-      run: pkill -f main || echo "Server already stopped"
+      - name: Run server in background
+        run: |
+          ./main &
+          sleep 3
+
+      - name: Test endpoints
+        run: |
+          echo "Testing /"
+          curl --fail "http://localhost:8080/"
+
+          echo "Testing /api/"
+          curl --fail "http://localhost:8080/api/"
+
+          echo "Testing /api/echo?msg=HelloWorld"
+          curl --fail "http://localhost:8080/api/echo?msg=HelloWorld"
+
+      - name: Kill server
+        if: always()
+        run: pkill -f main || true
