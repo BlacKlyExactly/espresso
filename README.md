@@ -59,7 +59,7 @@ cd espresso
 make
 
 # Run the server
-./espresso_server
+./main
 ```
 
 ### Manual Build
