@@ -52,7 +52,7 @@ int main() {
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/espresso.git
+git clone https://github.com/blacklyexactly/espresso.git
 cd espresso
 
 # Build the example
