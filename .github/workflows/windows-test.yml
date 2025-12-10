@@ -21,7 +21,7 @@ jobs:
 
       - name: Compile Espresso server
         run: |
-          export IS_CI_BUILD=true
+          $env:IS_CI_BUILD="true"
           make
           dir
 
