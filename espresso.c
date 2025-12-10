@@ -472,6 +472,14 @@ int parse_http_request(char *buffer, Request *req, int client_fd) {
 }
 
 App *create_app(int port) {
+#ifdef _WIN32
+  WSADATA wsaData;
+  if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0) {
+    fprintf(stderr, "WSAStartup failed\n");
+    return;
+  }
+#endif
+
   App *app = malloc(sizeof(App));
   lib_global_app = app;
 
@@ -923,14 +931,6 @@ void *client_thread(void *arg)
 }
 
 void app_listen(App *app) {
-#ifdef _WIN32
-  WSADATA wsaData;
-  if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0) {
-    fprintf(stderr, "WSAStartup failed\n");
-    return;
-  }
-#endif
-
 #ifdef _WIN32
   app->server_fd = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
 #else
