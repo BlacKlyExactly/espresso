@@ -527,8 +527,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🐛 Known Limitations
 
-- **Windows Support:** Requires Winsock2 (`ws2_32.lib`)
-- **Thread Model:** One thread per connection (suitable for moderate traffic)
 - **SSL/TLS:** Not yet supported (use reverse proxy like nginx)
 - **WebSockets:** Not yet supported
 
