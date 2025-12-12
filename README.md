@@ -542,7 +542,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [ ] File upload support (multipart/form-data)
 - [ ] WebSocket support
 - [ ] SSL/TLS support
-- [ ] Async I/O with libuv
+- [x] Async I/O with libuv
 
 ---
 

@@ -1,42 +1,67 @@
 CC = gcc
-CFLAGS = -Wall -Wextra -O2 -I. -Ivendor/cJSON
+CFLAGS = -Wall -Wextra -O2 -I./src -I./vendor/cJSON -luv
+SRC_DIR = src
+TEST_DIR = tests
+VENDOR_DIR = vendor/cJSON
 
-BACKEND_SRC = espresso.c vendor/cJSON/cJSON.c
-BACKEND_OBJ = $(BACKEND_SRC:.c=.o)
+SRC = $(SRC_DIR)/espresso.c $(SRC_DIR)/main.c $(VENDOR_DIR)/cJSON.c
+OBJ = $(SRC:.c=.o)
 
-MAIN_SRC = main.c
-MAIN_OBJ = $(MAIN_SRC:.c=.o)
-
-LIBNAME = libespresso.a
+LIB = libespresso.a
 TARGET = main
 
-ifdef IS_CI_BUILD
-  CI_LDFLAGS = -mwindows
-else
-  CI_LDFLAGS =
-endif
+UNIT_TEST_SRC = $(TEST_DIR)/unit-tests.c
+UNIT_TEST_OBJ = $(UNIT_TEST_SRC:.c=.o)
+UNIT_TEST_BIN = test_unit
 
+INTEGRATION_TEST_SRC = $(TEST_DIR)/integration-tests.c
+INTEGRATION_TEST_OBJ = $(INTEGRATION_TEST_SRC:.c=.o)
+INTEGRATION_TEST_BIN = test_integration
 
 ifeq ($(OS),Windows_NT)
-  LDFLAGS = -lws2_32 $(CI_LDFLAGS)
-  RM = del /Q
+    RM = del /Q
+    CHECK_CFLAGS =
+    CHECK_LDFLAGS =
 else
-  LDFLAGS = -lpthread
-  RM = rm -f
+    RM = rm -f
+    CHECK_CFLAGS = $(shell pkg-config --cflags check)
+    CHECK_LDFLAGS = $(shell pkg-config --libs check)
 endif
 
-.PHONY: all clean
+.PHONY: all clean test_unit test_integration
 
-all: $(LIBNAME) $(TARGET)
+all: $(LIB) $(TARGET)
 
-$(LIBNAME): $(BACKEND_OBJ)
+$(LIB): $(OBJ)
 	ar rcs $@ $^
 
-$(TARGET): $(MAIN_OBJ) $(LIBNAME)
-	$(CC) $(CFLAGS) -o $@ $(MAIN_OBJ) $(LIBNAME) $(LDFLAGS)
+$(TARGET): $(LIB) $(SRC_DIR)/main.o
+	$(CC) $(CFLAGS) -o $@ $(SRC_DIR)/main.o $(LIB)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
+test_unit: $(LIB) $(UNIT_TEST_OBJ)
+ifeq ($(OS),Windows_NT)
+	$(CC) $(CFLAGS) -o $(UNIT_TEST_BIN) $(UNIT_TEST_OBJ) $(LIB)
+	$(UNIT_TEST_BIN)
+else
+	$(CC) $(CFLAGS) $(CHECK_CFLAGS) -o $(UNIT_TEST_BIN) $(UNIT_TEST_OBJ) $(LIB) $(CHECK_LDFLAGS)
+	./$(UNIT_TEST_BIN)
+endif
+
+test_integration: $(LIB) $(INTEGRATION_TEST_OBJ)
+ifeq ($(OS),Windows_NT)
+	$(CC) $(CFLAGS) -o $(INTEGRATION_TEST_BIN) $(INTEGRATION_TEST_OBJ) $(LIB) -lcurl
+	$(INTEGRATION_TEST_BIN)
+else
+	$(CC) $(CFLAGS) $(CHECK_CFLAGS) -o $(INTEGRATION_TEST_BIN) $(INTEGRATION_TEST_OBJ) $(LIB) $(CHECK_LDFLAGS) -lpthread
+	./$(INTEGRATION_TEST_BIN)
+endif
+
 clean:
-	$(RM) $(BACKEND_OBJ) $(MAIN_OBJ) $(LIBNAME) $(TARGET)
+ifeq ($(OS),Windows_NT)
+	$(RM) $(OBJ) $(UNIT_TEST_OBJ) $(INTEGRATION_TEST_OBJ) $(LIB) $(TARGET) $(UNIT_TEST_BIN) $(INTEGRATION_TEST_BIN)
+else
+	$(RM) $(OBJ) $(UNIT_TEST_OBJ) $(INTEGRATION_TEST_OBJ) $(LIB) $(TARGET) $(UNIT_TEST_BIN) $(INTEGRATION_TEST_BIN)
+endif
