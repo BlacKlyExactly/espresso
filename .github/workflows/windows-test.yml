@@ -23,6 +23,7 @@ jobs:
             mingw-w64-x86_64-make
 
       - name: Compile Espresso server and tests
+        shell: msys2 {0}
         run: |
           make
 
