@@ -10,10 +10,7 @@
  */
 
 #include "../vendor/cJSON/cJSON.h"
-#include <arpa/inet.h>
 #include <ctype.h>
-#include <netinet/in.h>
-#include <pthread.h>
 #include <signal.h>
 #include <stdio.h>
 #include <stdlib.h>
