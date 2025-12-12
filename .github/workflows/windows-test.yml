@@ -19,21 +19,22 @@ jobs:
           update: true
           install: >
             mingw-w64-x86_64-gcc
-            mingw-w64-x86_64-libuv
             mingw-w64-x86_64-make
+            mingw-w64-x86_64-libuv
             mingw-w64-x86_64-pkg-config
 
-      - name: Compile
+      - name: Compile Espresso server and tests
         shell: msys2 {0}
         run: |
+          export PATH=/mingw64/bin:$PATH
           make
 
-      - name: Run unit tests
+      - name: Run Unit Tests
         shell: msys2 {0}
         run: |
           make test_unit
 
-      - name: Run integration tests
+      - name: Run Integration Tests
         shell: msys2 {0}
         run: |
           make test_integration
