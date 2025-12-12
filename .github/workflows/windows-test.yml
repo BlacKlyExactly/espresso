@@ -24,13 +24,18 @@ jobs:
             mingw-w64-x86_64-pkg-config
 
       - name: Compile Espresso server and tests
+        # Use a standard PowerShell shell (the default)
+        # and explicitly call the environment's shell/binary.
+        # This often fixes PATH issues by forcing the right context.
         run: |
-          make
+          # Use the MSYS2 activation script to ensure PATH is correct, 
+          # then run make.
+          C:\msys64\usr\bin\bash.exe -lc "make"
 
       - name: Run Unit Tests
         run: |
-          make test_unit
+          C:\msys64\usr\bin\bash.exe -lc "make test_unit"
 
       - name: Run Integration Tests
         run: |
-          make test_integration
+          C:\msys64\usr\bin\bash.exe -lc "make test_integration"
