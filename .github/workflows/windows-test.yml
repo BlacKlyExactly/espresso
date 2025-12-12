@@ -17,13 +17,12 @@ jobs:
         uses: msys2/setup-msys2@v2
         with:
           update: true
-          # Note: We keep the mingw-w64-x86_64 packages for libraries (libuv) and gcc.
-          # We ADD the simple 'make' package for the build tool itself.
           install: >
             mingw-w64-x86_64-gcc
             make 
             mingw-w64-x86_64-libuv
             mingw-w64-x86_64-pkg-config
+            mingw-w64-x86_64-check
 
       - name: Compile Espresso server and tests
         shell: msys2 {0}

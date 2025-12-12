@@ -3,8 +3,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-/* ==================== Test Fixtures ==================== */
-
 static App *app;
 static Request *req;
 static ResponseContext *res;
@@ -36,13 +34,11 @@ void setup(void) {
 }
 
 void teardown(void) {
-  // Clean up app first (will free endpoints)
   if (app) {
     app_close(app);
     app = NULL;
   }
 
-  // Then clean up test structures
   if (req) {
     if (req->params) {
       free(req->params);
@@ -89,7 +85,6 @@ void teardown(void) {
   }
 }
 
-// Simpler fixture for app-only tests
 void app_setup(void) { app = create_app(8080); }
 
 void app_teardown(void) {
@@ -98,8 +93,6 @@ void app_teardown(void) {
     app = NULL;
   }
 }
-
-/* ==================== Path Matching Tests ==================== */
 
 START_TEST(test_compare_paths_exact_match) {
   strcpy(req->path, "/users");
@@ -151,8 +144,6 @@ START_TEST(test_compare_paths_with_query_string) {
   ck_assert_int_eq(result, 1);
 }
 END_TEST
-
-/* ==================== Query Parameter Tests ==================== */
 
 START_TEST(test_parse_query_params_single) {
   strcpy(req->path, "/users?name=john");
@@ -231,8 +222,6 @@ START_TEST(test_get_query_double) {
 }
 END_TEST
 
-/* ==================== Request/Response Data Tests ==================== */
-
 START_TEST(test_set_get_data_string) {
   set_data_string(res, "username", "john_doe");
   char *value = get_data_string(res, "username");
@@ -260,7 +249,7 @@ START_TEST(test_set_data_overwrite) {
   set_data_int(res, "counter", 2);
   int value = get_data_int(res, "counter");
   ck_assert_int_eq(value, 2);
-  ck_assert_int_eq(res->data.count, 1); // Should not duplicate
+  ck_assert_int_eq(res->data.count, 1);
 }
 END_TEST
 
@@ -271,8 +260,6 @@ START_TEST(test_get_data_missing) {
   ck_assert_ptr_null(get_data_string(res, "nonexistent"));
 }
 END_TEST
-
-/* ==================== Header Tests ==================== */
 
 START_TEST(test_set_get_header) {
   set_header(res, "Content-Type", "application/json");
@@ -341,8 +328,6 @@ START_TEST(test_get_param) {
 }
 END_TEST
 
-/* ==================== HTTP Request Parsing Tests ==================== */
-
 START_TEST(test_parse_http_request_simple_get) {
   char buffer[] = "GET /users HTTP/1.1\r\n"
                   "Host: localhost:8080\r\n"
@@ -395,8 +380,6 @@ START_TEST(test_parse_http_request_with_body) {
   free(test_req.body);
 }
 END_TEST
-
-/* ==================== App/Endpoint Tests ==================== */
 
 START_TEST(test_create_app) {
   App *test_app = create_app(3000);
@@ -460,8 +443,6 @@ START_TEST(test_endpoint_with_middleware) {
 }
 END_TEST
 
-/* ==================== AppGroup Tests ==================== */
-
 START_TEST(test_create_group) {
   AppGroup *group = _app_create_group(app, "/api", NULL);
 
@@ -496,12 +477,9 @@ START_TEST(test_group_path_normalization) {
   AppGroup *group = _app_create_group(app, "/api/", NULL);
   _app_append_endpoint_to_group(app, group, GET, "/users", dummy_handler, NULL);
 
-  // Should normalize to /api/users not /api//users
   ck_assert_str_eq(app->endpoints[0].path, "/api/users");
 }
 END_TEST
-
-/* ==================== Test Suites ==================== */
 
 Suite *path_suite(void) {
   Suite *s = suite_create("Path Matching");
@@ -606,8 +584,6 @@ Suite *group_suite(void) {
   suite_add_tcase(s, tc);
   return s;
 }
-
-/* ==================== Main Test Runner ==================== */
 
 int main(void) {
   int failed = 0;
