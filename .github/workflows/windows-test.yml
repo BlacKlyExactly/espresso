@@ -21,14 +21,17 @@ jobs:
             mingw-w64-x86_64-gcc
             mingw-w64-x86_64-libuv
             mingw-w64-x86_64-make
+            mingw-w64-x86_64-pkg-config
 
-      - name: Compile Espresso server and tests
+      - name: Compile
         shell: msys2 {0}
         run: |
           make
-
-      - name: Run Unit Tests
-        run: make test_unit
-
-      - name: Run Integration Tests
-        run: make test_integration
+      - name: Run unit tests
+        shell: msys2 {0}
+        run: |
+          make test_unit
+      - name: Run integration tests
+        shell: msys2 {0}
+        run: |
+          make test_integration
