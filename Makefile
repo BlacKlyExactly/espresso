@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -Wall -Wextra -O2 -I./src -I./vendor/cJSON -luv
+CFLAGS = -Wall -Wextra -O2 -I./src -I./vendor/cJSON
 SRC_DIR = src
 TEST_DIR = tests
 VENDOR_DIR = vendor/cJSON
@@ -20,10 +20,13 @@ INTEGRATION_TEST_BIN = test_integration
 
 ifeq ($(OS),Windows_NT)
     RM = del /Q
+    LDFLAGS = -luv
     CHECK_CFLAGS =
     CHECK_LDFLAGS =
 else
     RM = rm -f
+    CFLAGS += $(shell pkg-config --cflags libuv)
+    LDFLAGS = $(shell pkg-config --libs libuv)
     CHECK_CFLAGS = $(shell pkg-config --cflags check)
     CHECK_LDFLAGS = $(shell pkg-config --libs check)
 endif
@@ -36,26 +39,26 @@ $(LIB): $(OBJ)
 	ar rcs $@ $^
 
 $(TARGET): $(LIB) $(SRC_DIR)/main.o
-	$(CC) $(CFLAGS) -o $@ $(SRC_DIR)/main.o $(LIB)
+	$(CC) $(CFLAGS) -o $@ $(SRC_DIR)/main.o $(LIB) $(LDFLAGS)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 test_unit: $(LIB) $(UNIT_TEST_OBJ)
 ifeq ($(OS),Windows_NT)
-	$(CC) $(CFLAGS) -o $(UNIT_TEST_BIN) $(UNIT_TEST_OBJ) $(LIB)
+	$(CC) $(CFLAGS) -o $(UNIT_TEST_BIN) $(UNIT_TEST_OBJ) $(LIB) $(LDFLAGS)
 	$(UNIT_TEST_BIN)
 else
-	$(CC) $(CFLAGS) $(CHECK_CFLAGS) -o $(UNIT_TEST_BIN) $(UNIT_TEST_OBJ) $(LIB) $(CHECK_LDFLAGS)
+	$(CC) $(CFLAGS) $(CHECK_CFLAGS) -o $(UNIT_TEST_BIN) $(UNIT_TEST_OBJ) $(LIB) $(CHECK_LDFLAGS) $(LDFLAGS)
 	./$(UNIT_TEST_BIN)
 endif
 
 test_integration: $(LIB) $(INTEGRATION_TEST_OBJ)
 ifeq ($(OS),Windows_NT)
-	$(CC) $(CFLAGS) -o $(INTEGRATION_TEST_BIN) $(INTEGRATION_TEST_OBJ) $(LIB) -lcurl
+	$(CC) $(CFLAGS) -o $(INTEGRATION_TEST_BIN) $(INTEGRATION_TEST_OBJ) $(LIB) $(LDFLAGS)
 	$(INTEGRATION_TEST_BIN)
 else
-	$(CC) $(CFLAGS) $(CHECK_CFLAGS) -o $(INTEGRATION_TEST_BIN) $(INTEGRATION_TEST_OBJ) $(LIB) $(CHECK_LDFLAGS) -lpthread
+	$(CC) $(CFLAGS) $(CHECK_CFLAGS) -o $(INTEGRATION_TEST_BIN) $(INTEGRATION_TEST_OBJ) $(LIB) $(CHECK_LDFLAGS) $(LDFLAGS) -lpthread
 	./$(INTEGRATION_TEST_BIN)
 endif
 
