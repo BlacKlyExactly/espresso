@@ -24,17 +24,13 @@ jobs:
             mingw-w64-x86_64-pkg-config
 
       - name: Compile Espresso server and tests
-        shell: msys2 {0}
         run: |
-          export PATH=/mingw64/bin:$PATH
           make
 
       - name: Run Unit Tests
-        shell: msys2 {0}
         run: |
           make test_unit
 
       - name: Run Integration Tests
-        shell: msys2 {0}
         run: |
           make test_integration
