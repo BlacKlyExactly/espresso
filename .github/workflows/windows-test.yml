@@ -27,10 +27,12 @@ jobs:
         shell: msys2 {0}
         run: |
           make
+
       - name: Run unit tests
         shell: msys2 {0}
         run: |
           make test_unit
+
       - name: Run integration tests
         shell: msys2 {0}
         run: |
