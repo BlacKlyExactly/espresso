@@ -24,7 +24,7 @@ ifeq ($(OS),Windows_NT)
     LDFLAGS = -LC:/msys64/mingw64/lib -luv -lws2_32 -liphlpapi
     CHECK_CFLAGS = -IC:/msys64/mingw64/include
     CHECK_LDFLAGS = -LC:/msys64/mingw64/lib -lcheck
-endif
+	else
     RM = rm -f
     CFLAGS += $(shell pkg-config --cflags check libuv)
     LDFLAGS = $(shell pkg-config --libs libuv)
