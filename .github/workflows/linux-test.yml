@@ -16,7 +16,7 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y libuv1-dev build-essential
+          sudo apt-get install -y libuv1-dev build-essential check
 
       - name: Compile Espresso server
         run: make

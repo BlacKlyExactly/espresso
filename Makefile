@@ -20,12 +20,13 @@ INTEGRATION_TEST_BIN = test_integration
 
 ifeq ($(OS),Windows_NT)
     RM = del /Q
-    LDFLAGS = -luv
-    CHECK_CFLAGS =
-    CHECK_LDFLAGS =
+    CFLAGS += -I/mingw64/include
+    LDFLAGS = -L/mingw64/lib -luv
+    CHECK_CFLAGS = -I/mingw64/include
+    CHECK_LDFLAGS = -L/mingw64/lib -lcheck
 else
     RM = rm -f
-    CFLAGS += $(shell pkg-config --cflags libuv)
+    CFLAGS += $(shell pkg-config --cflags check libuv)
     LDFLAGS = $(shell pkg-config --libs libuv)
     CHECK_CFLAGS = $(shell pkg-config --cflags check)
     CHECK_LDFLAGS = $(shell pkg-config --libs check)
