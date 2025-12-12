@@ -22,14 +22,15 @@ jobs:
             mingw-w64-x86_64-make
             mingw-w64-x86_64-libuv
             mingw-w64-x86_64-pkg-config
-
-      - name: Compile Espresso server and tests
-        # Use a standard PowerShell shell (the default)
-        # and explicitly call the environment's shell/binary.
-        # This often fixes PATH issues by forcing the right context.
+      - name: Debug MSYS2 Path
+        shell: msys2 {0}
         run: |
-          # Use the MSYS2 activation script to ensure PATH is correct, 
-          # then run make.
+          # This should output the directories where the shell looks for commands
+          echo $PATH
+          # Check if make is installed and where it is located
+          which make
+      - name: Compile Espresso server and tests
+        run: |
           C:\msys64\usr\bin\bash.exe -lc "make"
 
       - name: Run Unit Tests
