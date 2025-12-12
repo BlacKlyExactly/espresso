@@ -1,0 +1,26 @@
+<map id="endpoint_cleanup" name="endpoint_cleanup">
+<area shape="rect" id="Node000001" title=" " alt="" coords="1123,81,1245,107"/>
+<area shape="rect" id="Node000002" href="$espresso_8c.html#aaf78724518167158b66ec656312fabd2" title=" " alt="" coords="907,81,1075,107"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1105,94,1075,97,1075,92,1110,94"/>
+<area shape="rect" id="Node000003" href="$espresso_8c.html#a73277811539a2de04ce7e1295fbdba6a" title=" " alt="" coords="737,81,859,107"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="889,94,860,97,860,92,894,94"/>
+<area shape="rect" id="Node000004" href="$espresso_8c.html#a3489a7e521f0aceb3e050ca4b9f165d7" title="Closes the app and frees resources." alt="" coords="438,31,518,56"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="727,77,689,71,597,58,519,50,519,44,598,53,689,66,733,77"/>
+<area shape="rect" id="Node000008" href="$espresso_8c.html#a2a7b96459e0adac1061eaec6a5722075" title=" " alt="" coords="591,81,689,107"/>
+<area shape="poly" id="edge8_Node000003_Node000008" title=" " alt="" coords="719,94,690,97,690,92,724,94"/>
+<area shape="rect" id="Node000010" href="$espresso_8c.html#a90f2058b8890cfb99e6f595b8f066919" title=" " alt="" coords="236,107,365,132"/>
+<area shape="poly" id="edge13_Node000003_Node000010" title=" " alt="" coords="738,111,689,122,602,129,514,131,366,127,366,121,514,126,601,124,689,117,733,111"/>
+<area shape="rect" id="Node000005" href="$espresso_8c.html#a1f2696ccccf441f76c9f5161fb903db5" title=" " alt="" coords="242,5,359,31"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="420,36,360,29,360,24,425,35"/>
+<area shape="rect" id="Node000007" href="$main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,56,55,82"/>
+<area shape="poly" id="edge7_Node000004_Node000007" title=" " alt="" coords="422,49,55,70,55,65,422,44"/>
+<area shape="rect" id="Node000006" href="$espresso_8c.html#a54c30f08a1b67315ac3195d1a7fac35f" title="Creates a new Espresso app on the specified port." alt="" coords="103,5,188,31"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="224,19,189,21,188,16,229,17"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="99,40,56,60,54,56,102,35"/>
+<area shape="rect" id="Node000009" href="$espresso_8c.html#a919e9a8a992f43f0fd82e87f4d40d2d2" title=" " alt="" coords="413,81,543,107"/>
+<area shape="poly" id="edge9_Node000008_Node000009" title=" " alt="" coords="573,94,543,97,543,92,578,94"/>
+<area shape="poly" id="edge10_Node000009_Node000010" title=" " alt="" coords="401,105,366,113,366,108,395,106"/>
+<area shape="rect" id="Node000011" href="$espresso_8c.html#a0ba22157d15a70c4c22441b040bb0f74" title="Starts the HTTP server loop." alt="" coords="105,107,186,132"/>
+<area shape="poly" id="edge11_Node000010_Node000011" title=" " alt="" coords="218,120,186,122,186,117,223,119"/>
+<area shape="poly" id="edge12_Node000011_Node000007" title=" " alt="" coords="98,101,55,82,56,77,103,99"/>
+</map>

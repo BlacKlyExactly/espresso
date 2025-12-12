@@ -1,7 +1,11 @@
 <map id="index_handler" name="index_handler">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,106,31"/>
-<area shape="rect" id="Node000002" href="$espresso_8c.html#a74fa803b07b95b5f1446ae4bb85f4f0b" title="Sends text response." alt="" coords="154,5,291,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="106,16,141,18,136,18,106,21"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,31,106,56"/>
+<area shape="rect" id="Node000002" href="$espresso_8c.html#a74fa803b07b95b5f1446ae4bb85f4f0b" title="Sends text response." alt="" coords="154,31,291,56"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="106,41,141,43,136,44,106,46"/>
 <area shape="rect" id="Node000003" href="$espresso_8c.html#a61c64a500ef217b0825333b9f35234e3" title=" " alt="" coords="339,5,500,31"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="291,16,326,18,321,18,291,21"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="291,32,326,30,321,31,292,37"/>
+<area shape="rect" id="Node000004" href="$espresso_8c.html#a142b429010a8046d339d36552bd20f7e" title=" " alt="" coords="365,55,474,80"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="291,49,352,59,347,59,291,54"/>
+<area shape="rect" id="Node000005" href="$espresso_8c.html#a5fa30991ad104ba1fe0001e7aefe95ac" title=" " alt="" coords="548,55,671,80"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="475,65,535,67,530,68,475,70"/>
 </map>

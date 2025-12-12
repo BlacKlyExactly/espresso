@@ -1,43 +1,71 @@
 <map id="main" name="main">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,203,55,228"/>
-<area shape="rect" id="Node000002" href="$espresso_8c.html#a3489a7e521f0aceb3e050ca4b9f165d7" title="Closes the app and frees resources." alt="" coords="477,216,557,242"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="55,213,462,225,460,230,55,219"/>
-<area shape="rect" id="Node000003" href="$espresso_8c.html#a0ba22157d15a70c4c22441b040bb0f74" title="Starts the HTTP server loop." alt="" coords="113,79,193,104"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="36,201,61,159,79,135,101,114,107,111,104,115,104,117,83,139,65,162,40,203"/>
-<area shape="rect" id="Node000012" href="$espresso_8c.html#afb20611531d08699d86a03c1ad97f079" title="Adds a global middleware." alt="" coords="118,177,188,203"/>
-<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="54,208,104,198,101,203,56,213"/>
-<area shape="rect" id="Node000013" href="$espresso_8c.html#a54c30f08a1b67315ac3195d1a7fac35f" title="Creates a new Espresso app on the specified port." alt="" coords="110,128,196,154"/>
-<area shape="poly" id="edge12_Node000001_Node000013" title=" " alt="" coords="46,200,101,163,110,159,107,163,104,167,50,204"/>
-<area shape="rect" id="Node000015" href="$main_8c.html#a3567783714153d35ee83fd6de55968d1" title=" " alt="" coords="104,279,202,304"/>
-<area shape="poly" id="edge15_Node000001_Node000015" title=" " alt="" coords="53,226,120,269,115,271,52,231"/>
-<area shape="rect" id="Node000020" href="$main_8c.html#a036dbf8db2f30bf4fb436fcc8ea138c7" title=" " alt="" coords="103,328,203,354"/>
-<area shape="poly" id="edge20_Node000001_Node000020" title=" " alt="" coords="39,226,65,270,83,293,104,315,109,320,103,319,101,319,79,297,61,273,37,231"/>
-<area shape="rect" id="Node000004" href="$espresso_8c.html#abf603e2df288bddb710c847ace1f772d" title=" " alt="" coords="272,79,367,104"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="193,89,259,90,254,93,194,94"/>
-<area shape="rect" id="Node000005" href="$espresso_8c.html#a04c27c6493696fb67ab9b8f5296c14f1" title=" " alt="" coords="462,104,572,130"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="367,95,449,107,444,109,368,100"/>
-<area shape="rect" id="Node000006" href="$espresso_8c.html#aca61aa31ed57abce18d1d3cffd0d47e3" title=" " alt="" coords="440,153,594,179"/>
-<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="349,102,437,140,456,148,451,148,435,145,349,108"/>
-<area shape="rect" id="Node000007" href="$espresso_8c.html#a1ab07f0a47159856d7446c79d306cd6b" title="Parses an HTTP request string into a Request struct." alt="" coords="451,5,583,31"/>
-<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="349,76,435,40,456,35,451,37,437,45,351,80"/>
-<area shape="rect" id="Node000008" href="$espresso_8c.html#a260a9eca1b37d7151fd585fde9e355b8" title=" " alt="" coords="446,55,588,80"/>
-<area shape="poly" id="edge7_Node000004_Node000008" title=" " alt="" coords="367,83,433,77,429,79,368,88"/>
-<area shape="rect" id="Node000009" href="$espresso_8c.html#a2d9a0717a9389e6d178d0f4a8c2ef185" title=" " alt="" coords="646,55,747,80"/>
-<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="588,65,633,67,628,68,589,70"/>
-<area shape="rect" id="Node000010" href="$espresso_8c.html#a755a65a488e1158eee3fdab0ecada8fe" title=" " alt="" coords="795,55,896,80"/>
-<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="747,65,782,67,777,68,748,70"/>
-<area shape="rect" id="Node000011" href="$espresso_8c.html#af4a5274d4719dec853dd32e1d8687553" title=" " alt="" coords="944,55,1025,80"/>
-<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="897,65,932,67,926,68,897,70"/>
-<area shape="rect" id="Node000014" href="$espresso_8c.html#a1f2696ccccf441f76c9f5161fb903db5" title=" " alt="" coords="261,152,378,178"/>
-<area shape="poly" id="edge13_Node000013_Node000014" title=" " alt="" coords="195,144,248,153,243,155,197,150"/>
-<area shape="poly" id="edge14_Node000014_Node000002" title=" " alt="" coords="362,176,464,211,459,212,362,181"/>
-<area shape="rect" id="Node000016" href="$espresso_8c.html#a5afa98a10b7b10f4021fa67400d39f31" title="Retrieve a query parameter as string from the URL." alt="" coords="262,279,378,304"/>
-<area shape="poly" id="edge16_Node000015_Node000016" title=" " alt="" coords="202,289,249,291,243,292,203,294"/>
-<area shape="rect" id="Node000018" href="$espresso_8c.html#a74fa803b07b95b5f1446ae4bb85f4f0b" title="Sends text response." alt="" coords="251,328,388,354"/>
-<area shape="poly" id="edge18_Node000015_Node000018" title=" " alt="" coords="199,302,262,323,256,323,199,308"/>
-<area shape="rect" id="Node000017" href="$espresso_8c.html#a87e1508215bb1ffe01b13e14dece5b9c" title="Retrieve a query parameter as a void pointer." alt="" coords="478,279,556,304"/>
-<area shape="poly" id="edge17_Node000016_Node000017" title=" " alt="" coords="378,289,465,291,460,292,379,294"/>
-<area shape="rect" id="Node000019" href="$espresso_8c.html#a61c64a500ef217b0825333b9f35234e3" title=" " alt="" coords="436,328,598,354"/>
-<area shape="poly" id="edge19_Node000018_Node000019" title=" " alt="" coords="389,338,423,341,418,341,389,343"/>
-<area shape="poly" id="edge21_Node000020_Node000018" title=" " alt="" coords="203,338,239,341,233,341,203,343"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,208,55,234"/>
+<area shape="rect" id="Node000002" href="$espresso_8c.html#a3489a7e521f0aceb3e050ca4b9f165d7" title="Closes the app and frees resources." alt="" coords="477,31,557,56"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="34,206,58,162,78,137,101,117,146,93,193,74,243,60,292,50,385,40,464,40,459,42,386,45,293,55,244,65,195,79,148,98,104,122,81,141,63,165,39,208"/>
+<area shape="rect" id="Node000007" href="$espresso_8c.html#a0ba22157d15a70c4c22441b040bb0f74" title="Starts the HTTP server loop." alt="" coords="113,181,193,207"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="54,213,99,204,96,208,57,218"/>
+<area shape="rect" id="Node000023" href="$espresso_8c.html#afb20611531d08699d86a03c1ad97f079" title="Adds a global middleware." alt="" coords="118,332,188,358"/>
+<area shape="poly" id="edge27_Node000001_Node000023" title=" " alt="" coords="38,231,65,274,83,298,104,319,109,323,103,324,101,323,79,301,61,277,38,237"/>
+<area shape="rect" id="Node000024" href="$espresso_8c.html#a54c30f08a1b67315ac3195d1a7fac35f" title="Creates a new Espresso app on the specified port." alt="" coords="110,132,196,158"/>
+<area shape="poly" id="edge28_Node000001_Node000024" title=" " alt="" coords="46,206,101,167,110,163,107,167,104,171,50,209"/>
+<area shape="rect" id="Node000026" href="$main_8c.html#a3567783714153d35ee83fd6de55968d1" title=" " alt="" coords="104,283,202,308"/>
+<area shape="poly" id="edge31_Node000001_Node000026" title=" " alt="" coords="49,231,104,268,114,274,108,276,101,272,49,237"/>
+<area shape="rect" id="Node000031" href="$main_8c.html#a036dbf8db2f30bf4fb436fcc8ea138c7" title=" " alt="" coords="103,232,203,258"/>
+<area shape="poly" id="edge37_Node000001_Node000031" title=" " alt="" coords="54,223,90,231,86,234,56,228"/>
+<area shape="rect" id="Node000003" href="$espresso_8c.html#a73277811539a2de04ce7e1295fbdba6a" title=" " alt="" coords="797,29,919,55"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="557,41,784,41,779,44,558,46"/>
+<area shape="rect" id="Node000004" href="$espresso_8c.html#aaf78724518167158b66ec656312fabd2" title=" " alt="" coords="972,29,1140,55"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="919,40,959,42,954,43,920,45"/>
+<area shape="rect" id="Node000005" href="$espresso_8c.html#a1804ce3a25646fd9c6c6ad98d45c6efa" title=" " alt="" coords="1188,5,1310,31"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="1140,29,1175,27,1170,28,1141,34"/>
+<area shape="rect" id="Node000006" href="$espresso_8c.html#a837cf67658f96fc262c83a4882f96f45" title=" " alt="" coords="1198,55,1300,80"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="1140,51,1185,59,1180,59,1140,56"/>
+<area shape="rect" id="Node000008" href="$espresso_8c.html#a90f2058b8890cfb99e6f595b8f066919" title=" " alt="" coords="255,181,384,207"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="193,192,242,193,237,195,194,197"/>
+<area shape="poly" id="edge10_Node000008_Node000003" title=" " alt="" coords="366,178,387,168,401,155,410,143,419,129,435,117,500,94,591,75,784,49,779,51,592,80,501,100,438,122,423,133,414,146,405,159,390,172,369,183"/>
+<area shape="rect" id="Node000009" href="$espresso_8c.html#a16da648ec46c63111e6d0f16c8c861d3" title=" " alt="" coords="477,181,557,207"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="384,192,463,193,458,195,385,197"/>
+<area shape="rect" id="Node000010" href="$espresso_8c.html#afc4191b175ae67f2d0d5b264caa6d08a" title=" " alt="" coords="464,231,570,256"/>
+<area shape="poly" id="edge9_Node000008_Node000010" title=" " alt="" coords="374,205,452,226,446,227,374,210"/>
+<area shape="rect" id="Node000011" href="$espresso_8c.html#a919e9a8a992f43f0fd82e87f4d40d2d2" title=" " alt="" coords="452,132,582,158"/>
+<area shape="poly" id="edge11_Node000008_Node000011" title=" " alt="" coords="373,178,450,161,445,163,375,183"/>
+<area shape="rect" id="Node000012" href="$espresso_8c.html#a2a7b96459e0adac1061eaec6a5722075" title=" " alt="" coords="646,132,744,158"/>
+<area shape="poly" id="edge12_Node000011_Node000012" title=" " alt="" coords="582,142,633,144,628,145,583,147"/>
+<area shape="poly" id="edge13_Node000012_Node000003" title=" " alt="" coords="716,129,742,111,766,91,791,72,811,63,815,61,793,76,769,95,746,115,718,134"/>
+<area shape="rect" id="Node000013" href="$espresso_8c.html#aca61aa31ed57abce18d1d3cffd0d47e3" title=" " alt="" coords="979,80,1133,106"/>
+<area shape="poly" id="edge14_Node000012_Node000013" title=" " alt="" coords="737,129,791,116,879,103,966,97,960,98,880,108,793,121,739,134"/>
+<area shape="rect" id="Node000014" href="$espresso_8c.html#a373b955efab67a13fdc71105c53aa5d5" title="ONLY FOR UNIT TESTS." alt="" coords="800,131,916,156"/>
+<area shape="poly" id="edge15_Node000012_Node000014" title=" " alt="" coords="744,142,788,144,782,145,745,147"/>
+<area shape="rect" id="Node000020" href="$espresso_8c.html#a142b429010a8046d339d36552bd20f7e" title=" " alt="" coords="1001,231,1111,256"/>
+<area shape="poly" id="edge26_Node000012_Node000020" title=" " alt="" coords="745,155,994,226,989,227,744,161"/>
+<area shape="rect" id="Node000022" href="$espresso_8c.html#a8ddc375ff20a190089968e04405e0a70" title="ONLY FOR UNIT TESTS." alt="" coords="792,232,924,258"/>
+<area shape="poly" id="edge24_Node000012_Node000022" title=" " alt="" coords="714,156,793,211,816,225,811,224,791,215,713,161"/>
+<area shape="poly" id="edge17_Node000014_Node000013" title=" " alt="" coords="911,127,991,109,986,111,912,133"/>
+<area shape="rect" id="Node000015" href="$espresso_8c.html#a04c27c6493696fb67ab9b8f5296c14f1" title="ONLY FOR UNIT TESTS." alt="" coords="1001,131,1111,156"/>
+<area shape="poly" id="edge16_Node000014_Node000015" title=" " alt="" coords="916,141,988,143,983,144,917,146"/>
+<area shape="rect" id="Node000016" href="$espresso_8c.html#a260a9eca1b37d7151fd585fde9e355b8" title="ONLY FOR UNIT TESTS." alt="" coords="985,180,1127,206"/>
+<area shape="poly" id="edge18_Node000014_Node000016" title=" " alt="" coords="913,154,989,176,984,176,913,160"/>
+<area shape="poly" id="edge22_Node000014_Node000020" title=" " alt="" coords="891,154,926,173,950,196,974,216,989,226,984,225,971,220,946,200,923,178,890,159"/>
+<area shape="rect" id="Node000017" href="$espresso_8c.html#a2d9a0717a9389e6d178d0f4a8c2ef185" title=" " alt="" coords="1198,180,1300,206"/>
+<area shape="poly" id="edge19_Node000016_Node000017" title=" " alt="" coords="1127,190,1185,193,1180,193,1127,195"/>
+<area shape="rect" id="Node000018" href="$espresso_8c.html#a755a65a488e1158eee3fdab0ecada8fe" title=" " alt="" coords="1358,180,1459,206"/>
+<area shape="poly" id="edge20_Node000017_Node000018" title=" " alt="" coords="1300,190,1345,193,1340,193,1300,195"/>
+<area shape="rect" id="Node000019" href="$espresso_8c.html#af4a5274d4719dec853dd32e1d8687553" title=" " alt="" coords="1507,180,1588,206"/>
+<area shape="poly" id="edge21_Node000018_Node000019" title=" " alt="" coords="1460,190,1495,193,1489,193,1460,195"/>
+<area shape="rect" id="Node000021" href="$espresso_8c.html#a5fa30991ad104ba1fe0001e7aefe95ac" title=" " alt="" coords="1188,231,1310,256"/>
+<area shape="poly" id="edge23_Node000020_Node000021" title=" " alt="" coords="1111,241,1175,243,1169,244,1111,246"/>
+<area shape="poly" id="edge25_Node000022_Node000020" title=" " alt="" coords="924,242,989,244,983,244,925,247"/>
+<area shape="rect" id="Node000025" href="$espresso_8c.html#a1f2696ccccf441f76c9f5161fb903db5" title=" " alt="" coords="261,132,378,158"/>
+<area shape="poly" id="edge29_Node000024_Node000025" title=" " alt="" coords="195,142,247,143,243,146,197,147"/>
+<area shape="poly" id="edge30_Node000025_Node000002" title=" " alt="" coords="351,129,387,111,411,92,435,73,465,61,460,64,438,78,414,96,390,115,354,134"/>
+<area shape="rect" id="Node000027" href="$espresso_8c.html#a5afa98a10b7b10f4021fa67400d39f31" title="Retrieve a query parameter as string from the URL." alt="" coords="262,357,378,383"/>
+<area shape="poly" id="edge32_Node000026_Node000027" title=" " alt="" coords="184,306,277,350,272,351,183,311"/>
+<area shape="rect" id="Node000029" href="$espresso_8c.html#a74fa803b07b95b5f1446ae4bb85f4f0b" title="Sends text response." alt="" coords="251,283,388,308"/>
+<area shape="poly" id="edge34_Node000026_Node000029" title=" " alt="" coords="202,293,238,295,233,296,203,298"/>
+<area shape="rect" id="Node000028" href="$espresso_8c.html#a87e1508215bb1ffe01b13e14dece5b9c" title="Retrieve a query parameter as a void pointer." alt="" coords="478,383,556,408"/>
+<area shape="poly" id="edge33_Node000027_Node000028" title=" " alt="" coords="379,375,465,389,460,389,378,380"/>
+<area shape="poly" id="edge36_Node000029_Node000020" title=" " alt="" coords="388,294,626,290,775,282,924,268,984,260,989,259,925,273,775,287,626,295,389,299"/>
+<area shape="rect" id="Node000030" href="$espresso_8c.html#a61c64a500ef217b0825333b9f35234e3" title=" " alt="" coords="436,333,598,359"/>
+<area shape="poly" id="edge35_Node000029_Node000030" title=" " alt="" coords="373,306,452,329,447,329,372,312"/>
+<area shape="poly" id="edge38_Node000031_Node000029" title=" " alt="" coords="198,256,263,277,258,278,198,261"/>
 </map>

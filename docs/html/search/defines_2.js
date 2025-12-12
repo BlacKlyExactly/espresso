@@ -26,6 +26,5 @@ var searchData=
   ['cjson_5ftrue_23',['cJSON_True',['../cJSON_8h.html#aad4e442b8095939decddfb67d87d9324',1,'cJSON.h']]],
   ['cjson_5fversion_5fmajor_24',['CJSON_VERSION_MAJOR',['../cJSON_8h.html#a78f100ac5089a51941e2ca573ad8e380',1,'cJSON.h']]],
   ['cjson_5fversion_5fminor_25',['CJSON_VERSION_MINOR',['../cJSON_8h.html#a55a808fe6b77cef1e4c2cf02a4316301',1,'cJSON.h']]],
-  ['cjson_5fversion_5fpatch_26',['CJSON_VERSION_PATCH',['../cJSON_8h.html#a6ad7073103d4b9aaf2153add95561c47',1,'cJSON.h']]],
-  ['close_5fsocket_27',['CLOSE_SOCKET',['../espresso_8c.html#ab40c0609fec1cdd4a1f711590f9701cc',1,'espresso.c']]]
+  ['cjson_5fversion_5fpatch_26',['CJSON_VERSION_PATCH',['../cJSON_8h.html#a6ad7073103d4b9aaf2153add95561c47',1,'cJSON.h']]]
 ];

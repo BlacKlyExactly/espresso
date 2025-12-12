@@ -13,7 +13,7 @@ WARNINGS               = YES
 WARN_IF_UNDOCUMENTED   = YES
 
 # Input
-INPUT                  = espresso.h espresso.c main.c vendor/cJSON/cJSON.h vendor/cJSON/cJSON.c
+INPUT                  = src/espresso.h src/espresso.c src/main.c vendor/cJSON/cJSON.h vendor/cJSON/cJSON.c
 FILE_PATTERNS          = *.c *.h
 RECURSIVE              = YES
 EXCLUDE                = 

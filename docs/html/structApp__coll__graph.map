@@ -1,31 +1,33 @@
 <map id="App" name="App">
-<area shape="rect" id="Node000001" title="Main application object." alt="" coords="631,140,675,166"/>
-<area shape="rect" id="Node000004" href="$structClientContext.html" title="Context for a connected client." alt="" coords="517,257,615,283"/>
-<area shape="poly" id="edge4_Node000004_Node000001" title=" " alt="" coords="623,173,607,191,586,226,572,259,568,255,581,224,603,188,618,177"/>
-<area shape="rect" id="Node000002" href="$structEndpoint.html" title="Represents an HTTP route." alt="" coords="617,450,688,476"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="650,434,651,168,655,165,655,436"/>
-<area shape="rect" id="Node000013" href="$structAppGroup.html" title="Group of endpoints with shared root path and middleware." alt="" coords="654,547,734,573"/>
-<area shape="poly" id="edge16_Node000013_Node000002" title=" " alt="" coords="651,489,652,507,657,522,665,534,677,547,672,546,661,538,652,524,647,508,647,493"/>
-<area shape="rect" id="Node000003" href="$structResponseContext.html" title=" " alt="" coords="252,354,376,379"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="373,381,619,451,614,453,372,387"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="522,290,422,332,353,356,351,351,420,327,526,288"/>
-<area shape="rect" id="Node000005" href="$structRequest.html" title="HTTP request structure." alt="" coords="112,257,181,283"/>
-<area shape="poly" id="edge5_Node000003_Node000005" title=" " alt="" coords="179,288,249,327,294,353,289,354,247,332,180,293"/>
-<area shape="rect" id="Node000006" href="$structKeyValue.html" title="Fixed&#45;size key/value pair." alt="" coords="5,140,82,166"/>
-<area shape="poly" id="edge10_Node000003_Node000006" title=" " alt="" coords="35,183,32,231,36,258,48,281,67,302,90,320,144,344,200,357,254,364,249,367,199,363,142,349,88,324,64,306,43,284,31,259,27,231,36,178"/>
-<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="52,178,67,206,85,231,100,244,119,255,114,258,97,248,81,235,62,209,52,183"/>
-<area shape="rect" id="Node000007" href="$structBody.html" title="HTTP request or response body." alt="" coords="116,140,166,166"/>
-<area shape="poly" id="edge7_Node000005_Node000007" title=" " alt="" coords="143,179,148,257,143,256,141,184"/>
-<area shape="rect" id="Node000008" href="$structcJSON.html" title=" " alt="" coords="109,24,173,50"/>
-<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="141,63,143,140,138,139,140,68"/>
-<area shape="poly" id="edge9_Node000008_Node000008" title=" " alt="" coords="187,24,197,29,200,38,191,49,175,52,171,48,189,45,194,37,193,32,189,29"/>
-<area shape="rect" id="Node000009" href="$structResponseData.html" title=" " alt="" coords="205,257,311,283"/>
-<area shape="poly" id="edge11_Node000003_Node000009" title=" " alt="" coords="274,293,310,353,304,353,272,298"/>
-<area shape="rect" id="Node000010" href="$structResponseDataEntry.html" title=" " alt="" coords="190,140,326,166"/>
-<area shape="poly" id="edge12_Node000009_Node000010" title=" " alt="" coords="259,179,261,257,256,256,257,184"/>
-<area shape="rect" id="Node000011" href="$structResponseContextQuery.html" title=" " alt="" coords="336,257,493,283"/>
-<area shape="poly" id="edge13_Node000003_Node000011" title=" " alt="" coords="393,291,329,355,325,351,389,295"/>
-<area shape="rect" id="Node000012" href="$structDynamicKeyValue.html" title="Dynamic key/value pair." alt="" coords="351,140,477,166"/>
-<area shape="poly" id="edge14_Node000011_Node000012" title=" " alt="" coords="415,179,417,258,412,256,413,184"/>
-<area shape="poly" id="edge15_Node000001_Node000013" title=" " alt="" coords="711,532,726,501,734,464,734,269,727,237,710,209,689,186,670,169,670,163,693,182,715,206,732,235,739,268,739,465,731,503,714,536"/>
+<area shape="rect" id="Node000001" title="Main application object." alt="" coords="86,257,130,283"/>
+<area shape="rect" id="Node000004" href="$structClientContext.html" title="Context for a connected client." alt="" coords="154,354,253,379"/>
+<area shape="poly" id="edge4_Node000004_Node000001" title=" " alt="" coords="131,291,194,352,189,354,131,296"/>
+<area shape="rect" id="Node000002" href="$structEndpoint.html" title="Represents an HTTP route." alt="" coords="72,547,143,573"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="105,531,105,284,110,282,110,532"/>
+<area shape="rect" id="Node000013" href="$structAppGroup.html" title="Group of endpoints with shared root path and middleware." alt="" coords="5,644,85,669"/>
+<area shape="poly" id="edge18_Node000013_Node000002" title=" " alt="" coords="94,586,55,645,51,641,89,585"/>
+<area shape="rect" id="Node000003" href="$structResponseContext.html" title=" " alt="" coords="243,450,367,476"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="265,485,134,549,132,544,267,481"/>
+<area shape="poly" id="edge10_Node000004_Node000003" title=" " alt="" coords="274,441,259,428,214,383,215,377,262,424,280,440"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="198,392,201,411,206,425,223,440,245,452,240,453,220,445,202,428,195,412,197,397"/>
+<area shape="rect" id="Node000005" href="$structRequest.html" title="HTTP request structure." alt="" coords="246,257,316,283"/>
+<area shape="poly" id="edge11_Node000003_Node000005" title=" " alt="" coords="286,296,306,450,301,449,283,300"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="260,297,216,355,212,351,263,292"/>
+<area shape="rect" id="Node000006" href="$structKeyValue.html" title="Fixed&#45;size key/value pair." alt="" coords="454,140,530,166"/>
+<area shape="poly" id="edge12_Node000003_Node000006" title=" " alt="" coords="534,170,590,204,617,228,639,255,659,288,671,318,671,349,655,381,636,398,608,412,532,434,446,450,368,459,366,454,445,444,531,429,606,407,633,393,651,378,666,347,665,319,654,291,635,259,613,232,587,209,534,175"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="455,175,304,259,301,254,458,171"/>
+<area shape="rect" id="Node000007" href="$structBody.html" title="HTTP request or response body." alt="" coords="256,140,306,166"/>
+<area shape="poly" id="edge7_Node000005_Node000007" title=" " alt="" coords="282,179,284,257,278,256,280,184"/>
+<area shape="rect" id="Node000008" href="$structcJSON.html" title=" " alt="" coords="249,24,313,50"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="282,63,284,140,278,139,280,68"/>
+<area shape="poly" id="edge9_Node000008_Node000008" title=" " alt="" coords="328,24,337,29,340,38,332,49,315,52,312,48,329,45,335,37,333,32,329,29"/>
+<area shape="rect" id="Node000009" href="$structResponseData.html" title=" " alt="" coords="353,354,460,379"/>
+<area shape="poly" id="edge13_Node000003_Node000009" title=" " alt="" coords="385,388,320,452,316,448,381,391"/>
+<area shape="rect" id="Node000010" href="$structResponseDataEntry.html" title=" " alt="" coords="340,257,475,283"/>
+<area shape="poly" id="edge14_Node000009_Node000010" title=" " alt="" coords="409,296,409,354,404,352,406,300"/>
+<area shape="rect" id="Node000011" href="$structResponseContextQuery.html" title=" " alt="" coords="484,354,641,379"/>
+<area shape="poly" id="edge15_Node000003_Node000011" title=" " alt="" coords="514,387,407,429,341,452,339,447,405,424,519,384"/>
+<area shape="rect" id="Node000012" href="$structDynamicKeyValue.html" title="Dynamic key/value pair." alt="" coords="499,257,626,283"/>
+<area shape="poly" id="edge16_Node000011_Node000012" title=" " alt="" coords="564,296,565,354,560,352,561,300"/>
+<area shape="poly" id="edge17_Node000001_Node000013" title=" " alt="" coords="33,629,25,597,21,561,21,365,27,338,43,314,64,295,87,281,84,286,67,299,47,318,32,340,26,365,26,561,30,596,38,629"/>
 </map>

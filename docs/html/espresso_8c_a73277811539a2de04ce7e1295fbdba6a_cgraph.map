@@ -1,0 +1,9 @@
+<map id="close_connection" name="close_connection">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,31,128,56"/>
+<area shape="rect" id="Node000002" href="$espresso_8c.html#aaf78724518167158b66ec656312fabd2" title=" " alt="" coords="176,31,343,56"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="128,41,163,43,158,44,128,46"/>
+<area shape="rect" id="Node000003" href="$espresso_8c.html#a1804ce3a25646fd9c6c6ad98d45c6efa" title=" " alt="" coords="391,5,513,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="343,30,378,28,373,29,344,35"/>
+<area shape="rect" id="Node000004" href="$espresso_8c.html#a837cf67658f96fc262c83a4882f96f45" title=" " alt="" coords="401,55,503,80"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="344,51,388,59,383,59,343,57"/>
+</map>

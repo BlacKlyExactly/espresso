@@ -99,23 +99,28 @@ $(function(){initNavTree('functions.html','',''); });
 
 <h3 class="doxsection"><a id="index_b" name="index_b"></a>- b -</h3><ul>
 <li>body&#160;:&#160;<a class="el" href="structRequest.html#a813f6971a0e78b340f82d9e4af493fbc">Request</a></li>
-<li>buffer&#160;:&#160;<a class="el" href="structprintbuffer.html#a754f63618e91db99f7ab6cfc4e629013">printbuffer</a></li>
+<li>buffer&#160;:&#160;<a class="el" href="structClientContext.html#af69e58bff57f2665368a977f6b23a745">ClientContext</a>, <a class="el" href="structprintbuffer.html#a754f63618e91db99f7ab6cfc4e629013">printbuffer</a></li>
+<li>buffer_capacity&#160;:&#160;<a class="el" href="structClientContext.html#afe0aec1e40a49226667cdd4c3474a2a9">ClientContext</a></li>
+<li>buffer_len&#160;:&#160;<a class="el" href="structClientContext.html#aa4a1cb6e6d1f89b58df65062fc0cc46d">ClientContext</a></li>
 </ul>
 
 
 <h3 class="doxsection"><a id="index_c" name="index_c"></a>- c -</h3><ul>
 <li>capacity&#160;:&#160;<a class="el" href="structResponseContextQuery.html#ac1320e5edfa7b1242024660091f5745f">ResponseContextQuery</a>, <a class="el" href="structResponseData.html#abfc75e2ab3547841b9df855f222bc07c">ResponseData</a></li>
 <li>child&#160;:&#160;<a class="el" href="structcJSON.html#a401b274c2da358dac5c23ab8b2c71f85">cJSON</a></li>
-<li>client_addr&#160;:&#160;<a class="el" href="structApp.html#a76a39badbf15409c96067b1aa8edb4ea">App</a>, <a class="el" href="structClientContext.html#a35924b644dbe1b323dd997f155447955">ClientContext</a></li>
-<li>client_fd&#160;:&#160;<a class="el" href="structClientContext.html#a30d82cc95d9ad35a39691a4120b4c87c">ClientContext</a></li>
+<li>client&#160;:&#160;<a class="el" href="structClientContext.html#a7560d29f408d9276055ae9758344e202">ClientContext</a></li>
+<li>client_capacity&#160;:&#160;<a class="el" href="structApp.html#aefa270b0b9870610a119644ae5347cf8">App</a></li>
+<li>client_count&#160;:&#160;<a class="el" href="structApp.html#a81197e03e65adef00d79abb406bd90ed">App</a></li>
+<li>clients&#160;:&#160;<a class="el" href="structApp.html#a723c95b1a7d62d6505fb605252f0da7c">App</a></li>
 <li>content&#160;:&#160;<a class="el" href="structparse__buffer.html#a52ee1184576baa3d5171059ab0e942de">parse_buffer</a></li>
+<li>content_length&#160;:&#160;<a class="el" href="structClientContext.html#aa49069899adec2fd470235b4b9cb2ee9">ClientContext</a></li>
 <li>count&#160;:&#160;<a class="el" href="structResponseContextQuery.html#a599fdd7aaff8c1f4aece82f9aca407c0">ResponseContextQuery</a>, <a class="el" href="structResponseData.html#afd5b016c190c8d807a57125c62b30fc6">ResponseData</a></li>
 <li>ctx&#160;:&#160;<a class="el" href="structResponseContext.html#a9bf93c58a1117a6d178310ae7d390c7c">ResponseContext</a></li>
 </ul>
 
 
 <h3 class="doxsection"><a id="index_d" name="index_d"></a>- d -</h3><ul>
-<li>data&#160;:&#160;<a class="el" href="structBody.html#a1fdb65f1f61f9a64f79a737eeb99198a">Body</a>, <a class="el" href="structResponseContext.html#a59cac8acf1961188e28909ca877cf5d8">ResponseContext</a></li>
+<li>data&#160;:&#160;<a class="el" href="structBody.html#a1e2c2ee47750a875cc44541c362d23dc">Body</a>, <a class="el" href="structResponseContext.html#a59cac8acf1961188e28909ca877cf5d8">ResponseContext</a></li>
 <li>depth&#160;:&#160;<a class="el" href="structparse__buffer.html#af613c4ed7d73f76c60c50d1bcf4c67a0">parse_buffer</a>, <a class="el" href="structprintbuffer.html#aa7311b5da38ff8d1737824c611b48732">printbuffer</a></li>
 </ul>
 
@@ -145,6 +150,7 @@ $(function(){initNavTree('functions.html','',''); });
 <li>handler&#160;:&#160;<a class="el" href="structEndpoint.html#ab1d2990399eb2691fdf8e3eaf772da2c">Endpoint</a></li>
 <li>header_count&#160;:&#160;<a class="el" href="structRequest.html#a2c6eb88eb33be0e8d4ba8eb20ad2f5dd">Request</a>, <a class="el" href="structResponseContext.html#adca1abb42e4d9bebeb9e56e8b4276f5c">ResponseContext</a></li>
 <li>headers&#160;:&#160;<a class="el" href="structRequest.html#a4a43e4547a71705d29dc9c2dde1ca302">Request</a>, <a class="el" href="structResponseContext.html#a5e369037cf42e11473649c3f08b26721">ResponseContext</a></li>
+<li>headers_parsed&#160;:&#160;<a class="el" href="structClientContext.html#a0c7e108cd04e062ea838836563c2b2d9">ClientContext</a></li>
 <li>hooks&#160;:&#160;<a class="el" href="structparse__buffer.html#a2c3e99b15da2935fc5d58124ffb4a894">parse_buffer</a>, <a class="el" href="structprintbuffer.html#a43a8b3bcc644432f12f5aed5159d2520">printbuffer</a></li>
 </ul>
 
@@ -201,14 +207,14 @@ $(function(){initNavTree('functions.html','',''); });
 
 <h3 class="doxsection"><a id="index_r" name="index_r"></a>- r -</h3><ul>
 <li>reallocate()&#160;:&#160;<a class="el" href="structinternal__hooks.html#a7c3921493fab83f33cd509145d8a5393">internal_hooks</a></li>
-<li>req&#160;:&#160;<a class="el" href="structResponseContext.html#a25eedab839cf5c53ba6d39544cda5303">ResponseContext</a></li>
+<li>req&#160;:&#160;<a class="el" href="structClientContext.html#a7f62a730d6ec1f3304a465b35eb61177">ClientContext</a>, <a class="el" href="structResponseContext.html#a25eedab839cf5c53ba6d39544cda5303">ResponseContext</a></li>
+<li>res&#160;:&#160;<a class="el" href="structClientContext.html#a8f853997fdd4c13c03ec7e70979a8739">ClientContext</a></li>
 <li>root_path&#160;:&#160;<a class="el" href="structAppGroup.html#a88fc71a9e988d01143db21692a3979e6">AppGroup</a></li>
 </ul>
 
 
 <h3 class="doxsection"><a id="index_s" name="index_s"></a>- s -</h3><ul>
-<li>server_addr&#160;:&#160;<a class="el" href="structApp.html#aec5d67a8bb9e1bbce462206300dc5b90">App</a></li>
-<li>server_fd&#160;:&#160;<a class="el" href="structApp.html#a6e5a0a63b42017a650391cdef4eb1113">App</a></li>
+<li>server&#160;:&#160;<a class="el" href="structApp.html#af3d33dd34217c960b4343ee798294490">App</a></li>
 <li>status&#160;:&#160;<a class="el" href="structResponseContext.html#a6b06c2b1fca7462012f6b3510f90ed84">ResponseContext</a></li>
 <li>string&#160;:&#160;<a class="el" href="structcJSON.html#aa6b47e9a4b0e0a26f519b1a2b6739983">cJSON</a></li>
 </ul>

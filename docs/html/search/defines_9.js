@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['read_0',['READ',['../espresso_8c.html#aecb7b037a60d78f02b77cdab8bfae8a9',1,'espresso.c']]]
+  ['static_5fstrlen_0',['static_strlen',['../cJSON_8c.html#a5714bac836668a1b9af55465b78531ef',1,'cJSON.c']]]
 ];

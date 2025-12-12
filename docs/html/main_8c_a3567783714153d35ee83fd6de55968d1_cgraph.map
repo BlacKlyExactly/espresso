@@ -1,11 +1,15 @@
 <map id="echo_handler" name="echo_handler">
 <area shape="rect" id="Node000001" title=" " alt="" coords="5,31,104,56"/>
 <area shape="rect" id="Node000002" href="$espresso_8c.html#a5afa98a10b7b10f4021fa67400d39f31" title="Retrieve a query parameter as string from the URL." alt="" coords="162,5,278,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="103,33,150,28,145,30,105,39"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="103,34,149,28,145,31,105,39"/>
 <area shape="rect" id="Node000004" href="$espresso_8c.html#a74fa803b07b95b5f1446ae4bb85f4f0b" title="Sends text response." alt="" coords="152,55,289,80"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="104,48,139,55,134,56,104,53"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="104,48,139,54,134,56,104,53"/>
 <area shape="rect" id="Node000003" href="$espresso_8c.html#a87e1508215bb1ffe01b13e14dece5b9c" title="Retrieve a query parameter as a void pointer." alt="" coords="379,5,456,31"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="279,16,366,18,361,19,279,21"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="279,16,366,17,361,19,279,21"/>
 <area shape="rect" id="Node000005" href="$espresso_8c.html#a61c64a500ef217b0825333b9f35234e3" title=" " alt="" coords="337,55,498,80"/>
 <area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="289,65,324,67,319,68,289,70"/>
+<area shape="rect" id="Node000006" href="$espresso_8c.html#a142b429010a8046d339d36552bd20f7e" title=" " alt="" coords="363,104,472,130"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="275,78,351,100,346,100,275,84"/>
+<area shape="rect" id="Node000007" href="$espresso_8c.html#a5fa30991ad104ba1fe0001e7aefe95ac" title=" " alt="" coords="546,104,669,130"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="473,114,533,117,528,117,473,119"/>
 </map>

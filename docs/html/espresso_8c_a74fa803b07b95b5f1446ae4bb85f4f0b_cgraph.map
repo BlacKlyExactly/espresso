@@ -1,5 +1,9 @@
 <map id="send_text_response" name="send_text_response">
-<area shape="rect" id="Node000001" title="Sends text response." alt="" coords="5,5,143,31"/>
+<area shape="rect" id="Node000001" title="Sends text response." alt="" coords="5,31,143,56"/>
 <area shape="rect" id="Node000002" href="$espresso_8c.html#a61c64a500ef217b0825333b9f35234e3" title=" " alt="" coords="191,5,352,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="143,16,178,18,172,18,143,21"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="142,32,178,30,173,31,143,37"/>
+<area shape="rect" id="Node000003" href="$espresso_8c.html#a142b429010a8046d339d36552bd20f7e" title=" " alt="" coords="217,55,326,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="143,49,204,59,199,59,143,54"/>
+<area shape="rect" id="Node000004" href="$espresso_8c.html#a5fa30991ad104ba1fe0001e7aefe95ac" title=" " alt="" coords="400,55,522,80"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="326,65,387,67,382,68,326,70"/>
 </map>

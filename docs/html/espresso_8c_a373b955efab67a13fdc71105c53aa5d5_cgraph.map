@@ -1,0 +1,19 @@
+<map id="handle_endpoint" name="handle_endpoint">
+<area shape="rect" id="Node000001" title="ONLY FOR UNIT TESTS." alt="" coords="5,80,121,106"/>
+<area shape="rect" id="Node000002" href="$espresso_8c.html#a04c27c6493696fb67ab9b8f5296c14f1" title="ONLY FOR UNIT TESTS." alt="" coords="191,5,301,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="88,77,168,40,187,35,182,38,170,45,91,82"/>
+<area shape="rect" id="Node000003" href="$espresso_8c.html#aca61aa31ed57abce18d1d3cffd0d47e3" title=" " alt="" coords="169,55,323,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="120,82,156,79,151,82,122,87"/>
+<area shape="rect" id="Node000004" href="$espresso_8c.html#a260a9eca1b37d7151fd585fde9e355b8" title="ONLY FOR UNIT TESTS." alt="" coords="175,104,316,130"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="121,98,163,105,158,106,121,103"/>
+<area shape="rect" id="Node000008" href="$espresso_8c.html#a142b429010a8046d339d36552bd20f7e" title=" " alt="" coords="191,153,300,179"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="91,104,170,140,187,148,182,148,168,145,89,109"/>
+<area shape="rect" id="Node000005" href="$espresso_8c.html#a2d9a0717a9389e6d178d0f4a8c2ef185" title=" " alt="" coords="382,104,483,130"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="317,114,368,117,363,117,317,119"/>
+<area shape="rect" id="Node000006" href="$espresso_8c.html#a755a65a488e1158eee3fdab0ecada8fe" title=" " alt="" coords="541,104,643,130"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="483,114,528,117,523,117,483,119"/>
+<area shape="rect" id="Node000007" href="$espresso_8c.html#af4a5274d4719dec853dd32e1d8687553" title=" " alt="" coords="691,104,771,130"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="643,114,678,117,673,117,643,119"/>
+<area shape="rect" id="Node000009" href="$espresso_8c.html#a5fa30991ad104ba1fe0001e7aefe95ac" title=" " alt="" coords="371,153,493,179"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="301,164,358,166,353,166,301,169"/>
+</map>

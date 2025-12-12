@@ -1,7 +1,11 @@
 <map id="send_error" name="send_error">
-<area shape="rect" id="Node000001" title="Sends error response with status code and message." alt="" coords="5,5,88,31"/>
-<area shape="rect" id="Node000002" href="$espresso_8c.html#a1851b4d23bfd00e217b09add89e1aec4" title="Sends JSON response." alt="" coords="136,5,276,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="88,16,123,18,117,18,88,21"/>
+<area shape="rect" id="Node000001" title="Sends error response with status code and message." alt="" coords="5,31,88,56"/>
+<area shape="rect" id="Node000002" href="$espresso_8c.html#a1851b4d23bfd00e217b09add89e1aec4" title="Sends JSON response." alt="" coords="136,31,276,56"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="88,41,123,43,117,44,89,46"/>
 <area shape="rect" id="Node000003" href="$espresso_8c.html#a61c64a500ef217b0825333b9f35234e3" title=" " alt="" coords="324,5,485,31"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="276,16,311,18,306,18,276,21"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="276,32,311,30,306,31,277,37"/>
+<area shape="rect" id="Node000004" href="$espresso_8c.html#a142b429010a8046d339d36552bd20f7e" title=" " alt="" coords="350,55,459,80"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="276,49,337,59,332,59,276,55"/>
+<area shape="rect" id="Node000005" href="$espresso_8c.html#a5fa30991ad104ba1fe0001e7aefe95ac" title=" " alt="" coords="533,55,656,80"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="460,65,520,67,515,68,460,70"/>
 </map>

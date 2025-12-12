@@ -1,7 +1,5 @@
 var files_dup =
 [
-    [ "vendor", "dir_c5da75fdc1d6c57999112ed830c87a3c.html", "dir_c5da75fdc1d6c57999112ed830c87a3c" ],
-    [ "espresso.c", "espresso_8c.html", "espresso_8c" ],
-    [ "espresso.h", "espresso_8h.html", "espresso_8h" ],
-    [ "main.c", "main_8c.html", "main_8c" ]
+    [ "src", "dir_68267d1309a1af8e8297ef4c3efbcdba.html", "dir_68267d1309a1af8e8297ef4c3efbcdba" ],
+    [ "vendor", "dir_c5da75fdc1d6c57999112ed830c87a3c.html", "dir_c5da75fdc1d6c57999112ed830c87a3c" ]
 ];

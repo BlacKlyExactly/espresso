@@ -1,0 +1,31 @@
+<map id="send_message" name="send_message">
+<area shape="rect" id="Node000001" title=" " alt="" coords="948,80,1058,106"/>
+<area shape="rect" id="Node000002" href="$espresso_8c.html#a2a7b96459e0adac1061eaec6a5722075" title=" " alt="" coords="614,56,712,82"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="976,69,943,43,899,21,861,11,831,8,800,12,761,21,719,38,684,58,682,53,716,33,759,16,799,7,831,3,862,6,901,16,945,39,982,70"/>
+<area shape="rect" id="Node000007" href="$espresso_8c.html#a373b955efab67a13fdc71105c53aa5d5" title="ONLY FOR UNIT TESTS." alt="" coords="772,31,888,57"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="938,75,878,60,878,55,943,76"/>
+<area shape="rect" id="Node000008" href="$espresso_8c.html#a8ddc375ff20a190089968e04405e0a70" title="ONLY FOR UNIT TESTS." alt="" coords="764,80,896,106"/>
+<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="930,93,897,96,897,91,935,93"/>
+<area shape="rect" id="Node000009" href="$espresso_8c.html#a1851b4d23bfd00e217b09add89e1aec4" title="Sends JSON response." alt="" coords="760,130,900,155"/>
+<area shape="poly" id="edge10_Node000001_Node000009" title=" " alt="" coords="943,110,878,132,877,126,938,111"/>
+<area shape="rect" id="Node000011" href="$espresso_8c.html#a74fa803b07b95b5f1446ae4bb85f4f0b" title="Sends text response." alt="" coords="251,180,388,206"/>
+<area shape="poly" id="edge12_Node000001_Node000011" title=" " alt="" coords="981,115,945,147,901,170,833,190,762,204,691,212,620,216,491,214,389,205,389,200,491,209,620,211,690,207,761,199,832,185,899,165,942,142,976,117"/>
+<area shape="rect" id="Node000003" href="$espresso_8c.html#a919e9a8a992f43f0fd82e87f4d40d2d2" title=" " alt="" coords="436,70,566,95"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="596,75,567,80,566,75,601,74"/>
+<area shape="rect" id="Node000004" href="$espresso_8c.html#a90f2058b8890cfb99e6f595b8f066919" title=" " alt="" coords="255,70,384,95"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="418,83,385,85,384,80,423,82"/>
+<area shape="rect" id="Node000005" href="$espresso_8c.html#a0ba22157d15a70c4c22441b040bb0f74" title="Starts the HTTP server loop." alt="" coords="113,82,193,107"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="237,89,194,94,193,89,242,87"/>
+<area shape="rect" id="Node000006" href="$main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,131,55,157"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="103,116,56,136,54,132,106,111"/>
+<area shape="poly" id="edge7_Node000007_Node000002" title=" " alt="" coords="755,55,713,64,712,59,760,54"/>
+<area shape="poly" id="edge9_Node000008_Node000002" title=" " alt="" coords="746,82,713,79,712,74,751,81"/>
+<area shape="rect" id="Node000010" href="$espresso_8c.html#afb4623b096ac903aa1c53a5f0c730328" title="Sends error response with status code and message." alt="" coords="622,130,704,155"/>
+<area shape="poly" id="edge11_Node000009_Node000010" title=" " alt="" coords="742,143,704,145,704,140,747,142"/>
+<area shape="rect" id="Node000012" href="$main_8c.html#a3567783714153d35ee83fd6de55968d1" title=" " alt="" coords="104,131,202,157"/>
+<area shape="poly" id="edge13_Node000011_Node000012" title=" " alt="" coords="256,176,199,160,199,155,261,175"/>
+<area shape="rect" id="Node000013" href="$main_8c.html#a036dbf8db2f30bf4fb436fcc8ea138c7" title=" " alt="" coords="103,180,203,206"/>
+<area shape="poly" id="edge15_Node000011_Node000013" title=" " alt="" coords="233,193,203,196,203,191,238,193"/>
+<area shape="poly" id="edge14_Node000012_Node000006" title=" " alt="" coords="86,146,56,146,54,141,90,142"/>
+<area shape="poly" id="edge16_Node000013_Node000006" title=" " alt="" coords="103,176,55,156,55,151,107,173"/>
+</map>

@@ -1,0 +1,11 @@
+<map id="app_close" name="app_close">
+<area shape="rect" id="Node000001" title="Closes the app and frees resources." alt="" coords="5,31,86,56"/>
+<area shape="rect" id="Node000002" href="$espresso_8c.html#a73277811539a2de04ce7e1295fbdba6a" title=" " alt="" coords="134,31,256,56"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="86,41,121,43,116,44,86,46"/>
+<area shape="rect" id="Node000003" href="$espresso_8c.html#aaf78724518167158b66ec656312fabd2" title=" " alt="" coords="304,31,471,56"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="256,41,291,43,286,44,256,46"/>
+<area shape="rect" id="Node000004" href="$espresso_8c.html#a1804ce3a25646fd9c6c6ad98d45c6efa" title=" " alt="" coords="519,5,642,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="472,30,501,29,506,28,472,35"/>
+<area shape="rect" id="Node000005" href="$espresso_8c.html#a837cf67658f96fc262c83a4882f96f45" title=" " alt="" coords="529,55,632,80"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="472,51,517,59,511,59,472,57"/>
+</map>

@@ -100,14 +100,12 @@ $(function(){initNavTree('structApp.html','','structApp-members'); });
 <div class="dynheader">
 Collaboration diagram for App:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="structApp__coll__graph.svg" width="790" height="579"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="structApp__coll__graph.svg" width="730" height="675"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:aec5d67a8bb9e1bbce462206300dc5b90" id="r_aec5d67a8bb9e1bbce462206300dc5b90"><td class="memItemLeft" align="right" valign="top">struct sockaddr_in&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aec5d67a8bb9e1bbce462206300dc5b90">server_addr</a></td></tr>
-<tr class="memitem:a76a39badbf15409c96067b1aa8edb4ea" id="r_a76a39badbf15409c96067b1aa8edb4ea"><td class="memItemLeft" align="right" valign="top">struct sockaddr_in&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a76a39badbf15409c96067b1aa8edb4ea">client_addr</a></td></tr>
-<tr class="memitem:a6e5a0a63b42017a650391cdef4eb1113" id="r_a6e5a0a63b42017a650391cdef4eb1113"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6e5a0a63b42017a650391cdef4eb1113">server_fd</a></td></tr>
+<tr class="memitem:af3d33dd34217c960b4343ee798294490" id="r_af3d33dd34217c960b4343ee798294490"><td class="memItemLeft" align="right" valign="top">uv_tcp_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af3d33dd34217c960b4343ee798294490">server</a></td></tr>
 <tr class="memitem:aac2f7dd7d0f993466b939901088cf94d" id="r_aac2f7dd7d0f993466b939901088cf94d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aac2f7dd7d0f993466b939901088cf94d">port</a></td></tr>
 <tr class="memitem:ad3cdbd8059a45abaca0a008410d73616" id="r_ad3cdbd8059a45abaca0a008410d73616"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structEndpoint.html">Endpoint</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad3cdbd8059a45abaca0a008410d73616">endpoints</a></td></tr>
 <tr class="memitem:a07e6e4780dcc21cbb734aa539105dbd8" id="r_a07e6e4780dcc21cbb734aa539105dbd8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a07e6e4780dcc21cbb734aa539105dbd8">endpoint_count</a></td></tr>
@@ -118,25 +116,60 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:aec2f5b3d673b50a84284a24d0f253d08" id="r_aec2f5b3d673b50a84284a24d0f253d08"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structAppGroup.html">AppGroup</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aec2f5b3d673b50a84284a24d0f253d08">groups</a></td></tr>
 <tr class="memitem:a12a5d268965b9500ee08884706daab93" id="r_a12a5d268965b9500ee08884706daab93"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a12a5d268965b9500ee08884706daab93">groups_count</a></td></tr>
 <tr class="memitem:ac31d76ddfd6c5fe2358fe47c035ad0bf" id="r_ac31d76ddfd6c5fe2358fe47c035ad0bf"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac31d76ddfd6c5fe2358fe47c035ad0bf">groups_capacity</a></td></tr>
+<tr class="memitem:a723c95b1a7d62d6505fb605252f0da7c" id="r_a723c95b1a7d62d6505fb605252f0da7c"><td class="memItemLeft" align="right" valign="top">uv_tcp_t **&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a723c95b1a7d62d6505fb605252f0da7c">clients</a></td></tr>
+<tr class="memitem:a81197e03e65adef00d79abb406bd90ed" id="r_a81197e03e65adef00d79abb406bd90ed"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a81197e03e65adef00d79abb406bd90ed">client_count</a></td></tr>
+<tr class="memitem:aefa270b0b9870610a119644ae5347cf8" id="r_aefa270b0b9870610a119644ae5347cf8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aefa270b0b9870610a119644ae5347cf8">client_capacity</a></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Main application object. </p>
 
-<p class="definition">Definition at line <a class="el" href="espresso_8h_source.html#l00146">146</a> of file <a class="el" href="espresso_8h_source.html">espresso.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="espresso_8h_source.html#l00142">142</a> of file <a class="el" href="espresso_8h_source.html">espresso.h</a>.</p>
 </div><a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
-<a id="a76a39badbf15409c96067b1aa8edb4ea" name="a76a39badbf15409c96067b1aa8edb4ea"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a76a39badbf15409c96067b1aa8edb4ea">&#9670;&#160;</a></span>client_addr</h2>
+<a id="aefa270b0b9870610a119644ae5347cf8" name="aefa270b0b9870610a119644ae5347cf8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aefa270b0b9870610a119644ae5347cf8">&#9670;&#160;</a></span>client_capacity</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct sockaddr_in App::client_addr</td>
+          <td class="memname">int App::client_capacity</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="espresso_8h_source.html#l00148">148</a> of file <a class="el" href="espresso_8h_source.html">espresso.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="espresso_8h_source.html#l00156">156</a> of file <a class="el" href="espresso_8h_source.html">espresso.h</a>.</p>
+
+</div>
+</div>
+<a id="a81197e03e65adef00d79abb406bd90ed" name="a81197e03e65adef00d79abb406bd90ed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a81197e03e65adef00d79abb406bd90ed">&#9670;&#160;</a></span>client_count</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int App::client_count</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="espresso_8h_source.html#l00155">155</a> of file <a class="el" href="espresso_8h_source.html">espresso.h</a>.</p>
+
+</div>
+</div>
+<a id="a723c95b1a7d62d6505fb605252f0da7c" name="a723c95b1a7d62d6505fb605252f0da7c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a723c95b1a7d62d6505fb605252f0da7c">&#9670;&#160;</a></span>clients</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uv_tcp_t** App::clients</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="espresso_8h_source.html#l00154">154</a> of file <a class="el" href="espresso_8h_source.html">espresso.h</a>.</p>
 
 </div>
 </div>
@@ -152,7 +185,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="espresso_8h_source.html#l00157">157</a> of file <a class="el" href="espresso_8h_source.html">espresso.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="espresso_8h_source.html#l00147">147</a> of file <a class="el" href="espresso_8h_source.html">espresso.h</a>.</p>
 
 </div>
 </div>
@@ -168,7 +201,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="espresso_8h_source.html#l00156">156</a> of file <a class="el" href="espresso_8h_source.html">espresso.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="espresso_8h_source.html#l00146">146</a> of file <a class="el" href="espresso_8h_source.html">espresso.h</a>.</p>
 
 </div>
 </div>
@@ -184,7 +217,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="espresso_8h_source.html#l00155">155</a> of file <a class="el" href="espresso_8h_source.html">espresso.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="espresso_8h_source.html#l00145">145</a> of file <a class="el" href="espresso_8h_source.html">espresso.h</a>.</p>
 
 </div>
 </div>
@@ -200,7 +233,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="espresso_8h_source.html#l00161">161</a> of file <a class="el" href="espresso_8h_source.html">espresso.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="espresso_8h_source.html#l00151">151</a> of file <a class="el" href="espresso_8h_source.html">espresso.h</a>.</p>
 
 </div>
 </div>
@@ -216,7 +249,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="espresso_8h_source.html#l00163">163</a> of file <a class="el" href="espresso_8h_source.html">espresso.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="espresso_8h_source.html#l00153">153</a> of file <a class="el" href="espresso_8h_source.html">espresso.h</a>.</p>
 
 </div>
 </div>
@@ -232,7 +265,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="espresso_8h_source.html#l00162">162</a> of file <a class="el" href="espresso_8h_source.html">espresso.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="espresso_8h_source.html#l00152">152</a> of file <a class="el" href="espresso_8h_source.html">espresso.h</a>.</p>
 
 </div>
 </div>
@@ -248,7 +281,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="espresso_8h_source.html#l00160">160</a> of file <a class="el" href="espresso_8h_source.html">espresso.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="espresso_8h_source.html#l00150">150</a> of file <a class="el" href="espresso_8h_source.html">espresso.h</a>.</p>
 
 </div>
 </div>
@@ -264,7 +297,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="espresso_8h_source.html#l00159">159</a> of file <a class="el" href="espresso_8h_source.html">espresso.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="espresso_8h_source.html#l00149">149</a> of file <a class="el" href="espresso_8h_source.html">espresso.h</a>.</p>
 
 </div>
 </div>
@@ -280,7 +313,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="espresso_8h_source.html#l00158">158</a> of file <a class="el" href="espresso_8h_source.html">espresso.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="espresso_8h_source.html#l00148">148</a> of file <a class="el" href="espresso_8h_source.html">espresso.h</a>.</p>
 
 </div>
 </div>
@@ -296,39 +329,23 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="espresso_8h_source.html#l00154">154</a> of file <a class="el" href="espresso_8h_source.html">espresso.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="espresso_8h_source.html#l00144">144</a> of file <a class="el" href="espresso_8h_source.html">espresso.h</a>.</p>
 
 </div>
 </div>
-<a id="aec5d67a8bb9e1bbce462206300dc5b90" name="aec5d67a8bb9e1bbce462206300dc5b90"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aec5d67a8bb9e1bbce462206300dc5b90">&#9670;&#160;</a></span>server_addr</h2>
+<a id="af3d33dd34217c960b4343ee798294490" name="af3d33dd34217c960b4343ee798294490"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af3d33dd34217c960b4343ee798294490">&#9670;&#160;</a></span>server</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct sockaddr_in App::server_addr</td>
+          <td class="memname">uv_tcp_t App::server</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="espresso_8h_source.html#l00147">147</a> of file <a class="el" href="espresso_8h_source.html">espresso.h</a>.</p>
-
-</div>
-</div>
-<a id="a6e5a0a63b42017a650391cdef4eb1113" name="a6e5a0a63b42017a650391cdef4eb1113"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6e5a0a63b42017a650391cdef4eb1113">&#9670;&#160;</a></span>server_fd</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int App::server_fd</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="espresso_8h_source.html#l00152">152</a> of file <a class="el" href="espresso_8h_source.html">espresso.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="espresso_8h_source.html#l00143">143</a> of file <a class="el" href="espresso_8h_source.html">espresso.h</a>.</p>
 
 </div>
 </div>

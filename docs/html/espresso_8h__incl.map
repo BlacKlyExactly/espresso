@@ -1,25 +1,27 @@
 <map id="espresso.h" name="espresso.h">
-<area shape="rect" id="Node000001" title="Espresso &#45; lightweight Express&#45;like HTTP framework for C." alt="" coords="488,5,572,31"/>
-<area shape="rect" id="Node000002" href="$cJSON_8h.html" title=" " alt="" coords="5,79,170,105"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="487,29,178,79,177,73,488,24"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="194,79,256,105"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="485,30,272,81,270,76,490,27"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="280,79,340,105"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="495,31,356,79,354,74,490,32"/>
-<area shape="rect" id="Node000006" title=" " alt="" coords="364,79,427,105"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="510,31,433,74,431,69,505,32"/>
-<area shape="rect" id="Node000007" title=" " alt="" coords="450,79,514,105"/>
-<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="524,30,500,68,497,64,520,33"/>
-<area shape="rect" id="Node000008" title=" " alt="" coords="538,79,619,105"/>
-<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="539,29,564,67,559,65,537,34"/>
-<area shape="rect" id="Node000009" title=" " alt="" coords="643,79,727,105"/>
-<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="557,29,647,72,642,72,556,34"/>
-<area shape="rect" id="Node000010" title=" " alt="" coords="752,79,826,105"/>
-<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="573,29,739,76,734,76,573,34"/>
-<area shape="rect" id="Node000011" title=" " alt="" coords="850,79,915,105"/>
-<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="573,24,688,45,837,78,832,78,686,50,573,29"/>
-<area shape="rect" id="Node000012" title=" " alt="" coords="938,79,1005,105"/>
-<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="573,22,724,42,926,78,921,79,724,47,573,27"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="54,153,121,178"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="89,103,90,138,85,136,86,107"/>
+<area shape="rect" id="Node000001" title="Espresso &#45; lightweight Express&#45;like HTTP framework for C." alt="" coords="593,5,677,31"/>
+<area shape="rect" id="Node000002" href="$cJSON_8h.html" title=" " alt="" coords="5,79,180,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="592,28,196,80,195,74,593,22"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="204,79,285,105"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="591,28,301,81,300,76,594,25"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="309,79,372,105"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="590,30,388,81,386,76,595,28"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="396,79,480,105"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="604,31,486,76,485,71,599,32"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="505,79,579,105"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="622,31,571,72,568,67,617,33"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="602,79,668,105"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="637,29,637,65,633,62,633,33"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="692,79,752,105"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="651,29,698,70,693,69,649,34"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="776,79,838,105"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="665,29,767,73,761,73,664,34"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="862,79,926,105"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="678,29,850,78,844,78,678,34"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="950,79,1016,105"/>
+<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="678,24,938,78,932,79,678,30"/>
+<area shape="rect" id="Node000013" title=" " alt="" coords="1040,79,1086,105"/>
+<area shape="poly" id="edge12_Node000001_Node000013" title=" " alt="" coords="678,21,828,39,925,55,1028,79,1023,79,924,61,827,45,678,26"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="59,153,126,178"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="94,103,95,138,90,136,91,107"/>
 </map>
