@@ -17,29 +17,14 @@ jobs:
         uses: msys2/setup-msys2@v2
         with:
           update: true
-          install: mingw-w64-x86_64-gcc
+          install: mingw-w64-x86_64-gcc pkg-config
 
-      - name: Compile Espresso server
+      - name: Compile Espresso server and tests
         run: |
-          $env:IS_CI_BUILD="true"
           make
-          dir
 
-      - name: Run server in background
-        run: |
-          $job = Start-Job -ScriptBlock { .\main.exe }
+      - name: Run Unit Tests
+        run: make test_unit
 
-          $max_attempts = 15
-          $attempt = 0
-          do {
-              Start-Sleep -Seconds 1
-              $tcp = Test-NetConnection -ComputerName localhost -Port 8080
-              $attempt++
-          } while (-not $tcp.TcpTestSucceeded -and $attempt -lt $max_attempts)
-
-          curl "http://localhost:8080/"
-          curl "http://localhost:8080/api/"
-          curl "http://localhost:8080/api/echo?msg=HelloWorld"
-
-          Stop-Job $job
-          Remove-Job $job
+      - name: Run Integration Tests
+        run: make test_integration
