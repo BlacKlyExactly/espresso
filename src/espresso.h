@@ -25,7 +25,11 @@
 #define MAX_HEADERS 32
 #define KEY_SIZE 64
 #define VALUE_SIZE 256
-#define MAX_HEADER_SIZE 8192
+#define MAX_HEADER_SIZE (8 * 1024 * 1024)
+#define MAX_BODY_SIZE (10 * 1024 * 1024)
+#define MAX_REQUEST_SIZE MAX_HEADER_SIZE + MAX_BODY_SIZE
+#define REQUEST_TIMEOUT_TIME 5000
+#define MAX_KEEP_ALIVE_REQUESTS 500
 
 /**
  * @enum HttpStatus
@@ -52,10 +56,10 @@ typedef enum { BODY_NONE, BODY_TEXT, BODY_JSON } BodyType;
  * @brief HTTP request or response body
  */
 typedef struct {
-  BodyType type; ///< Body type
+  BodyType type;
   union {
-    char *text;  ///< Text payload
-    cJSON *json; ///< JSON payload
+    char *text;
+    cJSON *json;
   } data;
 } Body;
 
@@ -104,8 +108,10 @@ typedef struct App App;
 typedef struct ResponseContext ResponseContext;
 typedef struct ClientContext ClientContext;
 
+typedef enum { MIDDLEWARE_CONTINUE = 0, MIDDLEWARE_STOP = 1 } MiddlewareResult;
+
 typedef void (*EndpointHandler)(ResponseContext *);
-typedef int (*Middleware)(ResponseContext *res);
+typedef MiddlewareResult (*Middleware)(ResponseContext *res);
 
 /**
  * @struct Endpoint
@@ -164,9 +170,12 @@ struct ClientContext {
   size_t buffer_len;
   size_t buffer_capacity;
   int headers_parsed;
-  int content_length;
+  size_t content_length;
   Request *req;
   ResponseContext *res;
+  uv_timer_t *req_timer;
+  int keep_alive;
+  int request_count;
 };
 
 typedef struct {
@@ -195,6 +204,11 @@ struct ResponseContext {
   ResponseData data;
   ResponseContextQuery query;
 };
+
+typedef struct {
+  ClientContext *ctx;
+  EndpointHandler handler;
+} EndpointWork;
 
 /* ---------------- Function Declarations ---------------- */
 
@@ -253,6 +267,11 @@ void send_text_response(ResponseContext *res, const char *text);
  */
 void send_error(ResponseContext *res, int status, const char *message);
 
+/**
+ * @brief Retrieves client ip and passes it to buffer, "unknown" if not found
+ */
+void get_client_ip(ResponseContext *res, char *buffer, size_t size);
+
 /* ---------------- Header & Data Access ---------------- */
 
 /**
@@ -275,6 +294,15 @@ char *get_param(ResponseContext *res, const char *key);
  * @return Value as a string, or NULL if not found
  */
 char *get_header(ResponseContext *res, const char *key);
+
+/**
+ * @brief Retrieve a header int from the request
+ *
+ * @param res Pointer to ResponseContext
+ * @param key Header name
+ * @return Value as a int, or 0 if not found
+ */
+int get_header_int(ResponseContext *res, const char *key);
 
 /**
  * @brief Set a header in the response
@@ -493,7 +521,7 @@ double get_query_double(ResponseContext *res, const char *key);
  *       ```
  */
 #define DEFINE_CORS(name, origin_val, methods_val, headers_val, max_age_val)   \
-  static int name(ResponseContext *res) {                                      \
+  static MiddlewareResult name(ResponseContext *res) {                         \
     set_header(res, "Access-Control-Allow-Origin", origin_val);                \
     set_header(res, "Access-Control-Allow-Methods", methods_val);              \
     set_header(res, "Access-Control-Allow-Headers", headers_val);              \
@@ -503,9 +531,9 @@ double get_query_double(ResponseContext *res, const char *key);
     if (strcmp(res->req->method, "OPTIONS") == 0) {                            \
       res->status = 204;                                                       \
       send_text_response(res, "");                                             \
-      return 1;                                                                \
+      return MIDDLEWARE_STOP;                                                  \
     }                                                                          \
-    return 0;                                                                  \
+    return MIDDLEWARE_CONTINUE;                                                \
   }
 
 /**
@@ -555,12 +583,13 @@ void parse_query_params(ResponseContext *res);
 /**
  * @brief ONLY FOR UNIT TESTS.
  */
-int handle_endpoint(App *app, ResponseContext *res, Request *req);
+int handle_endpoint(ClientContext *ctx);
 
 /**
  * @brief ONLY FOR UNIT TESTS.
  */
-int parse_http_request(char *buffer, Request *req, uv_tcp_t *client);
+int parse_http_request(char *buffer, Request *req, uv_tcp_t *client,
+                       ClientContext *ctx);
 
 /**
  * @brief ONLY FOR UNIT TESTS.

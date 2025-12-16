@@ -7,6 +7,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![C Standard](https://img.shields.io/badge/C-C99-blue.svg)](https://en.wikipedia.org/wiki/C99)
 [![Platform](https://img.shields.io/badge/platform-Linux%20%7C%20macOS%20%7C%20Windows-lightgrey.svg)](https://github.com/yourusername/espresso)
+[![Build Status](https://github.com/BlacKlyExactly/espresso/workflows/Tests/badge.svg)](https://github.com/BlacKlyExactly/espresso/actions)
 
 ```c
 #include "espresso.h"
@@ -37,6 +38,9 @@ int main() {
 - **🌐 CORS Support** - Easy-to-use CORS macros
 - **🔒 Memory Safe** - No memory leaks, automatic cleanup
 - **💻 Cross-Platform** - Works on Linux, macOS, and Windows
+- **⏱️ Request Timeouts** - Protection against slowloris attacks
+- **⚡ HTTP/1.1 Keep-Alive** - Connection reuse for better performance
+- **🛡️ Security Hardened** - Request size limits, header validation
 - **⚡ Lightweight** - Minimal dependencies, pure C implementation
 
 ---
@@ -46,6 +50,7 @@ int main() {
 ### Prerequisites
 
 - C compiler (GCC, Clang, or MSVC)
+- libuv (will be linked automatically)
 - Make (optional, for easier building)
 
 ### Quick Start
@@ -215,9 +220,9 @@ curl -X POST http://localhost:3000/users \
 ### Global Middleware
 
 ```c
-int logger(ResponseContext *res) {
+MiddlewareResult logger(ResponseContext *res) {
     printf("[%s] %s\n", res->req->method, res->req->path);
-    return 0;  // Continue to next middleware/handler
+    return MIDDLEWARE_CONTINUE;
 }
 
 int main() {
@@ -234,15 +239,15 @@ int main() {
 ### Per-Route Middleware
 
 ```c
-int auth_middleware(ResponseContext *res) {
+MiddlewareResult auth_middleware(ResponseContext *res) {
     char *token = get_header(res, "Authorization");
 
     if (!token || strcmp(token, "Bearer secret") != 0) {
         send_error(res, 401, "Unauthorized");
-        return 1;  // Stop execution
+        return MIDDLEWARE_STOP;
     }
 
-    return 0;  // Continue
+    return MIDDLEWARE_CONTINUE;
 }
 
 int main() {
@@ -344,6 +349,45 @@ All routes in the group automatically use `auth_middleware`.
 
 ---
 
+## 🔧 Configuration
+
+### Request Limits
+
+Espresso enforces sensible defaults to protect against attacks:
+
+```c
+// Default limits (defined in espresso.h)
+#define MAX_HEADER_SIZE (8 * 1024)          // 8 KB
+#define MAX_BODY_SIZE (10 * 1024 * 1024)    // 10 MB
+#define MAX_REQUEST_SIZE (MAX_HEADER_SIZE + MAX_BODY_SIZE)
+#define REQUEST_TIMEOUT_TIME 5000           // 5 seconds
+#define MAX_KEEP_ALIVE_REQUESTS 500         // Max requests per connection
+```
+
+**Why these limits?**
+
+| Limit                   | Value | Reason                                                                                   |
+| ----------------------- | ----- | ---------------------------------------------------------------------------------------- |
+| **Header Size**         | 8 KB  | Matches nginx/Apache; sufficient for most headers including large cookies and JWT tokens |
+| **Body Size**           | 10 MB | Handles JSON payloads and small file uploads; prevents memory exhaustion                 |
+| **Request Timeout**     | 5s    | Prevents slowloris attacks while allowing slow clients                                   |
+| **Keep-Alive Requests** | 500   | Balances connection reuse with resource management                                       |
+
+**To customize these limits**, modify the values in `espresso.h` before building.
+
+### Security Features
+
+Espresso includes multiple layers of protection:
+
+✅ **Request size validation** - Prevents memory exhaustion attacks  
+✅ **Header size limits** - Blocks oversized header attacks  
+✅ **Request timeouts** - Mitigates slowloris DoS attacks  
+✅ **HTTP/1.1 Keep-Alive** - With connection limits to prevent abuse  
+✅ **Proper Content-Length validation** - Detects conflicting headers  
+✅ **HTTP version checking** - Only HTTP/1.0 and HTTP/1.1 supported
+
+---
+
 ## 📖 Complete Example: TODO API
 
 ```c
@@ -361,18 +405,18 @@ int todo_count = 0;
 int next_id = 1;
 
 // Middleware
-int logger(ResponseContext *res) {
+MiddlewareResult logger(ResponseContext *res) {
     printf("[%s] %s\n", res->req->method, res->req->path);
-    return 0;
+    return MIDDLEWARE_CONTINUE;
 }
 
-int auth_middleware(ResponseContext *res) {
+MiddlewareResult auth_middleware(ResponseContext *res) {
     char *token = get_header(res, "Authorization");
     if (!token || strcmp(token, "Bearer secret-token") != 0) {
         send_error(res, 401, "Unauthorized");
-        return 1;
+        return MIDDLEWARE_STOP;
     }
-    return 0;
+    return MIDDLEWARE_CONTINUE;
 }
 
 // Handlers
@@ -458,12 +502,14 @@ int main() {
 
 ### Request Data
 
-| Function                     | Description                 |
-| ---------------------------- | --------------------------- |
-| `get_param(res, key)`        | Get route parameter (`:id`) |
-| `get_query_string(res, key)` | Get query string value      |
-| `get_query_int(res, key)`    | Get query string as int     |
-| `get_header(res, key)`       | Get request header          |
+| Function                        | Description                 |
+| ------------------------------- | --------------------------- |
+| `get_param(res, key)`           | Get route parameter (`:id`) |
+| `get_query_string(res, key)`    | Get query string value      |
+| `get_query_int(res, key)`       | Get query string as int     |
+| `get_header(res, key)`          | Get request header          |
+| `get_header_int(res, key)`      | Get request header as int   |
+| `get_client_ip(res, buf, size)` | Get client IP address       |
 
 ### Response
 
@@ -495,6 +541,9 @@ int main() {
 | JSON Auto-Parse   | ✅ Yes          | ✅ With middleware | ❌ Manual     | ❌ Manual     |
 | Middleware        | ✅ Full support | ✅ Full support    | ⚠️ Limited    | ❌ No         |
 | CORS              | ✅ Macros       | ✅ Package         | ❌ Manual     | ❌ Manual     |
+| HTTP Keep-Alive   | ✅ Yes          | ✅ Yes             | ✅ Yes        | ⚠️ Limited    |
+| Request Timeouts  | ✅ Yes          | ⚠️ Manual          | ✅ Yes        | ❌ No         |
+| Async I/O         | ✅ libuv        | ✅ libuv           | ✅ Custom     | ❌ Blocking   |
 | Learning Curve    | ⭐⭐ Easy       | ⭐ Easiest         | ⭐⭐⭐⭐ Hard | ⭐⭐⭐⭐ Hard |
 
 ---
@@ -529,6 +578,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - **SSL/TLS:** Not yet supported (use reverse proxy like nginx)
 - **WebSockets:** Not yet supported
+- **Single-threaded:** Uses one event loop (but handles many connections efficiently)
 
 ---
 
@@ -538,9 +588,12 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [ ] Cookie parsing
 - [ ] Session management
 - [ ] File upload support (multipart/form-data)
+- [ ] Rate limiting middleware
 - [ ] WebSocket support
 - [ ] SSL/TLS support
 - [x] Async I/O with libuv
+- [x] HTTP/1.1 Keep-Alive
+- [x] Request timeouts
 
 ---
 

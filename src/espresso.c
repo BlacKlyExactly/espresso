@@ -1,5 +1,6 @@
 #ifdef _WIN32
 #include <signal.h>
+#include <windows.h>
 #else
 #include <strings.h>
 #include <unistd.h>
@@ -10,6 +11,7 @@
 #include <stdarg.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 #include <uv.h>
 
 static App *lib_global_app = NULL;
@@ -70,6 +72,25 @@ BOOL WINAPI console_handler(DWORD signal) {
 }
 #endif
 
+void handle_client_read(uv_stream_t *stream, ssize_t nread,
+                        const uv_buf_t *buf);
+
+void log_error(const char *fmt, ...) {
+  time_t t = time(NULL);
+  struct tm *tm_info = localtime(&t);
+  char time_str[26];
+  strftime(time_str, sizeof(time_str), "%Y-%m-%d %H:%M:%S", tm_info);
+
+  fprintf(stderr, "[%s] ERROR: ", time_str);
+
+  va_list args;
+  va_start(args, fmt);
+  vfprintf(stderr, fmt, args);
+  va_end(args);
+
+  fprintf(stderr, "\n");
+}
+
 static void lib_handle_sigint(int sig) {
   if (lib_global_app) {
     app_close(lib_global_app);
@@ -109,7 +130,20 @@ const char *http_version_not_supported_response =
     "Content-Type: text/plain\r\n"
     "Content-Length: 25\r\n"
     "\r\n"
-    "HTTP Version Not Supported\n";
+    "HTTP Version Not Supported";
+
+const char *headers_too_large_response =
+    "HTTP/1.1 431 Request Header Fields Too Large\r\n"
+    "Content-Type: text/plain\r\n"
+    "Content-Length: 31\r\n"
+    "\r\n"
+    "Request Header Fields Too Large";
+
+const char *request_timeput_response = "HTTP/1.1 408 Request Timeout\r\n"
+                                       "Content-Type: text/plain\r\n"
+                                       "Content-Length: 15\r\n"
+                                       "\r\n"
+                                       "Request Timeout";
 
 void remove_client(App *app, uv_tcp_t *client) {
   for (int i = 0; i < app->client_count; i++) {
@@ -131,6 +165,8 @@ void add_client(App *app, uv_tcp_t *client) {
   app->client_count++;
 }
 
+void handle_timer_close(uv_handle_t *handle) { free(handle); }
+
 void handle_write_end(uv_write_t *uv_req, int status) {
   if (status < 0) {
     fprintf(stderr, "Write error: %s\n", uv_strerror(status));
@@ -145,66 +181,64 @@ void send_message(uv_tcp_t *client, const char *message) {
   uv_write(req, (uv_stream_t *)client, &buf, 1, handle_write_end);
 }
 
+void request_cleanup(ClientContext *ctx) {
+  if (!ctx)
+    return;
+
+  if (ctx->req) {
+    if (ctx->req->body) {
+      if (ctx->req->body->type == BODY_JSON && ctx->req->body->data.json)
+        cJSON_Delete(ctx->req->body->data.json);
+      free(ctx->req->body);
+    }
+    if (ctx->req->params)
+      free(ctx->req->params);
+    free(ctx->req);
+    ctx->req = NULL;
+  }
+
+  if (ctx->res) {
+    if (ctx->res->data.entries) {
+      for (int i = 0; i < ctx->res->data.count; i++)
+        free(ctx->res->data.entries[i].key);
+      free(ctx->res->data.entries);
+    }
+    if (ctx->res->query.entries) {
+      for (int i = 0; i < ctx->res->query.count; i++) {
+        free(ctx->res->query.entries[i].key);
+        free(ctx->res->query.entries[i].value);
+      }
+      free(ctx->res->query.entries);
+    }
+    free(ctx->res);
+    ctx->res = NULL;
+  }
+
+  ctx->buffer_len = 0;
+  ctx->headers_parsed = 0;
+  ctx->content_length = 0;
+
+  ctx->request_count++;
+  if (ctx->request_count >= MAX_KEEP_ALIVE_REQUESTS)
+    ctx->keep_alive = 0;
+}
+
 void endpoint_cleanup(ClientContext *ctx) {
-  ResponseContext *res = ctx->res;
-  Request *req = ctx->req;
+  if (!ctx)
+    return;
 
-  if (req->body->type == BODY_JSON && req->body->data.json) {
-    cJSON_Delete(req->body->data.json);
-    req->body->data.json = NULL;
-  }
+  request_cleanup(ctx);
 
-  if (req->params) {
-    free(req->params);
-    req->params = NULL;
-  }
-
-  if (res->data.entries) {
-    for (int i = 0; i < res->data.count; i++) {
-      if (res->data.entries[i].key)
-        free(res->data.entries[i].key);
-
-      if (res->data.entries[i].value)
-        free(res->data.entries[i].value);
-    }
-
-    free(res->data.entries);
-    res->data.entries = NULL;
-  }
-
-  if (res->query.entries) {
-    for (int i = 0; i < res->query.count; i++) {
-      if (res->query.entries[i].key)
-        free(res->query.entries[i].key);
-
-      if (res->query.entries[i].value)
-        free(res->query.entries[i].value);
-    }
-
-    free(res->query.entries);
-    res->query.entries = NULL;
-  }
-
-  if (req->body) {
-    free(req->body);
-    req->body = NULL;
-  }
-
-  if (req) {
-    free(req);
-    req = NULL;
-  }
-
-  if (res) {
-    free(res);
-    res = NULL;
-  }
-
-  if (ctx) {
+  if (ctx->buffer)
     free(ctx->buffer);
-    free(ctx);
-    ctx = NULL;
+
+  if (ctx->req_timer) {
+    uv_timer_stop(ctx->req_timer);
+    uv_close((uv_handle_t *)ctx->req_timer, handle_timer_close);
+    ctx->req_timer = NULL;
   }
+
+  free(ctx);
 }
 
 void handle_connection_close(uv_handle_t *client) {
@@ -275,7 +309,7 @@ void append_query(ResponseContext *res, const char *key, const char *value) {
       res->query.entries = NULL;
       res->query.capacity = 10;
       res->query.count = 0;
-      perror("Failed to realloc query entries");
+      log_error("Failed to realloc query entries");
       return;
     }
   }
@@ -289,7 +323,7 @@ void parse_query_params(ResponseContext *res) {
   char *target_copy = strdup(res->req->path);
 
   if (!target_copy) {
-    perror("Faiied to malloc target copy");
+    log_error("Faiied to malloc target copy");
     return;
   }
 
@@ -303,7 +337,7 @@ void parse_query_params(ResponseContext *res) {
   query++;
 
   if (!res->query.entries) {
-    perror("Failed to malloc query entries");
+    log_error("Failed to malloc query entries");
     free(target_copy);
     return;
   }
@@ -342,15 +376,9 @@ int compare_paths(char *target, char *request_path, Request *req) {
   if (strcmp(target, request_path) == 0)
     return 1;
 
-  char *target_copy = strdup(target);
-
-  if (!target_copy)
-    return 0;
-
   char *request_copy = strdup(request_path);
 
   if (!request_copy) {
-    free(target_copy);
     return 0;
   }
 
@@ -358,17 +386,16 @@ int compare_paths(char *target, char *request_path, Request *req) {
   if (query)
     *query = '\0';
 
-  size_t target_len = strlen(target_copy);
+  size_t target_len = strlen(target);
   size_t request_len = strlen(request_copy);
 
-  if (target_len > 0 && target_copy[target_len - 1] == '/')
-    target_copy[target_len - 1] = '\0';
+  if (target_len > 0 && target[target_len - 1] == '/')
+    target[target_len - 1] = '\0';
 
   if (request_len > 0 && request_copy[request_len - 1] == '/')
     request_copy[request_len - 1] = '\0';
 
-  if (strcmp(request_copy, target_copy) == 0) {
-    free(target_copy);
+  if (strcmp(request_copy, target) == 0) {
     free(request_copy);
     return 1;
   }
@@ -378,14 +405,13 @@ int compare_paths(char *target, char *request_path, Request *req) {
   KeyValue *params = malloc(sizeof(KeyValue) * capacity);
 
   if (!params) {
-    perror("Failed to malloc params");
-    free(target_copy);
+    log_error("Failed to malloc params");
     free(request_copy);
     return 0;
   }
 
   char *target_segment, *request_segment;
-  char *target_ptr = target_copy;
+  char *target_ptr = target;
   char *request_ptr = request_copy;
 
   while ((target_segment = strsep(&target_ptr, "/")) &&
@@ -393,7 +419,6 @@ int compare_paths(char *target, char *request_path, Request *req) {
     if (*target_segment != ':' &&
         strcmp(target_segment, request_segment) != 0) {
       free(params);
-      free(target_copy);
       free(request_copy);
       return 0;
     } else if (*target_segment == ':') {
@@ -403,7 +428,6 @@ int compare_paths(char *target, char *request_path, Request *req) {
 
         if (!new_params) {
           free(params);
-          free(target_copy);
           free(request_copy);
           return 0;
         }
@@ -435,9 +459,7 @@ int compare_paths(char *target, char *request_path, Request *req) {
     free(params);
   }
 
-  free(target_copy);
   free(request_copy);
-
   return match;
 }
 
@@ -471,17 +493,27 @@ void generate_allow_header(App *app, const char *path, char *allow_header,
   strncat(allow_header, "OPTIONS", size - strlen(allow_header) - 1);
 }
 
-int parse_http_request(char *buffer, Request *req, uv_tcp_t *client) {
+int parse_http_request(char *buffer, Request *req, uv_tcp_t *client,
+                       ClientContext *ctx) {
   req->header_count = 0;
   req->params_count = 0;
   req->params = NULL;
 
   if (sscanf(buffer, "%7s %255s %15s", req->method, req->path, req->version) !=
       3) {
-    perror("Scan path and method");
+    log_error("Scan path and method");
     send_message(client, bad_request_response);
     return 1;
   }
+
+  int keep_alive = 0;
+
+  if (strcmp(req->version, "HTTP/1.1") == 0) {
+    keep_alive = 1;
+  }
+
+  static int content_length_seen = 0;
+  static size_t first_content_length = 0;
 
   char *header_end = strstr(buffer, "\r\n\r\n");
 
@@ -489,7 +521,7 @@ int parse_http_request(char *buffer, Request *req, uv_tcp_t *client) {
     *header_end = '\0';
     char *body = header_end + 4;
     char *content_type = NULL;
-    int content_length = -1;
+    size_t content_length = 0;
 
     char *line = strtok(buffer, "\r\n");
 
@@ -508,25 +540,52 @@ int parse_http_request(char *buffer, Request *req, uv_tcp_t *client) {
         strncpy(req->headers[req->header_count].value, value, VALUE_SIZE - 1);
         req->header_count++;
 
+        if (strcasecmp(key, "Connection") == 0) {
+          if (strcasecmp(value, "close") == 0) {
+            keep_alive = 0;
+          } else if (strcasecmp(value, "keep-alive") == 0) {
+            keep_alive = 1;
+          }
+        }
+
         if (strcasecmp(key, "Content-Type") == 0) {
           content_type = value;
         }
 
         if (strcasecmp(key, "Content-Length") == 0) {
-          int cl = 0;
-          if (sscanf(value, "%d", &cl) != 1 || cl < 0) {
+          size_t cl = 0;
+          if (sscanf(value, "%zu", &cl) != 1) {
             send_message(client, bad_request_response);
+            log_error("Failed to scan Content-Length");
             return 1;
           }
-          if (content_length != -1 && content_length != cl) {
+
+          if (content_length_seen && first_content_length != cl) {
             send_message(client, bad_request_response);
+            log_error("Multiple conflicting Content-Length headers");
             return 1;
           }
+
+          if (cl > MAX_BODY_SIZE) {
+            send_message(client, payload_too_large_response);
+            log_error("content-length exceeds max body size");
+            return 1;
+          }
+
+          content_length_seen = 1;
+          first_content_length = cl;
           content_length = cl;
         }
       }
 
       line = strtok(NULL, "\r\n");
+    }
+
+    ctx->keep_alive = keep_alive;
+
+    if (content_length > MAX_BODY_SIZE) {
+      send_message(client, payload_too_large_response);
+      return 1;
     }
 
     Body *req_body = calloc(1, sizeof(Body));
@@ -558,7 +617,11 @@ App *create_app(int port) {
   App *app = malloc(sizeof(App));
   lib_global_app = app;
 
+#ifdef _WIN32
+  SetConsoleCtrlHandler(console_handler, TRUE);
+#else
   signal(SIGINT, lib_handle_sigint);
+#endif
 
   if (app == NULL) {
     printf("Failed to malloc an app");
@@ -570,7 +633,7 @@ App *create_app(int port) {
   app->clients = calloc(app->client_capacity, sizeof(uv_tcp_t *));
 
   if (!app->clients) {
-    perror("Failed to malloc clients");
+    log_error("Failed to malloc clients");
     return NULL;
   }
 
@@ -623,13 +686,22 @@ App *create_app(int port) {
   return app;
 }
 
-int handle_endpoint(App *app, ResponseContext *res, Request *req) {
+int handle_endpoint(ClientContext *ctx) {
+  Request *req = ctx->req;
+  ResponseContext *res = ctx->res;
+  App *app = ctx->app;
+
   Endpoint curr;
   int exists = 0;
 
+  // TODO: When i rewrite compare_paths, it can be removed
+  char *request_path = strdup(req->path);
+
   for (int i = 0; i < app->endpoint_count; i++) {
     curr = app->endpoints[i];
-    int do_paths_match = compare_paths(curr.path, req->path, req);
+
+    // TODO: This sucks, but its working so im gonna keep this for now
+    int do_paths_match = compare_paths(curr.path, request_path, req);
 
     if (do_paths_match) {
       exists = 1;
@@ -684,10 +756,28 @@ int handle_endpoint(App *app, ResponseContext *res, Request *req) {
                  allow_header);
         send_message(res->ctx->client, response);
         break;
+      } else {
+        char allow_header[256] = {0};
+        generate_allow_header(app, req->path, allow_header,
+                              sizeof(allow_header));
+
+        char response[512];
+        snprintf(response, sizeof(response),
+                 "HTTP/1.1 405 Method Not Allowed\r\n"
+                 "Allow: %s\r\n"
+                 "Content-Type: text/plain\r\n"
+                 "Content-Length: 19\r\n"
+                 "Connection: close\r\n\r\n"
+                 "Method Not Allowed\n",
+                 allow_header);
+        send_message(res->ctx->client, response);
+        free(request_path);
+        return 1;
       }
     }
   }
 
+  free(request_path);
   return exists;
 }
 
@@ -702,16 +792,30 @@ void handle_buffer(ClientContext *ctx) {
     char *headers_end = strstr(ctx->buffer, "\r\n\r\n");
 
     if (headers_end) {
+      size_t headers_size = headers_end - ctx->buffer + 4;
+
+      if (headers_size > MAX_HEADER_SIZE) {
+        send_message(ctx->client, headers_too_large_response);
+        close_connection(ctx->client);
+        return;
+      }
+
       ctx->headers_parsed = 1;
       char *content_length_string = strcasestr(ctx->buffer, "Content-Length: ");
 
       if (content_length_string) {
-        if (!sscanf(content_length_string, "Content-Length: %d",
+        if (!sscanf(content_length_string, "Content-Length: %zu",
                     &ctx->content_length)) {
           ctx->content_length = 0;
         }
       } else {
         ctx->content_length = 0;
+      }
+    } else {
+      if (ctx->buffer_len > MAX_HEADER_SIZE) {
+        send_message(ctx->client, headers_too_large_response);
+        close_connection(ctx->client);
+        return;
       }
     }
   }
@@ -724,12 +828,12 @@ void handle_buffer(ClientContext *ctx) {
     Request *req = malloc(sizeof(Request));
 
     if (!req) {
-      perror("Failed to malloc Request");
+      log_error("Failed to malloc Request");
       close_connection(ctx->client);
       return;
     }
     ctx->buffer[ctx->buffer_len] = '\0';
-    parse_http_request(ctx->buffer, req, ctx->client);
+    parse_http_request(ctx->buffer, req, ctx->client, ctx);
 
     if (strcmp(req->version, "HTTP/1.0") != 0 &&
         strcmp(req->version, "HTTP/1.1") != 0) {
@@ -770,7 +874,7 @@ void handle_buffer(ClientContext *ctx) {
     ResponseContext *res = malloc(sizeof(ResponseContext));
 
     if (!res) {
-      perror("Failed to malloc response context");
+      log_error("Failed to malloc response context");
       close_connection(ctx->client);
       return;
     }
@@ -785,7 +889,7 @@ void handle_buffer(ClientContext *ctx) {
     res->data.entries = malloc(sizeof(ResponseDataEntry) * res->data.capacity);
 
     if (!res->data.entries) {
-      perror("Failed to malloc res->data.entries");
+      log_error("Failed to malloc res->data.entries");
       close_connection(ctx->client);
       return;
     }
@@ -795,7 +899,7 @@ void handle_buffer(ClientContext *ctx) {
     res->query.entries = malloc(sizeof(DynamicKeyValue) * res->query.capacity);
 
     if (!res->query.entries) {
-      perror("Failed to malloc res->data.entries");
+      log_error("Failed to malloc res->data.entries");
       close_connection(ctx->client);
       return;
     }
@@ -803,17 +907,39 @@ void handle_buffer(ClientContext *ctx) {
     ctx->res = res;
     ctx->req = req;
 
-    int exists = handle_endpoint(ctx->app, res, req);
+    int exists = handle_endpoint(ctx);
 
     if (!exists)
       send_message(ctx->client, not_found_response);
 
-    close_connection(ctx->client);
+    if (ctx->keep_alive) {
+      uv_read_stop((uv_stream_t *)ctx->client);
+      request_cleanup(ctx);
+      uv_timer_again(ctx->req_timer);
+      uv_read_start((uv_stream_t *)ctx->client, allocate_buffer,
+                    handle_client_read);
+    } else {
+      close_connection(ctx->client);
+    }
   }
 }
 
 void handle_client_read(uv_stream_t *stream, ssize_t nread,
                         const uv_buf_t *buf) {
+
+  ClientContext *ctx = stream->data;
+
+  if (!ctx) {
+    free(buf->base);
+    return;
+  }
+
+  if (ctx->buffer_len + nread > MAX_REQUEST_SIZE) {
+    send_message(ctx->client, payload_too_large_response);
+    close_connection(ctx->client);
+    return;
+  }
+
   if (nread < 0) {
     ClientContext *ctx = stream->data;
 
@@ -826,8 +952,6 @@ void handle_client_read(uv_stream_t *stream, ssize_t nread,
     free(buf->base);
     return;
   }
-
-  ClientContext *ctx = stream->data;
 
   if (nread > 0) {
     if (ctx->buffer_len + nread > ctx->buffer_capacity) {
@@ -842,9 +966,16 @@ void handle_client_read(uv_stream_t *stream, ssize_t nread,
   handle_buffer(ctx);
 }
 
+void handle_client_timeout(uv_timer_t *timer) {
+  ClientContext *ctx = timer->data;
+
+  send_message(ctx->client, request_timeput_response);
+  close_connection(ctx->client);
+}
+
 void handle_connection(uv_stream_t *server, int status) {
   if (status < 0) {
-    perror("Connection error");
+    log_error("Connection error");
     return;
   }
 
@@ -863,9 +994,17 @@ void handle_connection(uv_stream_t *server, int status) {
     ctx->buffer_len = 0;
     ctx->headers_parsed = 0;
     ctx->content_length = 0;
+    ctx->keep_alive = 0;
+    ctx->request_count = 0;
     ctx->app = app;
 
     client->data = ctx;
+
+    ctx->req_timer = malloc(sizeof(uv_timer_t));
+    uv_timer_init(server->loop, ctx->req_timer);
+    ctx->req_timer->data = ctx;
+    uv_timer_start(ctx->req_timer, handle_client_timeout, REQUEST_TIMEOUT_TIME,
+                   0);
 
     uv_read_start((uv_stream_t *)client, allocate_buffer, handle_client_read);
   } else {
@@ -874,7 +1013,7 @@ void handle_connection(uv_stream_t *server, int status) {
 }
 
 void app_listen(App *app) {
-  uv_listen((uv_stream_t *)&app->server, 128, handle_connection);
+  uv_listen((uv_stream_t *)&app->server, 1024, handle_connection);
 
   if (loop != NULL) {
     printf("Server listening on port %d\n", app->port);
@@ -892,7 +1031,7 @@ AppGroup *_app_create_group(App *app, const char *root_path,
         realloc(app->groups, new_capacity * sizeof(AppGroup));
 
     if (!new_groups) {
-      perror("Failed to realloc groups");
+      log_error("Failed to realloc groups");
       return NULL;
     }
 
@@ -916,7 +1055,7 @@ AppGroup *_app_create_group(App *app, const char *root_path,
     group->middlewares = malloc(sizeof(Middleware) * middleware_count);
 
     if (!group->middlewares) {
-      perror("Failed to malloc middlewares");
+      log_error("Failed to malloc middlewares");
       return NULL;
     }
 
@@ -944,7 +1083,7 @@ void _app_append_endpoint_to_group(App *app, AppGroup *group, Method method,
 
   char *full_path = malloc(buffer_size);
   if (!full_path) {
-    perror("Failed to mallon an full path");
+    log_error("Failed to mallon an full path");
     return;
   }
 
@@ -974,7 +1113,7 @@ void _app_append_endpoint_to_group(App *app, AppGroup *group, Method method,
 
     if (!combined) {
       free(full_path);
-      perror("Failed to malloc combined middlewares");
+      log_error("Failed to malloc combined middlewares");
       return;
     }
 
@@ -1006,7 +1145,7 @@ Endpoint *_app_append_endpoint(App *app, Method method, const char *path,
         realloc(app->endpoints, new_capacity * sizeof(Endpoint));
 
     if (!new_endpoints) {
-      perror("Failed to realloc endpoints");
+      log_error("Failed to realloc endpoints");
       return NULL;
     }
     app->endpoints = new_endpoints;
@@ -1030,7 +1169,7 @@ Endpoint *_app_append_endpoint(App *app, Method method, const char *path,
   if (middleware_count > 0) {
     ep->middlewares = malloc(sizeof(Middleware) * middleware_count);
     if (!ep->middlewares) {
-      perror("Failed to malloc middlewares");
+      log_error("Failed to malloc middlewares");
       return NULL;
     }
 
@@ -1054,7 +1193,7 @@ void app_use(App *app, Middleware mw) {
         realloc(app->middlewares, new_capacity * sizeof(Middleware));
 
     if (!new_middlewares) {
-      perror("Failed to realloc middlewares");
+      log_error("Failed to realloc middlewares");
       return;
     }
     app->middlewares = new_middlewares;
@@ -1129,7 +1268,8 @@ void build_response_headers(ResponseContext *res, const char *data, char *dest,
     len += header_len;
   }
 
-  snprintf(dest + len, size - len, "Connection: close\r\n\r\n");
+  snprintf(dest + len, size - len, "Connection: %s\r\n\r\n",
+           res->ctx->keep_alive ? "keep-alive" : "close");
 }
 
 void send_json_response(ResponseContext *res, cJSON *json) {
@@ -1184,6 +1324,15 @@ char *get_header(ResponseContext *res, const char *key) {
       return res->req->headers[i].value;
   }
   return NULL;
+}
+
+int get_header_int(ResponseContext *res, const char *key) {
+  char *header_value = get_header(res, key);
+
+  if (!header_value)
+    return 0;
+
+  return atoi(header_value);
 }
 
 int header_allows_multiple(const char *key) {
@@ -1259,7 +1408,7 @@ void set_data_string(ResponseContext *res, const char *key, const char *value) {
   char *ptr = strdup(value);
 
   if (!ptr) {
-    perror("Failed to malloc data string");
+    log_error("Failed to malloc data string");
     return;
   }
 
@@ -1269,7 +1418,7 @@ void set_data_int(ResponseContext *res, const char *key, int value) {
   int *ptr = malloc(sizeof(int));
 
   if (!ptr) {
-    perror("Failed to malloc data int");
+    log_error("Failed to malloc data int");
     return;
   }
 
@@ -1279,10 +1428,16 @@ void set_data_int(ResponseContext *res, const char *key, int value) {
 
 void set_data_double(ResponseContext *res, const char *key, double value) {
   double *ptr = malloc(sizeof(double));
+
+  if (!ptr) {
+    log_error("Failed to malloc set data double pointer");
+    return;
+  }
+
   *ptr = value;
 
   if (!ptr) {
-    perror("Failed to malloc data double");
+    log_error("Failed to malloc data double");
     return;
   }
 
@@ -1332,4 +1487,27 @@ double get_query_double(ResponseContext *res, const char *key) {
 
 char *get_query_string(ResponseContext *res, const char *key) {
   return (char *)get_query(res, key);
+}
+
+void get_client_ip(ResponseContext *res, char *buffer, size_t size) {
+  struct sockaddr_storage peername;
+  int namelen = sizeof(peername);
+
+  if (uv_tcp_getpeername(res->ctx->client, (struct sockaddr *)&peername,
+                         &namelen) != 0) {
+    strncpy(buffer, "unknown", size - 1);
+    buffer[size - 1] = '\0';
+    return;
+  }
+
+  if (peername.ss_family == AF_INET) {
+    struct sockaddr_in *addr = (struct sockaddr_in *)&peername;
+    uv_ip4_name(addr, buffer, size);
+  } else if (peername.ss_family == AF_INET6) {
+    struct sockaddr_in6 *addr = (struct sockaddr_in6 *)&peername;
+    uv_ip6_name(addr, buffer, size);
+  } else {
+    strncpy(buffer, "unknown", size - 1);
+    buffer[size - 1] = '\0';
+  }
 }

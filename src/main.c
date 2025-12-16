@@ -12,9 +12,15 @@ void echo_handler(ResponseContext *res) {
   send_text_response(res, msg);
 }
 
+MiddlewareResult logger(ResponseContext *res) {
+  printf("[%s] %s\n", res->req->method, res->req->path);
+  return MIDDLEWARE_CONTINUE;
+}
+
 int main() {
   App *app = create_app(8080);
 
+  app_use(app, logger);
   app_use(app, cors_allow_all);
 
   AppGroup *group = app_group(app, "/api");

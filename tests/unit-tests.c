@@ -335,11 +335,17 @@ START_TEST(test_parse_http_request_simple_get) {
                   "\r\n";
 
   uv_tcp_t client;
+
+  ClientContext ctx;
+  memset(&ctx, 0, sizeof(ClientContext));
+
+  ctx.client = &client;
+
   Request test_req;
   memset(&test_req, 0, sizeof(Request));
   test_req.body = calloc(1, sizeof(Body));
 
-  int result = parse_http_request(buffer, &test_req, &client);
+  int result = parse_http_request(buffer, &test_req, &client, &ctx);
 
   ck_assert_int_eq(result, 0);
   ck_assert_str_eq(test_req.method, "GET");
@@ -360,11 +366,17 @@ START_TEST(test_parse_http_request_with_body) {
                   "{\"name\":\"john\",\"age\":30}";
 
   uv_tcp_t client;
+
+  ClientContext ctx;
+  memset(&ctx, 0, sizeof(ClientContext));
+
+  ctx.client = &client;
+
   Request test_req;
   memset(&test_req, 0, sizeof(Request));
   test_req.body = calloc(1, sizeof(Body));
 
-  int result = parse_http_request(buffer, &test_req, &client);
+  int result = parse_http_request(buffer, &test_req, &client, &ctx);
 
   ck_assert_int_eq(result, 0);
   ck_assert_str_eq(test_req.method, "POST");
@@ -418,9 +430,9 @@ START_TEST(test_app_multiple_endpoints) {
 }
 END_TEST
 
-int test_middleware(ResponseContext *res) {
+MiddlewareResult test_middleware(ResponseContext *res) {
   set_data_int(res, "middleware_called", 1);
-  return 0; // Continue
+  return MIDDLEWARE_CONTINUE;
 }
 
 int blocking_middleware(ResponseContext *res) {

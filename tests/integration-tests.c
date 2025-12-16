@@ -255,16 +255,16 @@ void header_test_handler(ResponseContext *res) {
   send_text_response(res, "Headers set");
 }
 
-int auth_middleware(ResponseContext *res) {
+MiddlewareResult auth_middleware(ResponseContext *res) {
   char *auth = get_header(res, "Authorization");
 
   if (!auth || strncmp(auth, "Bearer ", 7) != 0) {
     send_error(res, 401, "Missing or invalid authorization");
-    return 1;
+    return MIDDLEWARE_STOP;
   }
 
   set_data_string(res, "user", "authenticated_user");
-  return 0;
+  return MIDDLEWARE_CONTINUE;
 }
 
 void protected_handler(ResponseContext *res) {
