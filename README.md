@@ -7,7 +7,8 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![C Standard](https://img.shields.io/badge/C-C99-blue.svg)](https://en.wikipedia.org/wiki/C99)
 [![Platform](https://img.shields.io/badge/platform-Linux%20%7C%20macOS%20%7C%20Windows-lightgrey.svg)](https://github.com/yourusername/espresso)
-[![Build Status](https://github.com/BlacKlyExactly/espresso/workflows/Tests/badge.svg)](https://github.com/BlacKlyExactly/espresso/actions)
+[![Build Status](https://github.com/BlacKlyExactly/espresso/workflows/Linux%20Build%20&%20Test/badge.svg](https://github.com/BlacKlyExactly/espresso/actions)
+[![Build Status](https://github.com/BlacKlyExactly/espresso/workflows/Windows%20Build%20&%20Test/badge.svg](https://github.com/BlacKlyExactly/espresso/actions)
 
 ```c
 #include "espresso.h"
