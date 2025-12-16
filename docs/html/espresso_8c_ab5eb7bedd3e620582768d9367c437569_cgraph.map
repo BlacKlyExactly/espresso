@@ -1,5 +1,7 @@
 <map id="set_data_double" name="set_data_double">
-<area shape="rect" id="Node000001" title="Convenience function to store a double in the response context." alt="" coords="5,5,122,31"/>
-<area shape="rect" id="Node000002" href="$espresso_8c.html#accb7e84d4d05bf7501d52de24e8b9c9b" title="Set arbitrary data in the response context." alt="" coords="170,5,241,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="122,16,157,18,151,18,122,21"/>
+<area shape="rect" id="Node000001" title="Convenience function to store a double in the response context." alt="" coords="5,31,122,56"/>
+<area shape="rect" id="Node000002" href="$espresso_8c.html#abdcfd909d1360f16c6fedab5aac76f2a" title=" " alt="" coords="170,5,241,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="122,30,157,26,151,28,123,36"/>
+<area shape="rect" id="Node000003" href="$espresso_8c.html#accb7e84d4d05bf7501d52de24e8b9c9b" title="Set arbitrary data in the response context." alt="" coords="170,55,241,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="122,51,157,59,151,59,122,56"/>
 </map>

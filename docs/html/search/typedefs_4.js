@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['middleware_0',['Middleware',['../espresso_8h.html#a98b4c31a73a9c82a434f3ce156648341',1,'espresso.h']]]
+  ['middleware_0',['Middleware',['../espresso_8h.html#a312035d87b06bcd605f4eaf9baa7d642',1,'espresso.h']]]
 ];

@@ -8,6 +8,7 @@ var annotated_dup =
     [ "ClientContext", "structClientContext.html", "structClientContext" ],
     [ "DynamicKeyValue", "structDynamicKeyValue.html", "structDynamicKeyValue" ],
     [ "Endpoint", "structEndpoint.html", "structEndpoint" ],
+    [ "EndpointWork", "structEndpointWork.html", "structEndpointWork" ],
     [ "error", "structerror.html", "structerror" ],
     [ "internal_hooks", "structinternal__hooks.html", "structinternal__hooks" ],
     [ "KeyValue", "structKeyValue.html", "structKeyValue" ],

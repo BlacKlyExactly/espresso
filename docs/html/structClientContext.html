@@ -111,14 +111,17 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:aa4a1cb6e6d1f89b58df65062fc0cc46d" id="r_aa4a1cb6e6d1f89b58df65062fc0cc46d"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa4a1cb6e6d1f89b58df65062fc0cc46d">buffer_len</a></td></tr>
 <tr class="memitem:afe0aec1e40a49226667cdd4c3474a2a9" id="r_afe0aec1e40a49226667cdd4c3474a2a9"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afe0aec1e40a49226667cdd4c3474a2a9">buffer_capacity</a></td></tr>
 <tr class="memitem:a0c7e108cd04e062ea838836563c2b2d9" id="r_a0c7e108cd04e062ea838836563c2b2d9"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0c7e108cd04e062ea838836563c2b2d9">headers_parsed</a></td></tr>
-<tr class="memitem:aa49069899adec2fd470235b4b9cb2ee9" id="r_aa49069899adec2fd470235b4b9cb2ee9"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa49069899adec2fd470235b4b9cb2ee9">content_length</a></td></tr>
+<tr class="memitem:a6e8e50196d15eed222c37c2774037009" id="r_a6e8e50196d15eed222c37c2774037009"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6e8e50196d15eed222c37c2774037009">content_length</a></td></tr>
 <tr class="memitem:a7f62a730d6ec1f3304a465b35eb61177" id="r_a7f62a730d6ec1f3304a465b35eb61177"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structRequest.html">Request</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7f62a730d6ec1f3304a465b35eb61177">req</a></td></tr>
 <tr class="memitem:a8f853997fdd4c13c03ec7e70979a8739" id="r_a8f853997fdd4c13c03ec7e70979a8739"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structResponseContext.html">ResponseContext</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8f853997fdd4c13c03ec7e70979a8739">res</a></td></tr>
+<tr class="memitem:a3e478af7828a9b6ddd00313c1d536b7f" id="r_a3e478af7828a9b6ddd00313c1d536b7f"><td class="memItemLeft" align="right" valign="top">uv_timer_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3e478af7828a9b6ddd00313c1d536b7f">req_timer</a></td></tr>
+<tr class="memitem:a677a5b054618fb32a69763945859ad3c" id="r_a677a5b054618fb32a69763945859ad3c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a677a5b054618fb32a69763945859ad3c">keep_alive</a></td></tr>
+<tr class="memitem:a2ef03774e76466fad36034c4d190c6c0" id="r_a2ef03774e76466fad36034c4d190c6c0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2ef03774e76466fad36034c4d190c6c0">request_count</a></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Context for a connected client. </p>
 
-<p class="definition">Definition at line <a class="el" href="espresso_8h_source.html#l00163">163</a> of file <a class="el" href="espresso_8h_source.html">espresso.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="espresso_8h_source.html#l00166">166</a> of file <a class="el" href="espresso_8h_source.html">espresso.h</a>.</p>
 </div><a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
 <a id="aa535c0517af80bda35b2d65c90909546" name="aa535c0517af80bda35b2d65c90909546"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa535c0517af80bda35b2d65c90909546">&#9670;&#160;</a></span>app</h2>
@@ -132,7 +135,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="espresso_8h_source.html#l00164">164</a> of file <a class="el" href="espresso_8h_source.html">espresso.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="espresso_8h_source.html#l00167">167</a> of file <a class="el" href="espresso_8h_source.html">espresso.h</a>.</p>
 
 </div>
 </div>
@@ -148,7 +151,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="espresso_8h_source.html#l00166">166</a> of file <a class="el" href="espresso_8h_source.html">espresso.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="espresso_8h_source.html#l00169">169</a> of file <a class="el" href="espresso_8h_source.html">espresso.h</a>.</p>
 
 </div>
 </div>
@@ -164,7 +167,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="espresso_8h_source.html#l00168">168</a> of file <a class="el" href="espresso_8h_source.html">espresso.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="espresso_8h_source.html#l00171">171</a> of file <a class="el" href="espresso_8h_source.html">espresso.h</a>.</p>
 
 </div>
 </div>
@@ -180,7 +183,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="espresso_8h_source.html#l00167">167</a> of file <a class="el" href="espresso_8h_source.html">espresso.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="espresso_8h_source.html#l00170">170</a> of file <a class="el" href="espresso_8h_source.html">espresso.h</a>.</p>
 
 </div>
 </div>
@@ -196,23 +199,23 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="espresso_8h_source.html#l00165">165</a> of file <a class="el" href="espresso_8h_source.html">espresso.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="espresso_8h_source.html#l00168">168</a> of file <a class="el" href="espresso_8h_source.html">espresso.h</a>.</p>
 
 </div>
 </div>
-<a id="aa49069899adec2fd470235b4b9cb2ee9" name="aa49069899adec2fd470235b4b9cb2ee9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa49069899adec2fd470235b4b9cb2ee9">&#9670;&#160;</a></span>content_length</h2>
+<a id="a6e8e50196d15eed222c37c2774037009" name="a6e8e50196d15eed222c37c2774037009"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6e8e50196d15eed222c37c2774037009">&#9670;&#160;</a></span>content_length</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int ClientContext::content_length</td>
+          <td class="memname">size_t ClientContext::content_length</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="espresso_8h_source.html#l00170">170</a> of file <a class="el" href="espresso_8h_source.html">espresso.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="espresso_8h_source.html#l00173">173</a> of file <a class="el" href="espresso_8h_source.html">espresso.h</a>.</p>
 
 </div>
 </div>
@@ -228,7 +231,23 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="espresso_8h_source.html#l00169">169</a> of file <a class="el" href="espresso_8h_source.html">espresso.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="espresso_8h_source.html#l00172">172</a> of file <a class="el" href="espresso_8h_source.html">espresso.h</a>.</p>
+
+</div>
+</div>
+<a id="a677a5b054618fb32a69763945859ad3c" name="a677a5b054618fb32a69763945859ad3c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a677a5b054618fb32a69763945859ad3c">&#9670;&#160;</a></span>keep_alive</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ClientContext::keep_alive</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="espresso_8h_source.html#l00177">177</a> of file <a class="el" href="espresso_8h_source.html">espresso.h</a>.</p>
 
 </div>
 </div>
@@ -244,7 +263,39 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="espresso_8h_source.html#l00171">171</a> of file <a class="el" href="espresso_8h_source.html">espresso.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="espresso_8h_source.html#l00174">174</a> of file <a class="el" href="espresso_8h_source.html">espresso.h</a>.</p>
+
+</div>
+</div>
+<a id="a3e478af7828a9b6ddd00313c1d536b7f" name="a3e478af7828a9b6ddd00313c1d536b7f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3e478af7828a9b6ddd00313c1d536b7f">&#9670;&#160;</a></span>req_timer</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uv_timer_t* ClientContext::req_timer</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="espresso_8h_source.html#l00176">176</a> of file <a class="el" href="espresso_8h_source.html">espresso.h</a>.</p>
+
+</div>
+</div>
+<a id="a2ef03774e76466fad36034c4d190c6c0" name="a2ef03774e76466fad36034c4d190c6c0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2ef03774e76466fad36034c4d190c6c0">&#9670;&#160;</a></span>request_count</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ClientContext::request_count</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="espresso_8h_source.html#l00178">178</a> of file <a class="el" href="espresso_8h_source.html">espresso.h</a>.</p>
 
 </div>
 </div>
@@ -260,7 +311,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="espresso_8h_source.html#l00172">172</a> of file <a class="el" href="espresso_8h_source.html">espresso.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="espresso_8h_source.html#l00175">175</a> of file <a class="el" href="espresso_8h_source.html">espresso.h</a>.</p>
 
 </div>
 </div>

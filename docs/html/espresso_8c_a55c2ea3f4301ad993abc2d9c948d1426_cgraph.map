@@ -1,5 +1,8 @@
 <map id="_app_append_endpoint_to_group" name="_app_append_endpoint_to_group">
-<area shape="rect" id="Node000001" title="Appends a route to a group." alt="" coords="5,5,160,46"/>
-<area shape="rect" id="Node000002" href="$espresso_8c.html#a60f89d5029f2a26d41bb861d538d2bf6" title="Appends a route to the app." alt="" coords="208,13,362,38"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="160,23,195,25,190,26,160,28"/>
+<area shape="rect" id="Node000001" title="Appends a route to a group." alt="" coords="5,23,160,64"/>
+<area shape="rect" id="Node000002" href="$espresso_8c.html#a60f89d5029f2a26d41bb861d538d2bf6" title="Appends a route to the app." alt="" coords="208,5,362,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="159,31,195,29,190,30,160,36"/>
+<area shape="rect" id="Node000003" href="$espresso_8c.html#abdcfd909d1360f16c6fedab5aac76f2a" title=" " alt="" coords="410,31,481,56"/>
+<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="160,41,395,41,394,46,160,46"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="363,28,397,36,392,35,362,33"/>
 </map>

@@ -1,15 +1,16 @@
 <map id="compare_paths" name="compare_paths">
 <area shape="rect" id="Node000001" title="ONLY FOR UNIT TESTS." alt="" coords="895,5,1006,31"/>
-<area shape="rect" id="Node000002" href="$espresso_8c.html#a373b955efab67a13fdc71105c53aa5d5" title="ONLY FOR UNIT TESTS." alt="" coords="732,5,847,31"/>
+<area shape="rect" id="Node000002" href="$espresso_8c.html#a041948e0d9b16b9c852053d3fb3f2a69" title="ONLY FOR UNIT TESTS." alt="" coords="732,5,847,31"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="877,18,848,21,848,16,882,18"/>
 <area shape="rect" id="Node000003" href="$espresso_8c.html#a2a7b96459e0adac1061eaec6a5722075" title=" " alt="" coords="586,5,684,31"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="714,18,684,21,684,16,719,18"/>
 <area shape="rect" id="Node000004" href="$espresso_8c.html#a919e9a8a992f43f0fd82e87f4d40d2d2" title=" " alt="" coords="408,5,538,31"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="568,18,538,21,538,16,573,18"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="568,27,538,30,538,24,573,27"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="553,7,588,10,583,10,554,12"/>
 <area shape="rect" id="Node000005" href="$espresso_8c.html#a90f2058b8890cfb99e6f595b8f066919" title=" " alt="" coords="231,5,360,31"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="390,18,361,21,361,16,396,18"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="390,18,361,21,361,16,396,18"/>
 <area shape="rect" id="Node000006" href="$espresso_8c.html#a0ba22157d15a70c4c22441b040bb0f74" title="Starts the HTTP server loop." alt="" coords="103,5,183,31"/>
-<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="213,18,184,21,183,16,218,18"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="213,18,184,21,183,16,218,18"/>
 <area shape="rect" id="Node000007" href="$main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,5,55,31"/>
-<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="85,19,55,21,55,16,90,17"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="85,19,55,21,55,16,90,17"/>
 </map>

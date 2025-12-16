@@ -1,0 +1,9 @@
+<map id="parse_http_request" name="parse_http_request">
+<area shape="rect" id="Node000001" title="ONLY FOR UNIT TESTS." alt="" coords="5,31,138,56"/>
+<area shape="rect" id="Node000002" href="$espresso_8c.html#abdcfd909d1360f16c6fedab5aac76f2a" title=" " alt="" coords="205,5,276,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="137,31,192,25,187,27,139,36"/>
+<area shape="rect" id="Node000003" href="$espresso_8c.html#a142b429010a8046d339d36552bd20f7e" title=" " alt="" coords="186,55,295,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="138,50,173,57,168,58,138,56"/>
+<area shape="rect" id="Node000004" href="$espresso_8c.html#a5fa30991ad104ba1fe0001e7aefe95ac" title=" " alt="" coords="343,55,465,80"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="295,65,330,67,325,68,295,70"/>
+</map>

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['static_5fstrlen_0',['static_strlen',['../cJSON_8c.html#a5714bac836668a1b9af55465b78531ef',1,'cJSON.c']]]
+  ['request_5ftimeout_5ftime_0',['REQUEST_TIMEOUT_TIME',['../espresso_8h.html#ad1b08971e9c842c1a956c3eb289b3d2b',1,'espresso.h']]]
 ];

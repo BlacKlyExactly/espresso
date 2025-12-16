@@ -49,9 +49,9 @@ var searchData=
   ['compare_5fdouble_46',['compare_double',['../cJSON_8c.html#aa7a85b63f1830e7e666e1f56872d5d3e',1,'cJSON.c']]],
   ['compare_5fpaths_47',['compare_paths',['../espresso_8h.html#a04c27c6493696fb67ab9b8f5296c14f1',1,'compare_paths(char *target, char *request_path, Request *req):&#160;espresso.c'],['../espresso_8c.html#a04c27c6493696fb67ab9b8f5296c14f1',1,'compare_paths(char *target, char *request_path, Request *req):&#160;espresso.c']]],
   ['content_48',['content',['../structparse__buffer.html#a52ee1184576baa3d5171059ab0e942de',1,'parse_buffer']]],
-  ['content_5flength_49',['content_length',['../structClientContext.html#aa49069899adec2fd470235b4b9cb2ee9',1,'ClientContext']]],
+  ['content_5flength_49',['content_length',['../structClientContext.html#a6e8e50196d15eed222c37c2774037009',1,'ClientContext']]],
   ['count_50',['count',['../structResponseData.html#afd5b016c190c8d807a57125c62b30fc6',1,'ResponseData::count'],['../structResponseContextQuery.html#a599fdd7aaff8c1f4aece82f9aca407c0',1,'ResponseContextQuery::count'],['../cJSON_8h.html#ad43c3812e6d13e0518d9f8b8f463ffcf',1,'count:&#160;cJSON.h']]],
   ['create_5fapp_51',['create_app',['../espresso_8h.html#a54c30f08a1b67315ac3195d1a7fac35f',1,'create_app(int port):&#160;espresso.c'],['../espresso_8c.html#a54c30f08a1b67315ac3195d1a7fac35f',1,'create_app(int port):&#160;espresso.c']]],
   ['create_5freference_52',['create_reference',['../cJSON_8c.html#a34155b75b0e70b292b338f6f41d090d6',1,'cJSON.c']]],
-  ['ctx_53',['ctx',['../structResponseContext.html#a9bf93c58a1117a6d178310ae7d390c7c',1,'ResponseContext']]]
+  ['ctx_53',['ctx',['../structResponseContext.html#a9bf93c58a1117a6d178310ae7d390c7c',1,'ResponseContext::ctx'],['../structEndpointWork.html#a1fca739706ac116779f1e4c89bff1bda',1,'EndpointWork::ctx']]]
 ];

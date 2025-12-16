@@ -1,0 +1,5 @@
+<map id="get_header" name="get_header">
+<area shape="rect" id="Node000001" title="Retrieve a header from the request." alt="" coords="160,5,245,31"/>
+<area shape="rect" id="Node000002" href="$espresso_8c.html#a0e379571818a05841731a3e564f9c8d2" title="Retrieve a header int from the request." alt="" coords="5,5,112,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="141,18,112,21,112,16,147,18"/>
+</map>
