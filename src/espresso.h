@@ -22,6 +22,7 @@
 #undef DELETE
 #endif
 
+#define WORKER_COUNT 4
 #define MAX_HEADERS 32
 #define KEY_SIZE 64
 #define VALUE_SIZE 256
@@ -112,6 +113,12 @@ typedef enum { MIDDLEWARE_CONTINUE = 0, MIDDLEWARE_STOP = 1 } MiddlewareResult;
 
 typedef void (*EndpointHandler)(ResponseContext *);
 typedef MiddlewareResult (*Middleware)(ResponseContext *res);
+
+typedef struct {
+  App *app;
+  uv_loop_t *loop;
+  uv_tcp_t server;
+} Worker;
 
 /**
  * @struct Endpoint

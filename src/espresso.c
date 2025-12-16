@@ -178,7 +178,10 @@ void send_message(uv_tcp_t *client, const char *message) {
   uv_write_t *req = malloc(sizeof(uv_write_t));
   uv_buf_t buf = uv_buf_init((char *)message, strlen(message));
 
-  uv_write(req, (uv_stream_t *)client, &buf, 1, handle_write_end);
+  int status = uv_write(req, (uv_stream_t *)client, &buf, 1, handle_write_end);
+  if (status < 0) {
+    free(req);
+  }
 }
 
 void request_cleanup(ClientContext *ctx) {
@@ -631,6 +634,7 @@ App *create_app(int port) {
 #ifdef _WIN32
   SetConsoleCtrlHandler(console_handler, TRUE);
 #else
+  signal(SIGPIPE, SIG_IGN);
   signal(SIGINT, lib_handle_sigint);
 #endif
 
@@ -831,7 +835,7 @@ void handle_buffer(ClientContext *ctx) {
 
   if (ctx->buffer_len >= total_needed) {
 
-    Request *req = malloc(sizeof(Request));
+    Request *req = calloc(1, sizeof(Request));
 
     if (!req) {
       log_error("Failed to malloc Request");
@@ -877,7 +881,7 @@ void handle_buffer(ClientContext *ctx) {
       return;
     }
 
-    ResponseContext *res = malloc(sizeof(ResponseContext));
+    ResponseContext *res = calloc(1, sizeof(ResponseContext));
 
     if (!res) {
       log_error("Failed to malloc response context");
@@ -941,16 +945,15 @@ void handle_client_read(uv_stream_t *stream, ssize_t nread,
   }
 
   if (ctx->buffer_len + nread > MAX_REQUEST_SIZE) {
+    free(buf->base);
     send_message(ctx->client, payload_too_large_response);
     close_connection(ctx->client);
-    free(buf->base);
     return;
   }
 
   if (nread < 0) {
-    uv_close((uv_handle_t *)stream, NULL);
-    free(ctx);
     free(buf->base);
+    close_connection(ctx->client);
     return;
   }
 
@@ -988,7 +991,7 @@ void handle_connection(uv_stream_t *server, int status) {
   add_client(app, client);
 
   if (uv_accept(server, (uv_stream_t *)client) == 0) {
-    ClientContext *ctx = malloc(sizeof(ClientContext));
+    ClientContext *ctx = calloc(1, sizeof(ClientContext));
     ctx->client = client;
     ctx->buffer_capacity = 2048;
     ctx->buffer = malloc(ctx->buffer_capacity);
