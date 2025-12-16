@@ -941,12 +941,6 @@ void handle_client_read(uv_stream_t *stream, ssize_t nread,
   }
 
   if (nread < 0) {
-    ClientContext *ctx = stream->data;
-
-    if (ctx) {
-      free(ctx->buffer);
-    }
-
     uv_close((uv_handle_t *)stream, NULL);
     free(ctx);
     free(buf->base);
