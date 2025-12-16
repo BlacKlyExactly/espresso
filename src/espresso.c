@@ -376,9 +376,15 @@ int compare_paths(char *target, char *request_path, Request *req) {
   if (strcmp(target, request_path) == 0)
     return 1;
 
+  char *target_copy = strdup(target);
+
+  if (!target_copy)
+    return 0;
+
   char *request_copy = strdup(request_path);
 
   if (!request_copy) {
+    free(target_copy);
     return 0;
   }
 
@@ -386,16 +392,17 @@ int compare_paths(char *target, char *request_path, Request *req) {
   if (query)
     *query = '\0';
 
-  size_t target_len = strlen(target);
+  size_t target_len = strlen(target_copy);
   size_t request_len = strlen(request_copy);
 
-  if (target_len > 0 && target[target_len - 1] == '/')
-    target[target_len - 1] = '\0';
+  if (target_len > 0 && target_copy[target_len - 1] == '/')
+    target_copy[target_len - 1] = '\0';
 
   if (request_len > 0 && request_copy[request_len - 1] == '/')
     request_copy[request_len - 1] = '\0';
 
-  if (strcmp(request_copy, target) == 0) {
+  if (strcmp(request_copy, target_copy) == 0) {
+    free(target_copy);
     free(request_copy);
     return 1;
   }
@@ -405,13 +412,14 @@ int compare_paths(char *target, char *request_path, Request *req) {
   KeyValue *params = malloc(sizeof(KeyValue) * capacity);
 
   if (!params) {
-    log_error("Failed to malloc params");
+    perror("Failed to malloc params");
+    free(target_copy);
     free(request_copy);
     return 0;
   }
 
   char *target_segment, *request_segment;
-  char *target_ptr = target;
+  char *target_ptr = target_copy;
   char *request_ptr = request_copy;
 
   while ((target_segment = strsep(&target_ptr, "/")) &&
@@ -419,6 +427,7 @@ int compare_paths(char *target, char *request_path, Request *req) {
     if (*target_segment != ':' &&
         strcmp(target_segment, request_segment) != 0) {
       free(params);
+      free(target_copy);
       free(request_copy);
       return 0;
     } else if (*target_segment == ':') {
@@ -428,6 +437,7 @@ int compare_paths(char *target, char *request_path, Request *req) {
 
         if (!new_params) {
           free(params);
+          free(target_copy);
           free(request_copy);
           return 0;
         }
@@ -459,10 +469,11 @@ int compare_paths(char *target, char *request_path, Request *req) {
     free(params);
   }
 
+  free(target_copy);
   free(request_copy);
+
   return match;
 }
-
 void generate_allow_header(App *app, const char *path, char *allow_header,
                            size_t size) {
   int first = 1;
@@ -512,8 +523,8 @@ int parse_http_request(char *buffer, Request *req, uv_tcp_t *client,
     keep_alive = 1;
   }
 
-  static int content_length_seen = 0;
-  static size_t first_content_length = 0;
+  int content_length_seen = 0;
+  size_t first_content_length = 0;
 
   char *header_end = strstr(buffer, "\r\n\r\n");
 
@@ -694,14 +705,11 @@ int handle_endpoint(ClientContext *ctx) {
   Endpoint curr;
   int exists = 0;
 
-  // TODO: When i rewrite compare_paths, it can be removed
-  char *request_path = strdup(req->path);
-
   for (int i = 0; i < app->endpoint_count; i++) {
     curr = app->endpoints[i];
 
     // TODO: This sucks, but its working so im gonna keep this for now
-    int do_paths_match = compare_paths(curr.path, request_path, req);
+    int do_paths_match = compare_paths(curr.path, req->path, req);
 
     if (do_paths_match) {
       exists = 1;
@@ -771,13 +779,11 @@ int handle_endpoint(ClientContext *ctx) {
                  "Method Not Allowed\n",
                  allow_header);
         send_message(res->ctx->client, response);
-        free(request_path);
         return 1;
       }
     }
   }
 
-  free(request_path);
   return exists;
 }
 
@@ -937,6 +943,7 @@ void handle_client_read(uv_stream_t *stream, ssize_t nread,
   if (ctx->buffer_len + nread > MAX_REQUEST_SIZE) {
     send_message(ctx->client, payload_too_large_response);
     close_connection(ctx->client);
+    free(buf->base);
     return;
   }
 
