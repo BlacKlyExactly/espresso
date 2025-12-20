@@ -28,9 +28,15 @@
 #define VALUE_SIZE 256
 #define MAX_HEADER_SIZE (8 * 1024 * 1024)
 #define MAX_BODY_SIZE (10 * 1024 * 1024)
-#define MAX_REQUEST_SIZE MAX_HEADER_SIZE + MAX_BODY_SIZE
+#define MAX_REQUEST_SIZE (MAX_HEADER_SIZE + MAX_BODY_SIZE)
 #define REQUEST_TIMEOUT_TIME 5000
 #define MAX_KEEP_ALIVE_REQUESTS 500
+
+typedef struct {
+  uv_write_t req;
+  uv_buf_t buf;
+  int close_after;
+} write_ctx_t;
 
 /**
  * @enum HttpStatus

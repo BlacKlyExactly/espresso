@@ -75,6 +75,12 @@ BOOL WINAPI console_handler(DWORD signal) {
 void handle_client_read(uv_stream_t *stream, ssize_t nread,
                         const uv_buf_t *buf);
 
+void handle_connection_close(uv_handle_t *client);
+
+void allocate_buffer(uv_handle_t *handle, size_t size, uv_buf_t *buffer);
+
+void request_cleanup(ClientContext *ctx);
+
 void log_error(const char *fmt, ...) {
   time_t t = time(NULL);
   struct tm *tm_info = localtime(&t);
@@ -174,14 +180,38 @@ void handle_write_end(uv_write_t *uv_req, int status) {
   free(uv_req);
 }
 
-void send_message(uv_tcp_t *client, const char *message) {
-  uv_write_t *req = malloc(sizeof(uv_write_t));
-  uv_buf_t buf = uv_buf_init((char *)message, strlen(message));
+void handle_send_done(uv_write_t *req, int status) {
+  write_ctx_t *wctx = req->data;
+  uv_tcp_t *client = (uv_tcp_t *)req->handle;
+  ClientContext *ctx = client->data;
 
-  int status = uv_write(req, (uv_stream_t *)client, &buf, 1, handle_write_end);
-  if (status < 0) {
-    free(req);
+  if (status < 0 || wctx->close_after) {
+    uv_close((uv_handle_t *)client, handle_connection_close);
+  } else {
+    request_cleanup(ctx);
+    uv_timer_again(ctx->req_timer);
+
+    if (!uv_is_closing((uv_handle_t *)client)) {
+      uv_read_start((uv_stream_t *)client, allocate_buffer, handle_client_read);
+    }
   }
+
+  free(wctx->buf.base);
+  free(wctx);
+}
+
+void send_message(uv_tcp_t *client, const char *message, int close_after) {
+  write_ctx_t *ctx = malloc(sizeof(*ctx));
+  size_t len = strlen(message);
+
+  ctx->buf.base = malloc(len);
+  memcpy(ctx->buf.base, message, len);
+  ctx->buf.len = len;
+  ctx->close_after = close_after;
+
+  ctx->req.data = ctx;
+
+  uv_write(&ctx->req, (uv_stream_t *)client, &ctx->buf, 1, handle_send_done);
 }
 
 void request_cleanup(ClientContext *ctx) {
@@ -516,7 +546,9 @@ int parse_http_request(char *buffer, Request *req, uv_tcp_t *client,
   if (sscanf(buffer, "%7s %255s %15s", req->method, req->path, req->version) !=
       3) {
     log_error("Scan path and method");
-    send_message(client, bad_request_response);
+    uv_read_stop((uv_stream_t *)client);
+    send_message(client, bad_request_response, 1);
+    ctx->keep_alive = 0;
     return 1;
   }
 
@@ -569,19 +601,25 @@ int parse_http_request(char *buffer, Request *req, uv_tcp_t *client,
         if (strcasecmp(key, "Content-Length") == 0) {
           size_t cl = 0;
           if (sscanf(value, "%zu", &cl) != 1) {
-            send_message(client, bad_request_response);
+            uv_read_stop((uv_stream_t *)client);
+            send_message(client, bad_request_response, 1);
+            ctx->keep_alive = 0;
             log_error("Failed to scan Content-Length");
             return 1;
           }
 
           if (content_length_seen && first_content_length != cl) {
-            send_message(client, bad_request_response);
+            uv_read_stop((uv_stream_t *)client);
+            send_message(client, bad_request_response, 1);
+            ctx->keep_alive = 0;
             log_error("Multiple conflicting Content-Length headers");
             return 1;
           }
 
           if (cl > MAX_BODY_SIZE) {
-            send_message(client, payload_too_large_response);
+            uv_read_stop((uv_stream_t *)ctx->client);
+            send_message(client, payload_too_large_response, 1);
+            ctx->keep_alive = 0;
             log_error("content-length exceeds max body size");
             return 1;
           }
@@ -598,7 +636,10 @@ int parse_http_request(char *buffer, Request *req, uv_tcp_t *client,
     ctx->keep_alive = keep_alive;
 
     if (content_length > MAX_BODY_SIZE) {
-      send_message(client, payload_too_large_response);
+      log_error("content-length exceeds max body size2");
+      uv_read_stop((uv_stream_t *)ctx->client);
+      send_message(client, payload_too_large_response, 1);
+      ctx->keep_alive = 0;
       return 1;
     }
 
@@ -705,6 +746,7 @@ int handle_endpoint(ClientContext *ctx) {
   Request *req = ctx->req;
   ResponseContext *res = ctx->res;
   App *app = ctx->app;
+  int close_after = !ctx->keep_alive;
 
   Endpoint curr;
   int exists = 0;
@@ -764,9 +806,10 @@ int handle_endpoint(ClientContext *ctx) {
                  "HTTP/1.1 200 OK\r\n"
                  "Allow: %s\r\n"
                  "Content-Length: 0\r\n"
-                 "Connection: close\r\n\r\n",
-                 allow_header);
-        send_message(res->ctx->client, response);
+                 "Connection: %s\r\n\r\n",
+                 allow_header, close_after ? "close" : "keep-alive");
+        uv_read_stop((uv_stream_t *)ctx->client);
+        send_message(ctx->client, response, close_after);
         break;
       } else {
         char allow_header[256] = {0};
@@ -779,10 +822,12 @@ int handle_endpoint(ClientContext *ctx) {
                  "Allow: %s\r\n"
                  "Content-Type: text/plain\r\n"
                  "Content-Length: 19\r\n"
-                 "Connection: close\r\n\r\n"
+                 "Connection: %s\r\n\r\n"
                  "Method Not Allowed\n",
-                 allow_header);
-        send_message(res->ctx->client, response);
+                 allow_header, close_after ? "close" : "keep-alive");
+
+        uv_read_stop((uv_stream_t *)ctx->client);
+        send_message(ctx->client, response, close_after);
         return 1;
       }
     }
@@ -805,8 +850,8 @@ void handle_buffer(ClientContext *ctx) {
       size_t headers_size = headers_end - ctx->buffer + 4;
 
       if (headers_size > MAX_HEADER_SIZE) {
-        send_message(ctx->client, headers_too_large_response);
-        close_connection(ctx->client);
+        uv_read_stop((uv_stream_t *)ctx->client);
+        send_message(ctx->client, headers_too_large_response, 1);
         return;
       }
 
@@ -823,15 +868,18 @@ void handle_buffer(ClientContext *ctx) {
       }
     } else {
       if (ctx->buffer_len > MAX_HEADER_SIZE) {
-        send_message(ctx->client, headers_too_large_response);
-        close_connection(ctx->client);
+        uv_read_stop((uv_stream_t *)ctx->client);
+        send_message(ctx->client, headers_too_large_response, 1);
         return;
       }
     }
   }
 
-  size_t total_needed =
-      (strstr(ctx->buffer, "\r\n\r\n") - ctx->buffer) + 4 + ctx->content_length;
+  char *headers_end = strstr(ctx->buffer, "\r\n\r\n");
+  if (!headers_end)
+    return;
+
+  size_t total_needed = (headers_end - ctx->buffer) + 4 + ctx->content_length;
 
   if (ctx->buffer_len >= total_needed) {
 
@@ -847,9 +895,8 @@ void handle_buffer(ClientContext *ctx) {
 
     if (strcmp(req->version, "HTTP/1.0") != 0 &&
         strcmp(req->version, "HTTP/1.1") != 0) {
-      send_message(ctx->client, http_version_not_supported_response);
-
-      close_connection(ctx->client);
+      uv_read_stop((uv_stream_t *)ctx->client);
+      send_message(ctx->client, http_version_not_supported_response, 1);
       return;
     }
 
@@ -876,8 +923,9 @@ void handle_buffer(ClientContext *ctx) {
                "\r\n"
                "Method Not Allowed\n",
                allow_header);
-      send_message(ctx->client, response);
-      close_connection(ctx->client);
+
+      uv_read_stop((uv_stream_t *)ctx->client);
+      send_message(ctx->client, response, 1);
       return;
     }
 
@@ -916,20 +964,13 @@ void handle_buffer(ClientContext *ctx) {
 
     ctx->res = res;
     ctx->req = req;
+    ctx->buffer_len = 0;
 
     int exists = handle_endpoint(ctx);
 
-    if (!exists)
-      send_message(ctx->client, not_found_response);
-
-    if (ctx->keep_alive) {
+    if (!exists) {
       uv_read_stop((uv_stream_t *)ctx->client);
-      request_cleanup(ctx);
-      uv_timer_again(ctx->req_timer);
-      uv_read_start((uv_stream_t *)ctx->client, allocate_buffer,
-                    handle_client_read);
-    } else {
-      close_connection(ctx->client);
+      send_message(ctx->client, not_found_response, 1);
     }
   }
 }
@@ -944,28 +985,27 @@ void handle_client_read(uv_stream_t *stream, ssize_t nread,
     return;
   }
 
-  if (ctx->buffer_len + nread > MAX_REQUEST_SIZE) {
-    free(buf->base);
-    send_message(ctx->client, payload_too_large_response);
-    close_connection(ctx->client);
-    return;
-  }
-
   if (nread < 0) {
     free(buf->base);
     close_connection(ctx->client);
     return;
   }
 
-  if (nread > 0) {
-    if (ctx->buffer_len + nread > ctx->buffer_capacity) {
-      ctx->buffer_capacity *= 2;
-      ctx->buffer = realloc(ctx->buffer, ctx->buffer_capacity);
-    }
-    memcpy(ctx->buffer + ctx->buffer_len, buf->base, nread);
-    ctx->buffer_len += nread;
+  if (ctx->buffer_len + nread > MAX_REQUEST_SIZE) {
+    free(buf->base);
+    log_error("content-length exceeds max body size");
+    uv_read_stop((uv_stream_t *)ctx->client);
+    send_message(ctx->client, payload_too_large_response, 1);
+    return;
   }
 
+  if (ctx->buffer_len + nread > ctx->buffer_capacity) {
+    ctx->buffer_capacity *= 2;
+    ctx->buffer = realloc(ctx->buffer, ctx->buffer_capacity);
+  }
+
+  memcpy(ctx->buffer + ctx->buffer_len, buf->base, nread);
+  ctx->buffer_len += nread;
   free(buf->base);
   handle_buffer(ctx);
 }
@@ -973,8 +1013,13 @@ void handle_client_read(uv_stream_t *stream, ssize_t nread,
 void handle_client_timeout(uv_timer_t *timer) {
   ClientContext *ctx = timer->data;
 
-  send_message(ctx->client, request_timeput_response);
-  close_connection(ctx->client);
+  if (ctx->res != NULL)
+    return;
+
+  uv_timer_stop(timer);
+  ctx->keep_alive = 0;
+  uv_read_stop((uv_stream_t *)ctx->client);
+  send_message(ctx->client, request_timeput_response, 1);
 }
 
 void handle_connection(uv_stream_t *server, int status) {
@@ -1283,15 +1328,25 @@ void send_json_response(ResponseContext *res, cJSON *json) {
   char *json_str = cJSON_PrintUnformatted(json);
   if (!json_str) {
     const char *err = "{\"error\":\"Failed to serialize JSON\"}";
-    send_message(res->ctx->client, err);
+    uv_read_stop((uv_stream_t *)res->ctx->client);
+    send_message(res->ctx->client, err, 1);
   } else {
     char header[2048];
     build_response_headers(res, json_str, header, sizeof(header),
                            "application/json");
 
-    send_message(res->ctx->client, header);
-    send_message(res->ctx->client, json_str);
+    size_t total = strlen(header) + strlen(json_str);
+    char *response = malloc(total + 1);
 
+    memcpy(response, header, strlen(header));
+    memcpy(response + strlen(header), json_str, strlen(json_str));
+    response[total] = '\0';
+
+    int close_after = !res->ctx->keep_alive;
+    uv_read_stop((uv_stream_t *)res->ctx->client);
+    send_message(res->ctx->client, response, close_after);
+
+    free(response);
     free(json_str);
   }
 
@@ -1303,14 +1358,24 @@ void send_text_response(ResponseContext *res, const char *message) {
   build_response_headers(res, message, header, sizeof(header),
                          "application/text");
 
-  send_message(res->ctx->client, header);
-  send_message(res->ctx->client, message);
+  size_t total = strlen(header) + strlen(message);
+  char *response = malloc(total + 1);
+
+  memcpy(response, header, strlen(header));
+  memcpy(response + strlen(header), message, strlen(message));
+  response[total] = '\0';
+
+  int close_after = !res->ctx->keep_alive;
+  uv_read_stop((uv_stream_t *)res->ctx->client);
+  send_message(res->ctx->client, response, close_after);
+  free(response);
 }
 
 void send_error(ResponseContext *res, int status, const char *message) {
   cJSON *error = cJSON_CreateObject();
   cJSON_AddStringToObject(error, "error", message);
   res->status = status;
+  uv_read_stop((uv_stream_t *)res->ctx->client);
   send_json_response(res, error);
 }
 
