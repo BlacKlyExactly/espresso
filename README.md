@@ -73,14 +73,21 @@ make
 **Linux/macOS:**
 
 ```bash
-gcc -o server main.c espresso.c vendor/cJSON/cJSON.c -lpthread
+gcc -Wall -Wextra -O2 -o server src/main.c src/espresso.c vendor/cJSON/cJSON.c $(pkg-config --cflags --libs libuv)
 ./server
 ```
 
-**Windows:**
+**Windows (MinGW/MSYS2):**
 
 ```cmd
-cl /Fe:server.exe main.c espresso.c vendor\cJSON\cJSON.c ws2_32.lib
+gcc -Wall -Wextra -O2 -IC:/msys64/mingw64/include -o server.exe src/main.c src/espresso.c vendor/cJSON/cJSON.c -LC:/msys64/mingw64/lib -luv -lws2_32 -liphlpapi
+server.exe
+```
+
+**Windows (MSVC):**
+
+```cmd
+cl /O2 /Fe:server.exe src/main.c src/espresso.c vendor\cJSON\cJSON.c /I"C:\path\to\libuv\include" /link /LIBPATH:"C:\path\to\libuv\lib" libuv.lib ws2_32.lib iphlpapi.lib
 server.exe
 ```
 
